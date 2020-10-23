@@ -12,7 +12,7 @@
   background-size: cover;
 }
 
-landing-section-content {
+.landing-section-content {
   padding: 2rem;
   background: rgba(0,0,0,0.5);
   width: 100vw;
@@ -21,6 +21,50 @@ landing-section-content {
   justify-content: center;
   flex-direction: column;
   color: #ccc;
+}
+
+.button1 {
+  padding: 2rem;
+  background: rgba(0,0,0,0.5);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fcc203;
+}
+
+.button2 {
+  padding: 2rem;
+  background: rgba(0,0,0,0.5);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fcc203;
+}
+
+.button3 {
+  padding: 2rem;
+  background: rgba(0,0,0,0.5);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fcc203;
+}
+
+.button4 {
+  padding: 2rem;
+  background: rgba(0,0,0,0.5);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fcc203;
 }
 
 .brand {
@@ -35,7 +79,8 @@ landing-section-content {
 .header {
   width: 100vw;
   display: flex;
-  justify-content: flex-end;
+  text-align: center;
+ /* justify-content: flex-end;*/
   top: 0;
   left: 0;
   position: absolute;
@@ -55,5 +100,130 @@ landing-section-content {
 .header-text {
   margin: 1rem;
   font-size: 1.2rem;
-  color: #ccc;
+  color: #fcba03;
+}
+
+.resources{
+position: relative;
+  width:20%;
+  block-size:140px;
+  margin-top:30px;
+  margin-bottom: 0px;
+  height:70px;
+  float:left;
+  display: inline-block;
+}
+
+.data{
+position: relative;
+  width:20%;
+  block-size:140px;
+  margin-top:30px;
+  margin-bottom: 0px;
+  height:70px;
+  background-clip: border-box;
+  float:left;
+  display: inline-block;
+}
+
+.card {
+    margin: 25px 50px 75px;
+    width:140px;
+    position: relative;
+    min-width: 140px;
+    max-width: 140px;
+    max-height: 256px;
+    min-height: 256px;
+    color: #171717;
+
+}
+
+.card-deck .card {
+    display: flex;
+    display: -ms-flexbox;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    overflow: hidden;
+}
+
+/*.card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}*/
+
+/*.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}*/
+
+.home-panel {
+    /*margin-left: -15px;
+    margin-right: -15px;*/
+    justify-content: left;
+    padding: 2em;
+    color: #3D3D3D;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col-md-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/*body {
+    height: 100%;
+    background: #F3F3F3;
+    font-family: 'IBM Plex Sans';
+    display: block;
+}*/
+
+/*.card-deck .card {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+}*/
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
 }
