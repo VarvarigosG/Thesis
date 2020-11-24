@@ -26,3 +26,4 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+    # mpainei mesa se kathe class kai epistrefei pio readable apotelesmata(to__str__)

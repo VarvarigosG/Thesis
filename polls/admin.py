@@ -1,12 +1,14 @@
 from django.contrib import admin
 
 from .models import Choice, Question
+# edw orizoume to choice kai to question gia na einai modifiable sto admin page
 
 
 class ChoiceInline(admin.TabularInline):
 
     model = Choice
-    extra = 3
+    extra = 2
+    #allazei ta posa extra choices tha exei ena question
 
 
 class QuestionAdmin(admin.ModelAdmin):
