@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.views import generic
 from .models import Choice, Question
 from django.utils import timezone
+from django.contrib import messages
+from django.http import HttpResponse
 
 # # kanei display  ena question text xwris apotelesmata kai ena form gia na kaneis vote
 # def detail(request, question_id):
@@ -25,11 +27,6 @@ from django.utils import timezone
 #     return render(request, 'polls/index.html', context)
 #     # it displays the latest 5 poll questions separated by commas according to publication date
 
-
-
-
-
-
 # These views represent a common case of basic Web development: getting data from the database according to a parameter
 # passed in the URL, loading a template and returning the rendered template. Because this is so common,
 # Django provides a shortcut, called the “generic views” system.
@@ -48,17 +45,18 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'polls/detail.html'
-
-    def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
         return Question.objects.filter(pub_date__lte=timezone.now())
+
+
+# class DetailView(generic.DetailView):
+#     model = Question
+#     template_name = 'polls/index.html'
+#
+#     def get_queryset(self):
+#         """
+#         Excludes any questions that aren't published yet.
+#         """
+#         return Question.objects.filter(pub_date__lte=timezone.now())
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -67,11 +65,15 @@ def vote(request, question_id):
     #to request.POST einai ena object poy se afhnei na kaneis access ta dedomena me ena kapoio KEYNAME
     #Sthn prokeimenh periptwsh gyrnaei to ID ths epiloghs('choice') san string(request.POST values are always strings)
     except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
+        messages.info(request, "You didn't select a choice!")
+        return HttpResponseRedirect(reverse('polls:index',))
+        # return HttpResponse("Welcome to poll's index!")
+        # # # Redisplay the question voting form.
+        # # return render(request, 'polls/index.html', {
+        # #     'question': question,
+        # #     'error_message': "You didn't select a choice.",
+        #
+        # })
     else:
         selected_choice.votes += 1
         selected_choice.save()

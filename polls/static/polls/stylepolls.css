@@ -1,0 +1,52 @@
+li a {
+    color: green;
+}
+
+
+.html {
+    /* To make use of full height of page*/
+    min-height: 100%;
+    min-width: 100%;
+    margin: 0;
+}
+
+.page-holder {
+    min-height: 100vh;
+}
+
+.bg-cover {
+    background-size: cover !important;
+}
+
+.row {
+    position: absolute;
+    top: 50%;
+}
+
+.card {
+    /*height: 200px;*/
+    height: 10vmax;
+}
+
+.header {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 25px;
+    color: #2F2835;
+    text-align: left;
+    width: 100%;
+    border-bottom: 1.5px solid #272525;
+    padding: 7px;
+}
+
+.display-3 {
+    padding-top: 5vmax;
+}
+
+.alert.alert-info {
+    position: absolute;
+    font-size: 25px;
+    color: #ac2925;
+    width: 25%;
+    text-align: center;
+
+}
