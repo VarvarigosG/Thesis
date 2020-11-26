@@ -45,18 +45,18 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')[:5]
+        # return Question.objects.filter(pub_date__lte=timezone.now())
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
         return Question.objects.filter(pub_date__lte=timezone.now())
-
-
-# class DetailView(generic.DetailView):
-#     model = Question
-#     template_name = 'polls/index.html'
-#
-#     def get_queryset(self):
-#         """
-#         Excludes any questions that aren't published yet.
-#         """
-#         return Question.objects.filter(pub_date__lte=timezone.now())
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -66,7 +66,8 @@ def vote(request, question_id):
     #Sthn prokeimenh periptwsh gyrnaei to ID ths epiloghs('choice') san string(request.POST values are always strings)
     except (KeyError, Choice.DoesNotExist):
         messages.info(request, "You didn't select a choice!")
-        return HttpResponseRedirect(reverse('polls:index',))
+        return HttpResponseRedirect(reverse('polls:detail', args=(question.id,)))
+
         # return HttpResponse("Welcome to poll's index!")
         # # # Redisplay the question voting form.
         # # return render(request, 'polls/index.html', {

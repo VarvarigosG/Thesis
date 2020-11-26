@@ -25,40 +25,30 @@
 <div style="background: url(https://pixabay.com/get/57e3d6434857ae14f6d1867dda3536781539dced5a517048_1920.jpg)"
      class="page-holder bg-cover">
 
+
     {% if latest_question_list %}
     <ul>
-
-
         {% for question in latest_question_list %}
-        <li><!--<a href="{% url 'polls:index'  %}">-->{{ question.question_text }}</a></li>
+        <!--<li>{{ question.question_text }}</li>-->
         <!--tha htan url 'detail' alla to kananame etsi logw tou namespace -->
-
-        <form action="{% url 'polls:vote' question.id %}" method="post">
+ <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <!--<form action="{% url 'polls:vote' question.id %}" method="post">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
             <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-            <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
+            &lt;!&ndash;    to forloop.counter metraei poses fores exei ginei klhsh ths for &ndash;&gt;
             {% endfor %}
             <input type="submit" value="Vote">
-
-            <!--            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}-->
-            <!--    ayto einai to button toy vote -->
+            &lt;!&ndash;    ayto einai to button toy vote &ndash;&gt;
         </form>
-
 
         {% endfor %}
 
         {% for message in messages %}
         <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-        {% endfor %}
-
-
+        {% endfor %}-->
     </ul>
-
-    {% else %}
-
-    <!--<p>No polls are available.</p>-->
     {% endif %}
 
 </div>
