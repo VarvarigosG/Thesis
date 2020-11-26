@@ -14,4 +14,5 @@ urlpatterns = [
     # ex: /polls/5/vote/
     path('<int:question_id>/vote/', views.vote, name='vote'),
     #has changed from <question_id> to <pk>.
+    path('choice-chart/', views.choice_chart, name='choice-chart'),
 ]

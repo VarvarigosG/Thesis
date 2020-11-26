@@ -2,12 +2,24 @@ li a {
     color: green;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  background-color: red;
+}
 
-.html {
-    /* To make use of full height of page*/
-    min-height: 100%;
-    min-width: 100%;
-    margin: 0;
+
+/*html,*/
+/*body {*/
+/*    height: 100%;*/
+/*}*/
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
 }
 
 .page-holder {
@@ -48,5 +60,22 @@ li a {
     color: #ac2925;
     width: 25%;
     text-align: center;
+}
 
+.navbar-default, .btn, .form-control, .panel {
+    border-radius: 0;
+}
+
+.navbar-default {
+    background-color: rgba(245, 245, 220, .7);
+    border-color: rgba(245, 245, 220, .6);
+    box-shadow: 0px 3px 3px 0px #ddd;
+}
+
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: rgba(245, 245, 220, .7);
+    border-color: rgba(245, 245, 220, .6);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

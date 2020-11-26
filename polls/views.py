@@ -6,6 +6,8 @@ from .models import Choice, Question
 from django.utils import timezone
 from django.contrib import messages
 from django.http import HttpResponse
+from django.db.models import Sum
+from django.http import JsonResponse
 
 # # kanei display  ena question text xwris apotelesmata kai ena form gia na kaneis vote
 # def detail(request, question_id):
@@ -100,3 +102,18 @@ def get_queryset(self):
     return Question.objects.filter(
         pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:5]
+
+
+def choice_chart(request):
+    labels = []
+    data = []
+
+    queryset =Choice.objects.values('question_choice_text')
+    for entry in queryset:
+        labels.append(entry['question_choice_text'])
+        data.append(entry['question_votes'])
+
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
