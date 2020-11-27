@@ -94,6 +94,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+
 def get_queryset(self):
     """
     Return the last five published questions (not including those set to be
@@ -103,14 +104,11 @@ def get_queryset(self):
         pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:5]
 
-def home(request):
-    return render(request, 'jsonChart.html')
 
 def choice_chart(request):
     labels = []
     data = []
-    # return render(request, 'polls/results.html',)
-    queryset =Choice.objects.all('choice_text').annotate(population=Sum('votes')).order_by('-votes')
+    queryset =Choice.objects.values().annotate(population=Sum('votes')).order_by('-votes')
     for entry in queryset:
         labels.append(entry['choice_text'])
         data.append(entry['votes'])
