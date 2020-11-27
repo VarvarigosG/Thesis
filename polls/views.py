@@ -103,15 +103,17 @@ def get_queryset(self):
         pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:5]
 
+def home(request):
+    return render(request, 'jsonChart.html')
 
 def choice_chart(request):
     labels = []
     data = []
-
-    queryset =Choice.objects.values('question_choice_text')
+    # return render(request, 'polls/results.html',)
+    queryset =Choice.objects.all('choice_text').annotate(population=Sum('votes')).order_by('-votes')
     for entry in queryset:
-        labels.append(entry['question_choice_text'])
-        data.append(entry['question_votes'])
+        labels.append(entry['choice_text'])
+        data.append(entry['votes'])
 
     return JsonResponse(data={
         'labels': labels,
