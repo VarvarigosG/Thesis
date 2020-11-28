@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from django.db.models import Sum
 from django.http import JsonResponse
 
+
 # # kanei display  ena question text xwris apotelesmata kai ena form gia na kaneis vote
 # def detail(request, question_id):
 #     question = get_object_or_404(Question, pk=question_id)
@@ -39,6 +40,7 @@ from django.http import JsonResponse
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
+
     # For DetailView the question variable is provided automatically – since we’re using a Django model (Question),
     # Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically
     # generated context variable is question_list. To override this we provide the context_object_name attribute, specifying
@@ -60,12 +62,13 @@ class DetailView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    #to request.POST einai ena object poy se afhnei na kaneis access ta dedomena me ena kapoio KEYNAME
-    #Sthn prokeimenh periptwsh gyrnaei to ID ths epiloghs('choice') san string(request.POST values are always strings)
+    # to request.POST einai ena object poy se afhnei na kaneis access ta dedomena me ena kapoio KEYNAME
+    # Sthn prokeimenh periptwsh gyrnaei to ID ths epiloghs('choice') san string(request.POST values are always strings)
     except (KeyError, Choice.DoesNotExist):
         messages.info(request, "You didn't select a choice!")
         return HttpResponseRedirect(reverse('polls:detail', args=(question.id,)))
@@ -84,10 +87,9 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-    #to HttpResponseRedirect pairnei mono ena argument : to URL sto opoio tha ginei redirected o xrhsths
-    #otan exoume teleiwsei me POST data kalo tha htan na epistrfoyme me HttpResponseRedirect
-    #to reverse einai function , bohthaei ston na mhn exoume hardcoded url , twra tha epistrefei to /polls/question.id/results/'
-
+    # to HttpResponseRedirect pairnei mono ena argument : to URL sto opoio tha ginei redirected o xrhsths
+    # otan exoume teleiwsei me POST data kalo tha htan na epistrfoyme me HttpResponseRedirect
+    # to reverse einai function , bohthaei ston na mhn exoume hardcoded url , twra tha epistrefei to /polls/question.id/results/'
 
 
 class ResultsView(generic.DetailView):
@@ -105,10 +107,10 @@ def get_queryset(self):
     ).order_by('-pub_date')[:5]
 
 
-def choice_chart(request):
+def choice_chart(request,):
     labels = []
     data = []
-    queryset =Choice.objects.values().annotate(population=Sum('votes')).order_by('-votes')
+    queryset = Choice.objects.values().annotate(population=Sum('votes')).order_by('-question_id')
     for entry in queryset:
         labels.append(entry['choice_text'])
         data.append(entry['votes'])
