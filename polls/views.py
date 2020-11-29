@@ -107,10 +107,11 @@ def get_queryset(self):
     ).order_by('-pub_date')[:5]
 
 
-def choice_chart(request,):
+def choice_chart(request, question_id):
     labels = []
     data = []
-    queryset = Choice.objects.values().annotate(population=Sum('votes')).order_by('-question_id')
+    queryset = Choice.objects.filter(question_id=question_id).values().annotate(votes=Sum('votes')).order_by(
+        '-question_id')
     for entry in queryset:
         labels.append(entry['choice_text'])
         data.append(entry['votes'])
