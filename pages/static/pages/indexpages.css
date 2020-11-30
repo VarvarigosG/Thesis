@@ -1,11 +1,11 @@
-.html {
-    /* To make use of full height of page*/
-    min-height: 100%;
-    margin: 0;
-}
+/*.html {*/
+/*    !* To make use of full height of page*!*/
+/*    min-height: 100%;*/
+/*    margin: 0;*/
+/*}*/
 
 .page-holder {
-  min-height: 100vh;
+  min-height: 43rem;
 }
 
 .bg-cover {
@@ -35,13 +35,3 @@
 .display-3{
    padding-top: 5vmax;
 }
-
-/*
-.col-sm{
-    height:20vmax;
-}*/
-
-/*.body {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
-}*/
