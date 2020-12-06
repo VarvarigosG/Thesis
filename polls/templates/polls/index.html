@@ -37,15 +37,15 @@
     </div>
 
 
-<!--    <div class="beta">-->
-<!--        {% if latest_question_list2 %}-->
-<!--        <ul>-->
-<!--            {% for question in latest_question_list %}-->
-<!--            <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-<!--        {% endif %}-->
-<!--    </div>-->
+    <div class="beta">
+        {% if latest_question_list2 %}
+        <ul>
+            {% for question in latest_question_list %}
+            <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
 
 </section>
