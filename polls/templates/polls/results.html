@@ -25,11 +25,11 @@
 </ul>
 <!--<a href="{% url 'polls:index' %}">Vote again?</a>-->
 <a class="btn btn-success" href="{% url 'polls:index'%}" class="btn btn-large btn-success">Vote again?</a>
-{% include 'polls/jsonChart.html' %}
-{% block content %}{% endblock %}
 
-</body>
+{% block content %}{% include 'polls/jsonChart.html' %}{% endblock %}
 <footer class="footer">
     Varvarigos Georgios, AM 5999.
 </footer>
+</body>
+
 </html>

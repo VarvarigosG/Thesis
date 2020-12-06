@@ -41,6 +41,7 @@ class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
+
     # For DetailView the question variable is provided automatically – since we’re using a Django model (Question),
     # Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically
     # generated context variable is question_list. To override this we provide the context_object_name attribute, specifying
@@ -51,6 +52,10 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:5]
         # return Question.objects.filter(pub_date__lte=timezone.now())
 
+    def get_context_data(self):
+        context = super(IndexView, self).get_context_data()
+        context['latest_question_list2'] = Question.objects.filter(id__gt=3)
+        return context
 
 class DetailView(generic.DetailView):
     model = Question

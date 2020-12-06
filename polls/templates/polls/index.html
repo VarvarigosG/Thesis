@@ -11,32 +11,44 @@
     <link rel="shortcut icon" href="{% static 'pages/Artificial-Intelligence-Trends.jpeg' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/indexpolls.css' %}">
 
-<!--    <header class="header">-->
-<!--        <div class="text">Welcome to AI EXPLAINABILITY FRAMEWORK-->
-<!--        </div>-->
-<!--    </header>-->
+    <!--    <header class="header">-->
+    <!--        <div class="text">Welcome to AI EXPLAINABILITY FRAMEWORK-->
+    <!--        </div>-->
+    <!--    </header>-->
 
 </head>
 
-<body>
 
 <!--<div style="background: url(https://pixabay.com/get/57e3d6434857ae14f6d1867dda3536781539dced5a517048_1920.jpg)"-->
 <div class="text-center">
-<h3>Polls Available</h3>
+    <h3>Polls Available</h3>
 </div>
 
-<div class="list-group">
-    {% if latest_question_list %}
+<section class="container">
+
+    <div class="alpha">
+         {% if latest_question_list2 %}
     <ul>
         {% for question in latest_question_list %}
         <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
         {% endfor %}
     </ul>
     {% endif %}
-</div>
+    </div>
 
 
-</body>
+<!--    <div class="beta">-->
+<!--        {% if latest_question_list2 %}-->
+<!--        <ul>-->
+<!--            {% for question in latest_question_list %}-->
+<!--            <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+
+
+</section>
 <footer class="footer">
     Varvarigos Georgios, AM 5999.
 </footer>

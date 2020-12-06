@@ -12,7 +12,7 @@ html {
 
 body {
     min-height: 100%;
-    background-color:#f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .header {
@@ -29,6 +29,26 @@ body {
     padding-top: 5vmax;
 }
 
-.text-center{
-    padding:1rem;
+.text-center {
+    padding: 1rem;
+}
+
+.alpha {
+ /*background: #ff9e2c;*/
+  grid-column: 1;
+}
+
+.beta {
+  /*background: #ff9e2c;*/
+  grid-column: 2;
+}
+
+.container {
+  display: grid;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
