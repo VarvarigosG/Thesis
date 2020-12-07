@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--   <script src="stylesheet" href="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>-->
+
     <link rel="shortcut icon" href="{% static 'pages/Artificial-Intelligence-Trends.jpeg' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'polls/indexpolls.css' %}">
 
@@ -27,28 +30,151 @@
 <section class="container">
 
     <div class="alpha">
-         {% if latest_question_list2 %}
-    <ul>
-        {% for question in latest_question_list %}
-        <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
-        {% endfor %}
-    </ul>
-    {% endif %}
+        <div class="header1">
+            <h3>Organizations</h3>
+        </div>
+        <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button">Responsibilty<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck1" class="dropcheck" type="checkbox">-->
+            <!--            <label for="dropcheck1" class="btn btn-primary dropdown-toggle" type="button">Responsibilty<span-->
+            <!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button">Explainability<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck1" class="dropcheck" type="checkbox">-->
+            <!--            <label for="dropcheck1" class="btn btn-primary dropdown-toggle" type="button">Explainability<span-->
+            <!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button">Auditability<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck1" class="dropcheck" type="checkbox">-->
+            <!--            <label for="dropcheck1" class="btn btn-primary dropdown-toggle" type="button">Explainability<span-->
+            <!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button">Accuracy<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck1" class="dropcheck" type="checkbox">-->
+            <!--            <label for="dropcheck1" class="btn btn-primary dropdown-toggle" type="button">Explainability<span-->
+            <!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+             <button class="btn btn-primary dropdown-toggle" type="button">Fairness<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck1" class="dropcheck" type="checkbox">-->
+            <!--            <label for="dropcheck1" class="btn btn-primary dropdown-toggle" type="button">Explainability<span-->
+            <!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
     </div>
 
 
     <div class="beta">
-        {% if latest_question_list2 %}
-        <ul>
-            {% for question in latest_question_list %}
-            <a href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        <div class="header1">
+            <h3>Algorithms</h3>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck2" class="dropcheck" type="checkbox">-->
+<!--            <label for="dropcheck2" class="btn btn-primary dropdown-toggle" type="button">Data Questions<span-->
+<!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list2 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown" >
+                        <button class="btn btn-primary dropdown-toggle" type="button">Data Presence Questions<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck3" class="dropcheck" type="checkbox">-->
+<!--            <label for="dropcheck3"  class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span-->
+<!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list2 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown" >
+                        <button class="btn btn-primary dropdown-toggle" type="button">Model Questions<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck3" class="dropcheck" type="checkbox">-->
+<!--            <label for="dropcheck3"  class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span-->
+<!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list2 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown" >
+                        <button class="btn btn-primary dropdown-toggle" type="button">Inferencing Questions<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck3" class="dropcheck" type="checkbox">-->
+<!--            <label for="dropcheck3"  class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span-->
+<!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list2 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown" >
+                        <button class="btn btn-primary dropdown-toggle" type="button">Performance Evaluation Questions<span class="caret"></span>
+                        </button>
+<!--            <input id="dropcheck3" class="dropcheck" type="checkbox">-->
+<!--            <label for="dropcheck3"  class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span-->
+<!--                    class="caret"></span></label>-->
+            <div class="dropdown-content">
+                {% for question in latest_question_list2 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     </div>
 
-
 </section>
+
 <footer class="footer">
     Varvarigos Georgios, AM 5999.
 </footer>
