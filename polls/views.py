@@ -49,12 +49,12 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(id__lte=4)
+        return Question.objects.filter(id__lte=30)
         # return Question.objects.order_by('-pub_date')[:5]
 
     def get_context_data(self):
         context = super(IndexView, self).get_context_data()
-        context['latest_question_list2'] = Question.objects.filter(id__gt=4).values()
+        context['latest_question_list2'] = Question.objects.filter(id__gt=30).values()
         return context
 
 
@@ -143,7 +143,7 @@ def choice_chart(request, question_id):
         'data': data,
     })
 
-def get_form(request):
+def get_form(request,):
 
     if request.method == "POST":
         form = PostForm(request.POST)

@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
+    question_text = models.CharField(max_length=1000)
     pub_date = models.DateTimeField('date published')
 
     def __str__(self):
@@ -29,8 +29,8 @@ class Choice(models.Model):
         return self.choice_text
     # mpainei mesa se kathe class kai epistrefei pio readable apotelesmata(to__str__)
 
-    def __str__(self):
-        return self.answer_text
+    # def __str__(self):
+    #     return self.answer_text
 
     class Meta:
         db_table = 'polls_choice'
