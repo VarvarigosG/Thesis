@@ -1,13 +1,14 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic
-from .models import Choice, Question
-from django.utils import timezone
 from django.contrib import messages
-from django.http import HttpResponse
 from django.db.models import Sum
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
+from django.utils import timezone
+from django.views import generic
+# from .forms import DetailForm
+from .models import Choice, Question
+from .forms import PostForm
 
 
 # # kanei display  ena question text xwris apotelesmata kai ena form gia na kaneis vote
@@ -41,7 +42,6 @@ class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
-
     # For DetailView the question variable is provided automatically – since we’re using a Django model (Question),
     # Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically
     # generated context variable is question_list. To override this we provide the context_object_name attribute, specifying
@@ -57,6 +57,7 @@ class IndexView(generic.ListView):
         context['latest_question_list2'] = Question.objects.filter(id__gt=4).values()
         return context
 
+
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
@@ -66,6 +67,22 @@ class DetailView(generic.DetailView):
         Excludes any questions that aren't published yet.
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
+
+    # def get(self, request, pk,):
+    #     form = DetailForm()
+    #     return render(request, 'polls/detail.html', {'form': form})
+    #
+    # def post(self, request,pk):
+    #     form = DetailForm(request.POST)
+    #     if form.is_valid():
+    #         post = form.save()
+    #         post.save()
+    #         text = form.cleaned_data['answer_text']
+    #         form = DetailForm()
+    #         return redirect('home:home')
+    #
+    #     # args = {'form': form, 'text': text, }
+    #     return render(request, 'polls/detail.html', {'form': form}, {'text': text, })
 
 
 def vote(request, question_id):
@@ -125,3 +142,19 @@ def choice_chart(request, question_id):
         'labels': labels,
         'data': data,
     })
+
+def get_form(request):
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            # post.author = request.user
+            # post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'polls/percentage.html', {'form': form})
+
+

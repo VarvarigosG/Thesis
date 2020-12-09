@@ -36,10 +36,9 @@
                                 <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
                                 <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
                                 {% endfor %}
-                                {choice answer_text}
 
                                 <input type="submit" class="btn btn-large btn-success" value="Vote">
-                                <!--    ayto einai to button toy vote -->
+<!--                                    ayto einai to button toy vote-->
                             </form>
                         </li>
                     </ul>
@@ -55,3 +54,7 @@
     Varvarigos Georgios, AM 5999.
 </footer>
 </body>
+{% block content %}{% include 'polls/freetext.html' %}{% endblock %}
+<!--                                <form action="{% url 'polls:vote' question.id %}" method="post">-->
+<!--                                    <input id="txtbox" type="text"></input></form>-->
+<!--                                <input id="inputbutton" type="submit" value="Submit"> </input>-->

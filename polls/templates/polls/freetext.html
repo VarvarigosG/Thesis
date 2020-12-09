@@ -1,0 +1,41 @@
+{% block body %}
+<div class="container">
+    <div class="col-md-8">
+        <!--        <h2>Home</h2>-->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.post }}
+            <br>
+            <button type="submit">Submit</button>
+            <h2>{{text}}</h2>
+
+        </form>
+    </div>
+</div>
+<!--<script>-->
+
+<!--var txt = document.getElementById('txtbox');-->
+<!--var btn = document.getElementById('inputbutton');-->
+<!--txt.disabled=true;-->
+
+<!--$(document).ready(function() {-->
+<!--    $('#dropdown1').change(function() {-->
+<!--        if($(this).val() == "Three"){-->
+<!--            document.getElementById('txtbox').disabled=false;-->
+<!--        }-->
+<!--        else{-->
+<!--            document.getElementById('txtbox').disabled=true;-->
+<!--        }-->
+<!--    });-->
+<!--});-->
+
+<!--btn.onclick = function () {-->
+<!--    if((txt).disabled){-->
+<!--        alert('input is: ' + $('#dropdown1').val());-->
+<!--    }-->
+<!--    else{-->
+<!--        alert('input is: ' + $(txt).val());-->
+<!--    }-->
+<!--};-->
+<!--</script>-->
+{% endblock %}
