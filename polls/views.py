@@ -49,12 +49,25 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(id__lte=30)
+        return Question.objects.filter(id__gte=101).filter(id__lt=200)
         # return Question.objects.order_by('-pub_date')[:5]
 
-    def get_context_data(self):
-        context = super(IndexView, self).get_context_data()
-        context['latest_question_list2'] = Question.objects.filter(id__gt=30).values()
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data( **kwargs)
+        context.update({
+            'latest_question_list2': Question.objects.filter(id__gte=201).filter(id__lt=300).values(),
+            'latest_question_list3': Question.objects.filter(id__gte=301).filter(id__lte=400).values(),
+            'latest_question_list4': Question.objects.filter(id__gte=401).filter(id__lte=500).values(),
+            'latest_question_list5': Question.objects.filter(id__gte=501).filter(id__lte=600).values(),
+            'latest_question_list6': Question.objects.filter(id__gte=601).filter(id__lte=700).values(),
+            'latest_question_list7': Question.objects.filter(id__gte=701).filter(id__lte=800).values(),
+            'latest_question_list8': Question.objects.filter(id__gte=801).filter(id__lte=900).values(),
+            'latest_question_list9': Question.objects.filter(id__gte=901).filter(id__lte=1000).values(),
+            'latest_question_list10': Question.objects.filter(id__gte=1001).filter(id__lte=1100).values(),
+            'latest_question_list11': Question.objects.filter(id__gte=2001).filter(id__lte=2100).values(),
+            'latest_question_list12': Question.objects.filter(id__gte=3001).filter(id__lte=3100).values(),
+
+        })
         return context
 
 

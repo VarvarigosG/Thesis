@@ -33,57 +33,84 @@
         <div class="header1">
             <h3>Organizations</h3>
         </div>
+        </li>
+
+    <li>
         <div class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button">Responsibilty<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
+             <button id="myBtn" class="dropbtn">Responsibilty</button>
+            <div id="myDropdown" class="dropdown-content">
                 {% for question in latest_question_list %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
+        </li>
 
+    <li>
         <div class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button">Explainability<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list %}
+             <button id="myBtn2" class="dropbtn">Explainability</button>
+            <div id="myDropdown2" class="dropdown-content">
+                {% for question in latest_question_list2 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
-        <div class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button">Auditability<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list %}
+        </li>
+
+    <li>
+    <div class="dropdown">
+             <button id="myBtn3" class="dropbtn">Autability</button>
+            <div id="myDropdown3" class="dropdown-content">
+                {% for question in latest_question_list3 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
+        </li>
 
+    <li>
         <div class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button">Accuracy<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list %}
+             <button id="myBtn4" class="dropbtn">Accuracy</button>
+            <div id="myDropdown4" class="dropdown-content">
+                {% for question in latest_question_list4 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
+        </li>
 
+    <li>
         <div class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button">Fairness<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list %}
+             <button id="myBtn5" class="dropbtn">Fairness</button>
+            <div id="myDropdown5" class="dropdown-content">
+                {% for question in latest_question_list5 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
+        </li>
 
+        <li>
+        <div class="dropdown">
+             <button id="myBtn6" class="dropbtn">Communication</button>
+            <div id="myDropdown6" class="dropdown-content">
+                {% for question in latest_question_list6 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        </li>
 
-
+        <li>
+        <div class="dropdown">
+             <button id="myBtn7" class="dropbtn">Accesibility</button>
+            <div id="myDropdown7" class="dropdown-content">
+                {% for question in latest_question_list7 %}
+                <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
+                {% endfor %}
+            </div>
+        </div>
+       </li>
     </div>
 
 
@@ -91,61 +118,117 @@
         <div class="header1">
             <h3>Algorithms</h3>
         </div>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list2 %}
+    <div class="dropdown">
+             <button id="myBtn8" class="dropbtn">Data</button>
+            <div id="myDropdown8" class="dropdown-content">
+                {% for question in latest_question_list8 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
 
-        <div class="dropdown" >
-                        <button class="btn btn-primary dropdown-toggle" type="button">Data Presence Questions<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list2 %}
+    <div class="dropdown">
+             <button id="myBtn9" class="dropbtn">The model</button>
+            <div id="myDropdown9" class="dropdown-content">
+                {% for question in latest_question_list9 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
 
-        <div class="dropdown" >
-                        <button class="btn btn-primary dropdown-toggle" type="button">Model Questions<span class="caret"></span>
-                        </button>
-            <div class="dropdown-content">
-                {% for question in latest_question_list2 %}
+    <div class="dropdown">
+             <button id="myBtn10" class="dropbtn">Inferencing</button>
+            <div id="myDropdown10" class="dropdown-content">
+                {% for question in latest_question_list7 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
 
-        <div class="dropdown" >
-                        <button class="btn btn-primary dropdown-toggle" type="button">Inferencing Questions<span class="caret"></span>
-                        </button>
-<!--            <input id="dropcheck3" class="dropcheck" type="checkbox">-->
-<!--            <label for="dropcheck3"  class="btn btn-primary dropdown-toggle" type="button">Algorithmic Presence Questions<span-->
-<!--                    class="caret"></span></label>-->
-            <div class="dropdown-content">
-                {% for question in latest_question_list2 %}
+    <div class="dropdown">
+             <button id="myBtn11" class="dropbtn">Agorithmic Presence </button>
+            <div id="myDropdown11" class="dropdown-content">
+                {% for question in latest_question_list11 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
 
-        <div class="dropdown" >
-                        <button class="btn btn-primary dropdown-toggle" type="button">Performance Evaluation Questions<span class="caret"></span>
-                        </button>
-
-            <div class="dropdown-content">
-                {% for question in latest_question_list2 %}
+<div class="dropdown">
+             <button id="myBtn12" class="dropbtn">Performance Evaluation</button>
+            <div id="myDropdown12" class="dropdown-content">
+                {% for question in latest_question_list12 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
         </div>
     </div>
-    </div>
+
+
+
+
+<script>
+// Get the button, and when the user clicks on it, execute myFunction
+document.getElementById("myBtn").onclick = function() {myFunction()};
+/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("dropdown-content");
+}
+
+document.getElementById("myBtn2").onclick = function() {myFunction2()};
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("dropdown-content");
+}
+
+document.getElementById("myBtn3").onclick = function() {myFunction3()};
+function myFunction3() {
+  document.getElementById("myDropdown3").classList.toggle("dropdown-content");
+}
+
+document.getElementById("myBtn4").onclick = function() {myFunction4()};
+function myFunction4() {
+    document.getElementById("myDropdown4").classList.toggle("dropdown-content");
+}
+  document.getElementById("myBtn5").onclick = function() {myFunction5()};
+function myFunction5() {
+    document.getElementById("myDropdown5").classList.toggle("dropdown-content");
+}
+  document.getElementById("myBtn6").onclick = function() {myFunction6()};
+function myFunction6() {
+    document.getElementById("myDropdown6").classList.toggle("dropdown-content");
+}
+  document.getElementById("myBtn7").onclick = function() {myFunction7()};
+function myFunction7() {
+  document.getElementById("myDropdown7").classList.toggle("dropdown-content");
+}
+  document.getElementById("myBtn8").onclick = function() {myFunction8()};
+function myFunction8() {
+    document.getElementById("myDropdown8").classList.toggle("dropdown-content");
+}
+
+  document.getElementById("myBtn9").onclick = function() {myFunction9()};
+function myFunction9() {
+  document.getElementById("myDropdown9").classList.toggle("dropdown-content");
+}
+document.getElementById("myBtn10").onclick = function() {myFunction10()};
+function myFunction10() {
+  document.getElementById("myDropdown10").classList.toggle("dropdown-content");
+}
+document.getElementById("myBtn11").onclick = function() {myFunction11()};
+function myFunction11() {
+  document.getElementById("myDropdown11").classList.toggle("dropdown-content");
+}
+
+document.getElementById("myBtn12").onclick = function() {myFunction12()};
+function myFunction12() {
+  document.getElementById("myDropdown12").classList.toggle("dropdown-content");
+}
+
+
+</script>
+
+
+
 
 </section>
 
