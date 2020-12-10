@@ -6,37 +6,11 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+
+from .forms import PostForm
 # from .forms import DetailForm
 from .models import Choice, Question
-from .forms import PostForm
 
-
-# # kanei display  ena question text xwris apotelesmata kai ena form gia na kaneis vote
-# def detail(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/detail.html', {'question': question})
-
-# # kanei dispaly ta results gia ena particular question
-# def results(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     # einai shortcut , yparxei kai to  get_list_or_404() function, which works just as get_object_or_404()
-#     return render(request, 'polls/results.html', {'question': question})
-
-# kanei handling to voting gia ena particular choice se ena particular question
-
-
-# def index(request):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = {'latest_question_list': latest_question_list}
-#     return render(request, 'polls/index.html', context)
-#     # it displays the latest 5 poll questions separated by commas according to publication date
-
-# These views represent a common case of basic Web development: getting data from the database according to a parameter
-# passed in the URL, loading a template and returning the rendered template. Because this is so common,
-# Django provides a shortcut, called the “generic views” system.
-
-
-# Each generic view needs to know what model it will be acting upon. This is provided using the model attribute.
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -53,7 +27,7 @@ class IndexView(generic.ListView):
         # return Question.objects.order_by('-pub_date')[:5]
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data( **kwargs)
+        context = super(IndexView, self).get_context_data(**kwargs)
         context.update({
             'latest_question_list2': Question.objects.filter(id__gte=201).filter(id__lt=300).values(),
             'latest_question_list3': Question.objects.filter(id__gte=301).filter(id__lte=400).values(),
@@ -81,22 +55,6 @@ class DetailView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
-    # def get(self, request, pk,):
-    #     form = DetailForm()
-    #     return render(request, 'polls/detail.html', {'form': form})
-    #
-    # def post(self, request,pk):
-    #     form = DetailForm(request.POST)
-    #     if form.is_valid():
-    #         post = form.save()
-    #         post.save()
-    #         text = form.cleaned_data['answer_text']
-    #         form = DetailForm()
-    #         return redirect('home:home')
-    #
-    #     # args = {'form': form, 'text': text, }
-    #     return render(request, 'polls/detail.html', {'form': form}, {'text': text, })
-
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -107,21 +65,18 @@ def vote(request, question_id):
     except (KeyError, Choice.DoesNotExist):
         messages.info(request, "You didn't select a choice!")
         return HttpResponseRedirect(reverse('polls:detail', args=(question.id,)))
-
-        # return HttpResponse("Welcome to poll's index!")
-        # # # Redisplay the question voting form.
-        # # return render(request, 'polls/index.html', {
-        # #     'question': question,
-        # #     'error_message': "You didn't select a choice.",
-        #
-        # })
     else:
         selected_choice.votes += 1
         selected_choice.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+        if question_id == 110 or question_id == 206 or question_id == 304 or question_id == 408 or question_id == 506 or question_id == 604 or question_id == 705 or question_id == 808 or question_id == 909 or question_id == 1009 or question_id == 2006 or question_id == 3007:
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        else:
+            return HttpResponseRedirect(reverse('polls:detail', args=(question.id + 1,)))
+
     # to HttpResponseRedirect pairnei mono ena argument : to URL sto opoio tha ginei redirected o xrhsths
     # otan exoume teleiwsei me POST data kalo tha htan na epistrfoyme me HttpResponseRedirect
     # to reverse einai function , bohthaei ston na mhn exoume hardcoded url , twra tha epistrefei to /polls/question.id/results/'
@@ -156,8 +111,8 @@ def choice_chart(request, question_id):
         'data': data,
     })
 
-def get_form(request,):
 
+def get_form(request, ):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -169,5 +124,3 @@ def get_form(request,):
     else:
         form = PostForm()
     return render(request, 'polls/percentage.html', {'form': form})
-
-

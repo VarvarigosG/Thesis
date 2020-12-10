@@ -1,18 +1,27 @@
 body {
     margin-top: 20px;
+    width: 100%;
+}
+
+.container {
+    margin-top: 15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .panel-body:not(.two-col) {
-    padding: 0px
+    padding: 0;
 }
 
 .panel-body .radio, .panel-body .checkbox {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .panel-body .list-group {
     margin-bottom: 0;
+
 }
 
 .margin-bottom-none {
@@ -21,6 +30,7 @@ body {
 
 .panel-body .radio label, .panel-body .checkbox label {
     display: block;
+
 }
 
 .footer {

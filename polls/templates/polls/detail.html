@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'pages/Artificial-Intelligence-Trends.jpeg' %}"/>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!--    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
-<!--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<!--    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
-<!--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <!--    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <!--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <!--    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
+    <!--    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'polls/detailpolls.css' %}">
@@ -19,48 +19,44 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
 
-                        {{ question.question_text }}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
 
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
+                    {{ question.question_text }}
 
-                            <form action="{% url 'polls:vote' question.id %}" method="post">
-                                {% csrf_token %}
-                                <strong> {% for choice in question.choice_set.all %}</strong>
-                                <input type="radio" name="choice" id="choice{{ forloop.counter }}"
-                                       value="{{ choice.id }}">
-                                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-                                <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
-                                {% endfor %}
-
-                                <input type="submit" class="btn btn-large btn-success" value="Vote">
-<!--                                    ayto einai to button toy vote-->
-                            </form>
-                        </li>
-
-                    </ul>
-                </div>
-                {% for message in messages %}
-                <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-                {% endfor %}
+                </h3>
             </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+
+                        <form action="{% url 'polls:vote' question.id %}" method="post">
+                            {% csrf_token %}
+                            <strong> {% for choice in question.choice_set.all %}</strong>
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}"
+                                   value="{{ choice.id }}">
+                            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+                            <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
+                            {% endfor %}
+
+                            <input type="submit" class="btn btn-large btn-success" value="Vote">
+                            <!--                                    ayto einai to button toy vote-->
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+            {% for message in messages %}
+            <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+            {% endfor %}
         </div>
     </div>
+
 </div>
 
 <footer class="footer">
     Varvarigos Georgios, AM 5999.
 </footer>
 </body>
-{% block content %}{% include 'polls/freetext.html' %}{% endblock %}
-<!--                                <form action="{% url 'polls:vote' question.id %}" method="post">-->
-<!--                                    <input id="txtbox" type="text"></input></form>-->
-<!--                                <input id="inputbutton" type="submit" value="Submit"> </input>-->
