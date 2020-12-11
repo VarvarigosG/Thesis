@@ -73,6 +73,10 @@ def vote(request, question_id):
         # user hits the Back button.
 
         if question_id == 110 or question_id == 206 or question_id == 304 or question_id == 408 or question_id == 506 or question_id == 604 or question_id == 705 or question_id == 808 or question_id == 909 or question_id == 1009 or question_id == 2006 or question_id == 3007:
+
+            # Choice.objects.filter(question_id=102).update(votes=0)
+            # douleuei
+
             return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
         else:
             return HttpResponseRedirect(reverse('polls:detail', args=(question.id + 1,)))
