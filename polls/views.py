@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
-from .forms import PostForm
+from django.db.models import Sum
 # from .forms import DetailForm
 from .models import Choice, Question
 
@@ -170,19 +170,30 @@ def choice_chart(request, question_id):
 #     return render(request, 'polls/percentage.html', {'form': form})
 
 
-def get_percenatage(request):
-    Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(id__range=[51, 54]).exclude(id__range=[70, 71]).filter(votes=1)
+def get_percentage(request):
+    queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(id__range=[51, 54]).exclude(id__range=[70, 71]).filter(votes=1).values()
     x = 0
-    y = []
-    if 'choice_text' == 'Absolutely':
+    y = 0
+    labels = []
+    answer = []
+    for entry in queryset1:
+        labels.append(entry['choice_text'])
+    for entry in labels:
+        if entry == 'Absolutely' in labels:
             x = x + 1
-    elif 'choice_text' == 'Much':
+        elif entry == 'Much' in labels:
             x = x + 2
-    elif 'choice_text' == 'Moderate':
+        elif entry == 'Moderate' in labels:
             x = x + 3
-    elif 'choice_text' == 'A little bit':
+        elif entry == 'A little bit' in labels:
             x = x + 4
-    elif 'choice_text' == 'Not at all':
+        elif entry == 'Not at all' in labels:
             x = x + 5
-    y = (100 / (5 * 5)) * x;
-    return render(request, 'polls/percentage.html', {y})
+    y = (100 / (5 * 5)) * x
+    answer.append(y)
+
+    return JsonResponse(data={
+        'labels': labels,
+        "answer": answer,
+    })
+
