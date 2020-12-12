@@ -72,7 +72,7 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
 
-        if question_id == 109 or question_id == 205 or question_id == 304 or question_id == 407 or question_id == 506 or question_id == 604 or question_id == 704 or question_id == 807 or question_id == 906 or question_id == 1007 or question_id == 2004 or question_id == 3006:
+        if question_id == 108 or question_id == 205 or question_id == 304 or question_id == 407 or question_id == 506 or question_id == 604 or question_id == 704 or question_id == 807 or question_id == 906 or question_id == 1007 or question_id == 2004 or question_id == 3006:
 
             # Choice.objects.filter(question_id=102).update(votes=0)
             # douleuei

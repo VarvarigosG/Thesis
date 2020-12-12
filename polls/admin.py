@@ -7,7 +7,7 @@ from .models import Choice, Question
 class ChoiceInline(admin.TabularInline):
 
     model = Choice
-    extra = 2
+    extra = 5
     #allazei ta posa extra choices tha exei ena question
 
 
