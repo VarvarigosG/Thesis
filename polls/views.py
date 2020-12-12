@@ -81,6 +81,46 @@ def vote(request, question_id):
         else:
             return HttpResponseRedirect(reverse('polls:detail', args=(question.id + 1,)))
 
+        if question_id == 108:
+            # Choice.objects.filter(question_id=102).update(votes=0)
+            Choice.objects.filter(id__range=[41, 76]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 205:
+            Choice.objects.filter(id__range=[82, 103]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 304:
+            Choice.objects.filter(id__range=[104, 117]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 407:
+            Choice.objects.filter(id__range=[118, 141]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 506:
+            Choice.objects.filter(id__range=[142, 162]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 604:
+            Choice.objects.filter(id__range=[163, 179]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 704:
+            Choice.objects.filter(id__range=[180, 199]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 807:
+            Choice.objects.filter(id__range=[200, 231]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 906:
+            Choice.objects.filter(id__range=[232, 261]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 1007:
+            Choice.objects.filter(id__range=[262, 294]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 2004:
+            Choice.objects.filter(id__range=[295, 311]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        elif question_id == 3006:
+            Choice.objects.filter(id__range=[312, 338]).update(votes=0)
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        else:
+            return HttpResponseRedirect(reverse('polls:detail', args=(question.id + 1,)))
+
     # to HttpResponseRedirect pairnei mono ena argument : to URL sto opoio tha ginei redirected o xrhsths
     # otan exoume teleiwsei me POST data kalo tha htan na epistrfoyme me HttpResponseRedirect
     # to reverse einai function , bohthaei ston na mhn exoume hardcoded url , twra tha epistrefei to /polls/question.id/results/'
@@ -116,15 +156,33 @@ def choice_chart(request, question_id):
     })
 
 
-def get_form(request, ):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            # post.author = request.user
-            # post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm()
-    return render(request, 'polls/percentage.html', {'form': form})
+# def get_form(request, ):
+#     if request.method == "POST":
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             # post.author = request.user
+#             # post.published_date = timezone.now()
+#             post.save()
+#             return redirect('post_detail', pk=post.pk)
+#     else:
+#         form = PostForm()
+#     return render(request, 'polls/percentage.html', {'form': form})
+
+
+def get_percenatage(request):
+    Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(id__range=[51, 54]).exclude(id__range=[70, 71]).filter(votes=1)
+    x = 0
+    y = []
+    if 'choice_text' == 'Absolutely':
+            x = x + 1
+    elif 'choice_text' == 'Much':
+            x = x + 2
+    elif 'choice_text' == 'Moderate':
+            x = x + 3
+    elif 'choice_text' == 'A little bit':
+            x = x + 4
+    elif 'choice_text' == 'Not at all':
+            x = x + 5
+    y = (100 / (5 * 5)) * x;
+    return render(request, 'polls/percentage.html', {y})
