@@ -206,12 +206,14 @@ def get_percentage(request, question_id):
         queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(
             id__range=[65, 71]).exclude(id__range=[51, 54]).filter(votes=1).values()
         queryset2 = Choice.objects.filter(id__range=[65, 69]).filter(votes=1).values()
+
         x = 0
         y = 0
         z = 0
         labels2 = []
         labels = []
-        answer = []
+        data = []
+        category = ['Responsibily']
         for entry in queryset1:
             labels.append(entry['choice_text'])
         for entry in labels:
@@ -240,10 +242,50 @@ def get_percentage(request, question_id):
             elif entry == 'Not at all' in labels2:
                 x = x + 5
         y = (100 / (5 * 5)) * (x)
-        answer.append(y)
-
+        data.append(y)
+        Choice.objects.filter(id__range=[41, 76]).update(votes=0)
     return JsonResponse(data={
-            'labels': labels,
-            'labels2': labels2,
-            "answer": answer,
-        })
+        'labels': labels,
+        'responsibilty': category,
+        "data": data,
+    })
+
+
+# def reset_database(request, question_id):
+#     if question_id == 108:
+#         Choice.objects.filter(id__range=[41, 76]).update(votes=0)
+#     elif question_id == 205:
+#         Choice.objects.filter(id__range=[82, 103]).update(votes=0)
+#
+#     elif question_id == 304:
+#         Choice.objects.filter(id__range=[104, 117]).update(votes=0)
+#
+#     elif question_id == 407:
+#         Choice.objects.filter(id__range=[118, 141]).update(votes=0)
+#
+#     elif question_id == 506:
+#         Choice.objects.filter(id__range=[142, 162]).update(votes=0)
+#
+#     elif question_id == 604:
+#         Choice.objects.filter(id__range=[163, 179]).update(votes=0)
+#
+#     elif question_id == 704:
+#         Choice.objects.filter(id__range=[180, 199]).update(votes=0)
+#
+#     elif question_id == 807:
+#         Choice.objects.filter(id__range=[200, 231]).update(votes=0)
+#
+#     elif question_id == 906:
+#         Choice.objects.filter(id__range=[232, 261]).update(votes=0)
+#
+#     elif question_id == 1007:
+#         Choice.objects.filter(id__range=[262, 294]).update(votes=0)
+#
+#     elif question_id == 2004:
+#         Choice.objects.filter(id__range=[295, 311]).update(votes=0)
+#
+#     elif question_id == 3006:
+#         Choice.objects.filter(id__range=[312, 338]).update(votes=0)
+#
+#
+#     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
