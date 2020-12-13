@@ -2,13 +2,11 @@ from django.contrib import messages
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
-from django.db.models import Sum
-# from .forms import DetailForm
 from .models import Choice, Question
 
 
@@ -78,11 +76,11 @@ def vote(request, question_id):
             # douleuei
 
             return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
         else:
             return HttpResponseRedirect(reverse('polls:detail', args=(question.id + 1,)))
 
         if question_id == 108:
-            # Choice.objects.filter(question_id=102).update(votes=0)
             Choice.objects.filter(id__range=[41, 76]).update(votes=0)
             return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
         elif question_id == 205:
@@ -156,44 +154,96 @@ def choice_chart(request, question_id):
     })
 
 
-# def get_form(request, ):
-#     if request.method == "POST":
-#         form = PostForm(request.POST)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             # post.author = request.user
-#             # post.published_date = timezone.now()
-#             post.save()
-#             return redirect('post_detail', pk=post.pk)
-#     else:
-#         form = PostForm()
-#     return render(request, 'polls/percentage.html', {'form': form})
+# def get_percentage(request):
+#     queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(
+#         id__range=[65, 71]).exclude(id__range=[51, 54]).filter(votes=1).values()
+#     queryset2 = Choice.objects.filter(id__range=[65, 69]).filter(votes=1).values()
+#     x = 0
+#     y = 0
+#     z = 0
+#     labels2 = []
+#     labels = []
+#     answer = []
+#     for entry in queryset1:
+#         labels.append(entry['choice_text'])
+#     for entry in labels:
+#         if entry == 'Absolutely' in labels:
+#             x = x + 5
+#         elif entry == 'Much' in labels:
+#             x = x + 4
+#         elif entry == 'Moderate' in labels:
+#             x = x + 3
+#         elif entry == 'A little bit' in labels:
+#             x = x + 2
+#         elif entry == 'Not at all' in labels:
+#             x = x + 1
+#
+#     for entry in queryset2:
+#         labels2.append(entry['choice_text'])
+#     for entry in labels2:
+#         if entry == 'Absolutely' in labels2:
+#             x = x + 1
+#         elif entry == 'Much' in labels2:
+#             x = x + 2
+#         elif entry == 'Moderate' in labels2:
+#             x = x + 3
+#         elif entry == 'A little bit' in labels2:
+#             x = x + 4
+#         elif entry == 'Not at all' in labels2:
+#             x = x + 5
+#     y = (100 / (5 * 5)) * (x)
+#     answer.append(y)
+#
+#     return JsonResponse(data={
+#         'labels': labels,
+#         'labels2': labels2,
+#         "answer": answer,
+#     })
 
 
-def get_percentage(request):
-    queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(id__range=[51, 54]).exclude(id__range=[70, 71]).filter(votes=1).values()
-    x = 0
-    y = 0
-    labels = []
-    answer = []
-    for entry in queryset1:
-        labels.append(entry['choice_text'])
-    for entry in labels:
-        if entry == 'Absolutely' in labels:
-            x = x + 1
-        elif entry == 'Much' in labels:
-            x = x + 2
-        elif entry == 'Moderate' in labels:
-            x = x + 3
-        elif entry == 'A little bit' in labels:
-            x = x + 4
-        elif entry == 'Not at all' in labels:
-            x = x + 5
-    y = (100 / (5 * 5)) * x
-    answer.append(y)
+def get_percentage(request, question_id):
+    if question_id == 108:
+        queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(
+            id__range=[65, 71]).exclude(id__range=[51, 54]).filter(votes=1).values()
+        queryset2 = Choice.objects.filter(id__range=[65, 69]).filter(votes=1).values()
+        x = 0
+        y = 0
+        z = 0
+        labels2 = []
+        labels = []
+        answer = []
+        for entry in queryset1:
+            labels.append(entry['choice_text'])
+        for entry in labels:
+            if entry == 'Absolutely' in labels:
+                x = x + 5
+            elif entry == 'Much' in labels:
+                x = x + 4
+            elif entry == 'Moderate' in labels:
+                x = x + 3
+            elif entry == 'A little bit' in labels:
+                x = x + 2
+            elif entry == 'Not at all' in labels:
+                x = x + 1
+
+        for entry in queryset2:
+            labels2.append(entry['choice_text'])
+        for entry in labels2:
+            if entry == 'Absolutely' in labels2:
+                x = x + 1
+            elif entry == 'Much' in labels2:
+                x = x + 2
+            elif entry == 'Moderate' in labels2:
+                x = x + 3
+            elif entry == 'A little bit' in labels2:
+                x = x + 4
+            elif entry == 'Not at all' in labels2:
+                x = x + 5
+        y = (100 / (5 * 5)) * (x)
+        answer.append(y)
 
     return JsonResponse(data={
-        'labels': labels,
-        "answer": answer,
-    })
-
+            'labels': labels,
+            'labels2': labels2,
+            "answer": answer,
+        })

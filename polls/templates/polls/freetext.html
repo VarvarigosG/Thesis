@@ -1,41 +1,17 @@
-{% block body %}
-<div class="container">
-    <div class="col-md-8">
-        <!--        <h2>Home</h2>-->
-        <form method="post">
-            {% csrf_token %}
-            {{ form.post }}
-            <br>
-            <button type="submit">Submit</button>
-            <h2>{{text}}</h2>
-
-        </form>
-    </div>
+{% block content %}
+<div id="container" style="width: 75%;">
+    <div class="js-gauge demo gauge" data-url="{% url 'polls:get-percentage' question.id %}"></div>
 </div>
-<!--<script>-->
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>-->
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+<script src="js/kuma-gauge.jquery.js"></script>
 
-<!--var txt = document.getElementById('txtbox');-->
-<!--var btn = document.getElementById('inputbutton');-->
-<!--txt.disabled=true;-->
-
-<!--$(document).ready(function() {-->
-<!--    $('#dropdown1').change(function() {-->
-<!--        if($(this).val() == "Three"){-->
-<!--            document.getElementById('txtbox').disabled=false;-->
-<!--        }-->
-<!--        else{-->
-<!--            document.getElementById('txtbox').disabled=true;-->
-<!--        }-->
-<!--    });-->
-<!--});-->
-
-<!--btn.onclick = function () {-->
-<!--    if((txt).disabled){-->
-<!--        alert('input is: ' + $('#dropdown1').val());-->
-<!--    }-->
-<!--    else{-->
-<!--        alert('input is: ' + $(txt).val());-->
-<!--    }-->
-<!--};-->
-<!--</script>-->
+<script>
+    $('.demo').kumaGauge({
+  // dynamic value-up<a href="https://www.jqueryscript.net/time-clock/">date</a>. just for sample.
+  value : Math.floor((Math.random() * 99) + 1),
+});
+</script>
 {% endblock %}

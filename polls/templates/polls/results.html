@@ -15,18 +15,18 @@
 
 </head>
 <body>
-<div class="text-center">
-    <h3>{{ question.question_text }}</h3>
-</div>
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-</ul>
-<!--<a href="{% url 'polls:index' %}">Vote again?</a>-->
+<!--<div class="text-center">-->
+<!--    <h3>{{ question.question_text }}</h3>-->
+<!--</div>-->
+<!--<ul>-->
+<!--    {% for choice in question.choice_set.all %}-->
+<!--    <li>{{ choice.choice_text }} &#45;&#45; {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+<!--&lt;!&ndash;<a href="{% url 'polls:index' %}">Vote again?</a>&ndash;&gt;-->
 <a class="btn btn-success" href="{% url 'polls:index'%}" class="btn btn-large btn-success">Vote again?</a>
 
-{% block content %}{% include 'polls/jsonChart.html' %}{% endblock %}
+{% block content %}{% include 'polls/freetext.html' %}{% endblock %}
 <footer class="footer">
     Varvarigos Georgios, AM 5999.
 </footer>
