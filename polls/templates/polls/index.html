@@ -129,7 +129,7 @@
         <div class="dropdown">
             <button id="myBtn10" class="dropbtn">Inferencing</button>
             <div id="myDropdown10" class="dropdown-content">
-                {% for question in latest_question_list7 %}
+                {% for question in latest_question_list10 %}
                 <a class="dropdown-item" href="{% url 'polls:detail' question.id %}" class="list-group-item list-group-item-action">{{ question.question_text }}</a>
                 {% endfor %}
             </div>
