@@ -23,48 +23,32 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"></nav>
 
 <main role="main">
+    <div class="jumbotron  ">
+        <h3 class="panel-title">{{ question.question_text }}</h3>
 
+        <div class="jumbotron ">
+            <ul class="list-group">
+                <li class="list-group-item">
 
-    <div style="height:90vh" class="jumbotron mx-auto  ">
+                    <form action="{% url 'polls:vote' question.id %}" method="post">
+                        {% csrf_token %}
+                        <strong> {% for choice in question.choice_set.all %}</strong>
+                        <input type="radio" name="choice" id="choice{{ forloop.counter }}"
+                               value="{{ choice.id }}">
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+                        <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
+                        {% endfor %}
+                        <input type="submit" style="width: 150px !important;" class="btn btn-secondary" value="Vote">
+                        {% for message in messages %}
+                        <div class="alert alert-danger text-center {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}
+                        </div>
+                        {% endfor %}
+                    </form>
+                </li>
 
-        <div class="row">
-
-            <div class="jumbotron  ">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-
-                        {{ question.question_text }}
-
-                    </h3>
-                </div>
-
-                    <ul class="list-group">
-                        <li class="list-group-item">
-
-                            <form action="{% url 'polls:vote' question.id %}" method="post">
-                                {% csrf_token %}
-                                <strong> {% for choice in question.choice_set.all %}</strong>
-                                <input type="radio" name="choice" id="choice{{ forloop.counter }}"
-                                       value="{{ choice.id }}">
-                                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-                                <!--    to forloop.counter metraei poses fores exei ginei klhsh ths for -->
-                                {% endfor %}
-
-                                <input type="submit" class="btn btn-large btn-success" value="Vote">
-                                <!--                                    ayto einai to button toy vote-->
-                            </form>
-                        </li>
-
-                    </ul>
-
-                {% for message in messages %}
-                <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-                {% endfor %}
-            </div>
+            </ul>
         </div>
-
     </div>
-
 </main>
 
 <footer class="container">

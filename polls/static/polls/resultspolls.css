@@ -1,7 +1,11 @@
-.footer {
-    position: absolute;
-    bottom: 0;
-    padding: 1rem;
-    width: 100%;
-    color: #35282d;
+.jumbotron{
+    height: 90vh;
+}
+
+.container{
+    height: 90%;
+}
+
+.d-flex{
+    padding: 10px 0 10px;
 }
