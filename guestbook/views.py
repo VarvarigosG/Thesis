@@ -7,7 +7,7 @@ def index(request):
 
     context = {'comments': comments}
 
-    return render(request,'guestbook/index.html',context)
+    return render(request,'guestbook/indexguestbook.html',context)
 
 def sign(request):
     if request.method == 'POST':
