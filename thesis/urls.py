@@ -29,7 +29,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('mlpart/', include('mlpart.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('api', include ('mlpart.api.urls')),
+    path('api', include('mlpart.api.urls')),
 
 ]
 

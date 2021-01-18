@@ -11,5 +11,5 @@ class File(models.Model):
     def __str__(self):
         return str(self.id)
 
-    def upload_file (request):
-        return render(request, 'upload.html')
+    # def upload_file(request):
+    #     return render(request, 'upload.html')
