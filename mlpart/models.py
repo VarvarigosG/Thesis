@@ -2,8 +2,8 @@ from django.db import models
 from django.shortcuts import render
 
 
-class File (models.Model):
-    file = models.FileField(upload_to='files')
+class File(models.Model):
+    file = models.FileField(upload_to='')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

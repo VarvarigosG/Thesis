@@ -11,6 +11,8 @@ def upload(request):
         uploaded_file = request.FILES['document']
         fs = FileSystemStorage()
         fs.save(uploaded_file.name, uploaded_file )
+        print(uploaded_file.name)
+        print(uploaded_file.size)
     return render(request, 'mlpart/upload.html')
 
 
