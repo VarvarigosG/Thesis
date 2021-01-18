@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from ..models import File
+from ..models import FileOK
 
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = File
-        fields = ('id', 'file',)
+        model = FileOK
+        fields = ('id', 'file', 'result')

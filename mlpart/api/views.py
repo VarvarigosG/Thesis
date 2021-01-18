@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from ..models import File
+from ..models import FileOK
 from .serializers import FileSerializer
 
-class FileViewSet(viewsets.ModelViewSet):
+class FileOKViewSet(viewsets.ModelViewSet):
     serializer_class = FileSerializer
-    queryset = File.objects.all()
+    queryset = FileOK.objects.all()
