@@ -17,51 +17,41 @@
         }
     </style>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"></nav>
 
-
 <main role="main">
-
 
     <div class="jumbotron">
         <div class="container">
             <h5 class="display-4">Welcome to the AI Explainability tool.</h5>
-            <p>This is an experimental website that offers tools for assessment for algorithmic systems.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
-            <!--            <div>-->
-            <!--                <h4 class="display-5">Not sure what to do first?</h4>-->
-            <!--            </div>-->
+            <!--            <p>This is an experimental website that offers tools for assessment for algorithmic systems.</p>-->
+            <!--            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>-->
+            <!--            &lt;!&ndash;            <div>&ndash;&gt;-->
+            <!--            &lt;!&ndash;                <h4 class="display-5">Not sure what to do first?</h4>&ndash;&gt;-->
+            <!--            &lt;!&ndash;            </div>&ndash;&gt;-->
         </div>
     </div>
 
     <div class="container">
 
         <div class="row">
-            <div class="col-md-4">
-                <h2>Take the Survey</h2>
-                <p>Answer some questions in order to self-assess your algorithmic system. </p>
-                <p><a class="btn btn-secondary" href="polls/" role="button">View details »</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Test the toolkit</h2>
-                <p>Step through the process of explaining models to consumers with different personas </p>
-                <p><a class="btn btn-secondary" href="mlpart/" role="button">View details »</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Read more</h2>
-                <p> Learn how we developed we designed The AI Explainability toolkit.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            <div class="col-md">
+                <h2>Upload</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="document">
+                    <button type="submit">Upload file</button>
+                </form>
             </div>
         </div>
         <hr>
-
     </div>
 
 </main>
 
-<footer class="container">
+<footer style="padding: 25px 0px 25px!important" class="container">
     <p>© Varvarigos Georgios 2020-2021</p>
 </footer>
 
