@@ -8,6 +8,9 @@ class FileOK(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['id']
+
 
     def __str__(self):
         return str(self.id)

@@ -39,10 +39,11 @@
         <div class="row">
             <div class="col-md">
                 <h2>Upload</h2>
-                <form method="post" enctype="multipart/form-data">
+                <form method='post' enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="file" name="document">
-                    <button type="submit">Upload file</button>
+                    {{form}}
+                    <input type="submit" value="Submit">
+                </form>
                 </form>
             </div>
         </div>
