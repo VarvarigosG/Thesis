@@ -5,6 +5,15 @@ from django.conf.urls.static import static
 
 
 
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
+
+from mlpart.api.views import EndpointViewSet
+from mlpart.api.views import MLAlgorithmViewSet
+from mlpart.api.views import MLRequestViewSet
+from mlpart.views import PredictView
+
+
 
 
 urlpatterns = [
