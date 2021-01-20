@@ -37,19 +37,30 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md">
-                <h2>Upload</h2>
-                <form method='post' enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{form}}
-                    <input type="submit" value="Submit">
-                </form>
-                </form>
-            </div>
+
+                <div class="col-md">
+                    <h5>Upload your file here!</h5>
+                    <form method='post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit"
+                               value="Submit">
+                    </form>
+
+                </div>
+
+                <div class="col-md">
+                    <h5>Want to redirect home?</h5>
+                    <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
+                          href="/" role="button">Go Home »</a></p>
+
+                </div>
+
+
         </div>
+
         <hr>
     </div>
-
 </main>
 
 <footer style="padding: 25px 0px 25px!important" class="container">
