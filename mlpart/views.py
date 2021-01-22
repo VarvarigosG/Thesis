@@ -1,9 +1,9 @@
+from django.contrib import messages
 import json
+import pickle
 
-import joblib
-import numpy as np
 import pandas as pd
-from django.http import JsonResponse
+from django.contrib import messages
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
 from numpy.random import rand
@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.response import Response
-
+from keras import backend as K
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -91,25 +91,25 @@ class ApprovalsView(viewsets.ModelViewSet):
 # @api_view(["POST"])
 def approvereject(unit):
     try:
-        mdl = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\BankLoanNN.h5")
-        # mydata=pd.read_excel('/Users/sahityasehgal/Documents/Coding/bankloan/test.xlsx')
-        # mydata = request.data  # return ena dictionary
-        # unit = np.array(list(mydata.values()))  # opote to kanoyme ena numpyarray
-        # unit = unit.reshape(1, -1)
-        scalers = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\scalers.pkl")
+        mdl = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\loan_model.pkl", 'rb'))
+
+        scalers = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\scalers.pkl"))
         X = scalers.transform(unit)
         y_pred = mdl.predict(X)
         y_pred = (y_pred > 0.58)
         newdf = pd.DataFrame(y_pred, columns=['Status'])
         newdf = newdf.replace({True: 'Approved', False: 'Rejected'})
-        return ('Your Status is {}'.format(newdf))
+        K.clear_session()
+        return (newdf.values[0][0], X[0])
+
     except ValueError as e:
-        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
+        return (e.args[0])
 
 
 def ohevalue(df):
-    ohe_col = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\allcol.pkl")
-    cat_columns = ['Gender', 'Married','Education',]
+    ohe_col = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\allcol.pkl", 'rb'))
+    cat_columns = ['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area']
+
     df_processed = pd.get_dummies(df, columns=cat_columns)
     newdict = {}
     for i in ohe_col:
@@ -129,19 +129,21 @@ def cxcontact(request):
             Firstname = form.cleaned_data['Firstname']
             Lastname = form.cleaned_data['Lastname']
             Dependants = form.cleaned_data['Dependants']
-            Applicantincome = form.cleaned_data['Applicantincome']
-            Coapplicatincome = form.cleaned_data['Coapplicatincome']
-            Loanamt = form.cleaned_data['Loanamt']
-            Credithistory = form.cleaned_data['Credithistory']
+            ApplicantIncome = form.cleaned_data['ApplicantIncome']
+            CoapplicatIncome = form.cleaned_data['CoapplicatIncome']
+            LoanAmount = form.cleaned_data['LoanAmount']
+            Loan_Amount_Term = form.cleaned_data['Loan_Amount_Term']
+            Credit_History = form.cleaned_data['Credit_History']
             Gender = form.cleaned_data['Gender']
             Married = form.cleaned_data['Married']
-            Graduatededucation = form.cleaned_data['Graduatededucation']
-            Selfemployed = form.cleaned_data['Selfemployed']
-            Area = form.cleaned_data['Area']
+            Education = form.cleaned_data['Education']
+            Self_Employed = form.cleaned_data['Self_Employed']
+            Property_Area = form.cleaned_data['Property_Area']
             # kanei submit ena dictionary me kanonikes lexeis oi opoies den einai one hot encoded pou eixame
             myDict = (request.POST).dict()
             df = pd.DataFrame(myDict, index=[0])
-            # print(approvereject(ohevalue(df)))
+            # answer = (approvereject(ohevalue(df)))
+            # messages.success(request, 'Application Status: {}'.format(answer))
             print(ohevalue(df))
     form = ApprovalForm()
 
