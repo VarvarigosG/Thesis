@@ -18,5 +18,7 @@ from mlpart.views import PredictView
 
 urlpatterns = [
     path('', views.FileUploadView, name='upload'),
+    path('status/', views.approvereject),
+    path('form/', views.cxcontact, name='cxform'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 
 class FileOK(models.Model):
+    # einai gia to file upload
     file = models.FileField()
     result = models.CharField(max_length=2, blank=True)
     updated = models.DateTimeField(auto_now=True)
@@ -87,3 +88,44 @@ class MLRequest(models.Model):
     feedback = models.CharField(max_length=10000, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE)
+
+
+    # einai gia to BankLoanNN
+class approvals(models.Model):
+        GENDER_CHOICES = (
+            ('Male', 'Male'),
+            ('Female', 'Female')
+        )
+        MARRIED_CHOICES = (
+            ('Yes', 'Yes'),
+            ('No', 'No')
+        )
+        GRADUATED_CHOICES = (
+            ('Graduate', 'Graduated'),
+            ('Not_Graduate', 'Not_Graduate')
+        )
+        SELFEMPLOYED_CHOICES = (
+            ('Yes', 'Yes'),
+            ('No', 'No')
+        )
+        PROPERTY_CHOICES = (
+            ('Rural', 'Rural'),
+            ('Semiurban', 'Semiurban'),
+            ('Urban', 'Urban')
+        )
+        Firstname = models.CharField(max_length=15)
+        Lastname = models.CharField(max_length=15)
+        Dependants = models.IntegerField(default=0)
+        Applicantincome = models.IntegerField(default=0)
+        Coapplicatincome = models.IntegerField(default=0)
+        Loanamt = models.IntegerField(default=0)
+        Loanterm = models.IntegerField(default=0)
+        Credithistory = models.IntegerField(default=0)
+        Gender = models.CharField(max_length=15, choices=GENDER_CHOICES)
+        Married = models.CharField(max_length=15, choices=MARRIED_CHOICES)
+        Graduatededucation = models.CharField(max_length=15, choices=GRADUATED_CHOICES)
+        Selfemployed = models.CharField(max_length=15, choices=SELFEMPLOYED_CHOICES)
+        Area = models.CharField(max_length=15, choices=PROPERTY_CHOICES)
+
+        def __str__(self):
+            return '{}, {}'.format(self.lastname, self.firstname)

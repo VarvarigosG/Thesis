@@ -1,18 +1,28 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
-from rest_framework import mixins
-from .forms import UploadForm
 import json
+
+import joblib
+import numpy as np
+import pandas as pd
+from django.http import JsonResponse
+from django.shortcuts import HttpResponseRedirect, reverse
+from django.shortcuts import render
 from numpy.random import rand
-from rest_framework import views, status
+from rest_framework import status
+from rest_framework import views
+from rest_framework import viewsets
 from rest_framework.response import Response
-from ml.registry import MLRegistry
+
+from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
+from .forms import UploadForm, ApprovalForm
 from .models import MLAlgorithm, MLRequest
+from .models import approvals
 
 
 def FileUploadView(request):
+    # gia to upload
     if request.method == 'POST':
-        form = UploadForm(request.POST,request.FILES)
+        form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             # messages.success(request, 'Your file had been uploaded successfully.')
@@ -31,10 +41,11 @@ class PredictView(views.APIView):
         algorithm_status = self.request.query_params.get("status", "production")
         algorithm_version = self.request.query_params.get("version")
 
-        algs = MLAlgorithm.objects.filter(parent_endpoint__name = endpoint_name, status__status = algorithm_status, status__active=True)
+        algs = MLAlgorithm.objects.filter(parent_endpoint__name=endpoint_name, status__status=algorithm_status,
+                                          status__active=True)
 
         if algorithm_version is not None:
-            algs = algs.filter(version = algorithm_version)
+            algs = algs.filter(version=algorithm_version)
 
         if len(algs) == 0:
             return Response(
@@ -43,7 +54,8 @@ class PredictView(views.APIView):
             )
         if len(algs) != 1 and algorithm_status != "ab_testing":
             return Response(
-                {"status": "Error", "message": "ML algorithm selection is ambiguous. Please specify algorithm version."},
+                {"status": "Error",
+                 "message": "ML algorithm selection is ambiguous. Please specify algorithm version."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
@@ -52,7 +64,6 @@ class PredictView(views.APIView):
 
         algorithm_object = registry.endpoints[algs[alg_index].id]
         prediction = algorithm_object.compute_prediction(request.data)
-
 
         label = prediction["label"] if "label" in prediction else "error"
         ml_request = MLRequest(
@@ -69,4 +80,69 @@ class PredictView(views.APIView):
         return Response(prediction)
 
 
+# gia to bankLoanNN
+class ApprovalsView(viewsets.ModelViewSet):
+    queryset = approvals.objects.all()
+    serializer_class = approvalsSerializers
+    # kathe fora poy kanoume ena request toy leme pare ola ta pragmata apo to approvals Class
 
+
+# einai h methodos pou kaloume to hdh trained model
+# @api_view(["POST"])
+def approvereject(unit):
+    try:
+        mdl = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\BankLoanNN.h5")
+        # mydata=pd.read_excel('/Users/sahityasehgal/Documents/Coding/bankloan/test.xlsx')
+        # mydata = request.data  # return ena dictionary
+        # unit = np.array(list(mydata.values()))  # opote to kanoyme ena numpyarray
+        # unit = unit.reshape(1, -1)
+        scalers = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\scalers.pkl")
+        X = scalers.transform(unit)
+        y_pred = mdl.predict(X)
+        y_pred = (y_pred > 0.58)
+        newdf = pd.DataFrame(y_pred, columns=['Status'])
+        newdf = newdf.replace({True: 'Approved', False: 'Rejected'})
+        return ('Your Status is {}'.format(newdf))
+    except ValueError as e:
+        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
+
+
+def ohevalue(df):
+    ohe_col = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\allcol.pkl")
+    cat_columns = ['Gender', 'Married','Education',]
+    df_processed = pd.get_dummies(df, columns=cat_columns)
+    newdict = {}
+    for i in ohe_col:
+        if i in df_processed.columns:
+            newdict[i] = df_processed[i].values
+        else:
+            newdict[i] = 0
+    newdf = pd.DataFrame(newdict)
+    return newdf
+
+
+# einai h methodos gia to form ayth pou kanei to submit
+def cxcontact(request):
+    if request.method == "POST":
+        form = ApprovalForm(request.POST)
+        if form.is_valid():
+            Firstname = form.cleaned_data['Firstname']
+            Lastname = form.cleaned_data['Lastname']
+            Dependants = form.cleaned_data['Dependants']
+            Applicantincome = form.cleaned_data['Applicantincome']
+            Coapplicatincome = form.cleaned_data['Coapplicatincome']
+            Loanamt = form.cleaned_data['Loanamt']
+            Credithistory = form.cleaned_data['Credithistory']
+            Gender = form.cleaned_data['Gender']
+            Married = form.cleaned_data['Married']
+            Graduatededucation = form.cleaned_data['Graduatededucation']
+            Selfemployed = form.cleaned_data['Selfemployed']
+            Area = form.cleaned_data['Area']
+            # kanei submit ena dictionary me kanonikes lexeis oi opoies den einai one hot encoded pou eixame
+            myDict = (request.POST).dict()
+            df = pd.DataFrame(myDict, index=[0])
+            # print(approvereject(ohevalue(df)))
+            print(ohevalue(df))
+    form = ApprovalForm()
+
+    return render(request, 'mlpart/form.html', {'form': form})

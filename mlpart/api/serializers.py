@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from ..models import Endpoint
-from ..models import FileOK
+from ..models import FileOK, approvals
 from ..models import MLAlgorithm
 from ..models import MLAlgorithmStatus
 from ..models import MLRequest
@@ -62,3 +62,9 @@ class MLRequestSerializer(serializers.ModelSerializer):
             "created_at",
             "parent_mlalgorithm",
         )
+
+#aytos tha einai gia to BankLoanNN
+class approvalsSerializers(serializers.ModelSerializer):
+    class Meta:
+            model=approvals
+            fields = '__all__'
