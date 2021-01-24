@@ -10,6 +10,7 @@ from numpy.random import rand
 from rest_framework import status
 from rest_framework import views
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from mlpart.api.serializers import approvalsSerializers
@@ -88,23 +89,23 @@ class ApprovalsView(viewsets.ModelViewSet):
 
 
 # einai h methodos pou kaloume to hdh trained model
-# @api_view(["POST"])
+@api_view(["POST"])
 def approvereject(unit):
     try:
-        mdl = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/loan_model.h5"))
-        scalers = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/scalers.pkl"))
+        mdl = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/loan_model.pkl", "rb"))
+        scalers = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/scalers.pkl", "r"))
         X = scalers.transform(unit)
         y_pred = mdl.predict(X)
         y_pred = (y_pred > 0.58)
         newdf = pd.DataFrame(y_pred, columns=['Status'])
         newdf = newdf.replace({True: 'Approved', False: 'Rejected'})
-        return JsonResponse('Your Status is {}'.format(newdf), safe=False)
+        return JsonResponse('Your Status is {}'.format(newdf), encoding="utf-8", safe=False)
     except ValueError as e:
         return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
 
 
 def ohevalue(df):
-    ohe_col = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/allcol.pkl", 'rb'))
+    ohe_col = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/allcol.pkl",errors="ignore"))
     cat_columns = ['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area']
 
     df_processed = pd.get_dummies(df, columns=cat_columns)
