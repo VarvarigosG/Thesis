@@ -91,7 +91,7 @@ class ApprovalsView(viewsets.ModelViewSet):
 # @api_view(["POST"])
 def approvereject(unit):
     try:
-        mdl = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/loan_model.pkl", 'rb'))
+        mdl = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/loan_model.h5"))
         scalers = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/scalers.pkl"))
         X = scalers.transform(unit)
         y_pred = mdl.predict(X)
