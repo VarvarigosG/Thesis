@@ -1,9 +1,9 @@
-from django.contrib import messages
 import json
 import pickle
-
+import joblib
 import pandas as pd
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
 from numpy.random import rand
@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.response import Response
-from keras import backend as K
+
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -91,23 +91,20 @@ class ApprovalsView(viewsets.ModelViewSet):
 # @api_view(["POST"])
 def approvereject(unit):
     try:
-        mdl = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\loan_model.pkl", 'rb'))
-
-        scalers = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\scalers.pkl"))
+        mdl = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/loan_model.pkl", 'rb'))
+        scalers = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/scalers.pkl"))
         X = scalers.transform(unit)
         y_pred = mdl.predict(X)
         y_pred = (y_pred > 0.58)
         newdf = pd.DataFrame(y_pred, columns=['Status'])
         newdf = newdf.replace({True: 'Approved', False: 'Rejected'})
-        K.clear_session()
-        return (newdf.values[0][0], X[0])
-
+        return JsonResponse('Your Status is {}'.format(newdf), safe=False)
     except ValueError as e:
-        return (e.args[0])
+        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
 
 
 def ohevalue(df):
-    ohe_col = pickle.load(open(r"C:\Users\gvarv\anaconda3\envs\thesis\Bank Loan\allcol.pkl", 'rb'))
+    ohe_col = pickle.load(open("/Users/gvarv/anaconda3/envs/thesis/Bank Loan/allcol.pkl", 'rb'))
     cat_columns = ['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area']
 
     df_processed = pd.get_dummies(df, columns=cat_columns)
@@ -142,9 +139,10 @@ def cxcontact(request):
             # kanei submit ena dictionary me kanonikes lexeis oi opoies den einai one hot encoded pou eixame
             myDict = (request.POST).dict()
             df = pd.DataFrame(myDict, index=[0])
-            # answer = (approvereject(ohevalue(df)))
-            # messages.success(request, 'Application Status: {}'.format(answer))
-            print(ohevalue(df))
+            answer = (approvereject(ohevalue(df)))
+            messages.success(request, "Application Status: {0}".format(answer))
+            # return JsonResponse('Your Status is {}'.format(answer), safe=False)
+            # print(ohevalue(df))
     form = ApprovalForm()
 
     return render(request, 'mlpart/form.html', {'form': form})
