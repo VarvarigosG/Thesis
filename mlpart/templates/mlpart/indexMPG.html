@@ -6,7 +6,7 @@
 <br>
 {% if scoreval %}
 <form method="post" enctype="multipart/form-data" action="updateDataBase">
-<!--    action="{% url 'polls:vote' question.id %}" method="post"-->
+
     {% else %}
 
     <form action="{% url 'predictMPG' %}"  enctype="multipart/form-data" method="post" >
@@ -25,7 +25,7 @@
         <div class="col-md-4 col-sm-4"><label for="lname">model:</label></div>
         <input type="text" id="lname5" name="modelVal" value={{temp.model_year}}><br><br>
         <div class="col-md-4 col-sm-4"><label for="lname">origin:</label></div>
-        <input type="number" id="lname" name="originVal" value={{temp.origin}}><br><br>
+        <input type="text" id="lname" name="originVal" value={{temp.origin}}><br><br>
         <br>
 
         {% if scoreval %}

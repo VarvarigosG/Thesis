@@ -1,5 +1,6 @@
 import json
 import pickle
+
 import joblib
 import pandas as pd
 from django.contrib import messages
@@ -148,14 +149,17 @@ def cxcontact(request):
 
     return render(request, 'mlpart/form.html', {'form': form})
 
+
 # kanei render thn selida
 def mpg(request):
     return render(request, 'mlpart/indexMPG.html')
 
 
-reloadModel=joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\MPG\RFModelforMPG.pkl")
-#einai h methodos poy tha mas kanei predict to apotelesma
-#epishs gia na paroyme ta submited pragmata apo xrhsth prepei na exoume dictionary
+reloadModel = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\MPG\RFModelforMPG.pkl")
+
+
+# einai h methodos poy tha mas kanei predict to apotelesma
+# epishs gia na paroyme ta submited pragmata apo xrhsth prepei na exoume dictionary
 def predictMPG(request):
     # print (request)
     if request.method == 'POST':
@@ -174,12 +178,12 @@ def predictMPG(request):
         temp2['model year'] = temp['model_year']
         print(temp.keys(), temp2.keys())
         # del temp2['model_year']
-        #ayto giati sthn arxh me to model_year barage error afou sto dataset einai model year
+        # ayto giati sthn arxh me to model_year barage error afou sto dataset einai model year
 
-        #kai twra pou exw ta dedomena prepei na fortwsw to modelo
+        # kai twra pou exw ta dedomena prepei na fortwsw to modelo
 
-        #to model perimenei DATAFRAME enw emeis exoume dictionary opote prepei na kanoume thn allagh
-        testDtaa=pd.DataFrame({'x':temp2}).transpose() #kai twra poy egine h allagh prepei na kanoume to predict
-        scoreval=reloadModel.predict(testDtaa)[0] #kai to pername mesa sto context
-        context={'scoreval':scoreval}
+        # to model perimenei DATAFRAME enw emeis exoume dictionary opote prepei na kanoume thn allagh
+        testDtaa = pd.DataFrame({'x': temp2}).transpose()  # kai twra poy egine h allagh prepei na kanoume to predict
+        scoreval = reloadModel.predict(testDtaa)[0]  # kai to pername mesa sto context
+        context = {'scoreval': scoreval}
     return render(request, 'mlpart/indexMPG.html', context)
