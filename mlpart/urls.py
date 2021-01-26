@@ -20,5 +20,7 @@ urlpatterns = [
     path('', views.FileUploadView, name='upload'),
     path('status/', views.approvereject),
     path('form/', views.cxcontact, name='cxform'),
+    path('mpg/', views.mpg, name='mpg'),
+    path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
