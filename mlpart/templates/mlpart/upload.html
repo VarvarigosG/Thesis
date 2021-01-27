@@ -38,24 +38,46 @@
 
         <div class="row">
 
-                <div class="col-md">
-                    <h5>Upload your file here!</h5>
-                    <form method='post' enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{form}}
-                        <input type="submit"
-                               value="Submit">
-                    </form>
+<!--            <div class="col-md">-->
+<!--                <h5>Upload your file here!</h5>-->
+<!--                <form method='post' enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+<!--                    {{form}}-->
+<!--                    <input type="submit"-->
+<!--                           value="Submit">-->
+<!--                </form>-->
 
-                </div>
+<!--            </div>-->
 
-                <div class="col-md">
-                    <h5>Want to redirect home?</h5>
-                    <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
-                          href="/" role="button">Go Home »</a></p>
 
-                </div>
+            <div class="col-md">
+                <h5>Check instantly the mileage of your car</h5>
+                <p><a style="width: 205px !important;" class="btn btn-secondary"
+                      href="{% url 'mpg'  %}" role="button">MPG Prediction »</a></p>
 
+            </div>
+
+            <div class="col-md">
+                <h5>Check if diabetes will occur</h5>
+                <p><a style="width: 205px !important;" class="btn btn-secondary "
+                      href="{% url 'diabetes'  %}" role="button">Diabetes prediction »</a></p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md">
+                <h5>Predict your census income</h5>
+                <p><a style="width: 205px !important;" class="btn btn-secondary "
+                      href="/" role="button">Go Home »</a></p>
+
+            </div>
+            <div class="col-md">
+                <h5>Want to redirect home?</h5>
+                <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
+                      href="/" role="button">Go Home »</a></p>
+
+            </div>
 
         </div>
 

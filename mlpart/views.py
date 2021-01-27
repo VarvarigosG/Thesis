@@ -186,7 +186,7 @@ def predictMPG(request):
         testDtaa = pd.DataFrame({'x': temp2}).transpose()  # kai twra poy egine h allagh prepei na kanoume to predict
         scoreval = reloadModel.predict(testDtaa)[0]  # kai to pername mesa sto context
         context = {'scoreval': scoreval}
-    return render(request, 'mlpart/indexMPG.html', context)
+    return render(request, 'mlpart/resultsMPG.html', context)
 
 
 def diabetes(request):

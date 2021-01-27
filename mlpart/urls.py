@@ -20,7 +20,8 @@ urlpatterns = [
     path('', views.FileUploadView, name='upload'),
     path('status/', views.approvereject),
     path('form/', views.cxcontact, name='cxform'),
-
+    path('mpg/', views.mpg, name='mpg'),
+    path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
     path('diabetes/', views.diabetes, name='diabetes'),
     path('diabetes/predictDiabetes/', views.predictDiabetes, name='predictDiabetes'),
 
