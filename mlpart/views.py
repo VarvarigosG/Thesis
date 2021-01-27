@@ -226,11 +226,12 @@ def predictDiabetes(request):
         scoreval1 = reloadModel1.predict(testDtaa1)[0]  # kai to pername mesa sto context
         context = {'scoreval1': scoreval1}
 
-        shap.initjs()
+        # shap.initjs()
         ex = shap.TreeExplainer(reloadModel1)
         shap_values = ex.shap_values(testDtaa1)
-        print(shap.summary_plot(shap_values, testDtaa1))
-        #print(shap.force_plot(ex.expected_value, shap_values, testDtaa1))
+        #shap.summary_plot(shap_values, testDtaa1)
+        #shap.summary_plot(shap_values, testDtaa1, plot_type="bar")
+        shap.force_plot(ex.expected_value, shap_values, testDtaa1)
 
 
 
