@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Check mileage of you Car Instantly</h2>
+
+<h3>Please enter details:</h3>
+<br>
+{% if scoreval1 %}
+<form method="post" enctype="multipart/form-data" action="updateDataBase">
+
+    {% else %}
+
+    <form action="{% url 'predictDiabetes' %}"  enctype="multipart/form-data" method="post" >
+        {% endif%}
+        {% csrf_token %}
+        <div class="col-md-4 col-sm-4"><label >Age:</label></div>
+        <input name="AgeVal" type="text" value={{temp.age}}><br><br>
+        <div class="col-md-4 col-sm-4"><label   >Sex:</label></div>
+        <input type="text" id="lname2" name="SexVal" value={{temp.sex}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >BMI:</label></div>
+        <input type="text" id="fname3" name="BMI" value={{temp.bmi}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >Bp:</label></div>
+        <input type="text" id="lname4" name="BPVal" value={{temp.bp}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S1:</label></div>
+        <input type="text" id="fname" name="S1Val" value={{temp.s1}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S2:</label></div>
+        <input type="text" id="lname5" name="S2Val" value={{temp.s2}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S3:</label></div>
+        <input type="text" id="lname6" name="S3Val" value={{temp.s3}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S4:</label></div>
+        <input type="text" id="lname7" name="S4Val" value={{temp.s4}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S5:</label></div>
+        <input type="text" id="lname8" name="S5Val" value={{temp.s5}}><br><br>
+        <div class="col-md-4 col-sm-4"><label >S6:</label></div>
+        <input type="text" id="lname9" name="S6Val" value={{temp.s6}}><br><br>
+        <br>
+
+        {% if scoreval1 %}
+        <h1>The mpg score is {{scoreval1}}</h1>
+        <h3>If the response is good. Do you weant to save it in DB?
+        </h3>
+        <input type="hidden" id="lname10" name="DiabetesVal" value={{scoreval1}}>
+        <input type="submit" value="Submit"></div>
+        {% else%}
+        <input type="submit" value="Submit"></div>
+        {% endif %}
+    </form>
+</form>
+<br>
+
+
+
+</body>
+</html>

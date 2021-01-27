@@ -1,6 +1,6 @@
 import json
 import pickle
-
+import shap
 import joblib
 import pandas as pd
 from django.contrib import messages
@@ -187,3 +187,51 @@ def predictMPG(request):
         scoreval = reloadModel.predict(testDtaa)[0]  # kai to pername mesa sto context
         context = {'scoreval': scoreval}
     return render(request, 'mlpart/indexMPG.html', context)
+
+
+def diabetes(request):
+    return render(request, 'mlpart/indexDiabetes.html')
+
+
+reloadModel1 = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Diabetes\DTModelforDiabetes.pkl")
+
+
+def predictDiabetes(request):
+    # print (request)
+    if request.method == 'POST':
+        # print (request.POST.dict()) #ektypwnei cmd ta submited form
+        # print (request.POST.get('cylinderVal')) #afou einai dictionary mporw na kanw access tis times
+        temp3 = {}
+        temp3['age'] = request.POST.get('AgeVal')
+        temp3['sex'] = request.POST.get('SexVal')
+        temp3['bmi'] = request.POST.get('BMI')
+        temp3['bp'] = request.POST.get('BPVal')
+        temp3['s1'] = request.POST.get('S1Val')
+        temp3['s2'] = request.POST.get('S2Val')
+        temp3['s3'] = request.POST.get('S3Val')
+        temp3['s4'] = request.POST.get('S4Val')
+        temp3['s5'] = request.POST.get('S5Val')
+        temp3['s6'] = request.POST.get('S6Val')
+
+        # temp2 = temp.copy()
+        # temp2['model year'] = temp['model_year']
+        # print(temp.keys(), temp2.keys())
+        # del temp2['model_year']
+        # ayto giati sthn arxh me to model_year barage error afou sto dataset einai model year
+
+        # kai twra pou exw ta dedomena prepei na fortwsw to modelo
+
+        # to model perimenei DATAFRAME enw emeis exoume dictionary opote prepei na kanoume thn allagh
+        testDtaa1 = pd.DataFrame({'x': temp3}).transpose()  # kai twra poy egine h allagh prepei na kanoume to predict
+        scoreval1 = reloadModel1.predict(testDtaa1)[0]  # kai to pername mesa sto context
+        context = {'scoreval1': scoreval1}
+
+        shap.initjs()
+        ex = shap.TreeExplainer(reloadModel1)
+        shap_values = ex.shap_values(testDtaa1)
+        print(shap.summary_plot(shap_values, testDtaa1))
+        #print(shap.force_plot(ex.expected_value, shap_values, testDtaa1))
+
+
+
+    return render(request, 'mlpart/indexDiabetes.html', context)
