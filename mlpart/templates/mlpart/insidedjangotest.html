@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'DiabetesModel' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row justify-content-start">
+
+            <div class="col-md-2 ">Pregnancies:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val1" value={{temp.Pregnancies}}><br><br>
+
+            <div class="col-md-2 ">Glucose:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val2" value={{temp.Glucose}}><br><br>
+
+            <div class="col-md-2 ">BloodPressure:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val3" value={{temp.BloodPressure}}><br><br>
+
+            <div class="col-md-2 ">SkinThickness:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val4" value={{temp.SkinThickness}}><br><br>
+
+            <div class="col-md-2 ">Insulin:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val5" value={{temp.Insulin}}><br><br>
+
+            <div class="col-md-2 ">BMI:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val6" value={{temp.BMI}}><br><br>
+
+            <div class="col-md-2 ">DiabetesPedigreeFunction:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val7" value={{temp.DiabetesPedigreeFunction}}><br><br>
+
+            <div class="col-md-2 ">Age:</div>
+            <input type="number" step="0.01" placeholder="38" required="required" name="Val8" value={{temp.Age}}><br><br>
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary btn-lg" style="width: 350px !important;" type="submit" value="Submit">
+    </div>
+</form>
+
+
+</body>
+</html>

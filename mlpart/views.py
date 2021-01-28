@@ -1,8 +1,11 @@
 import json
 import pickle
-import shap
+
 import joblib
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+import shap
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import HttpResponseRedirect, reverse
@@ -13,8 +16,8 @@ from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-import matplotlib.pyplot as plt
-from django.conf import settings
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -239,6 +242,54 @@ def predictDiabetes(request):
 
     return render(request, 'mlpart/resultsDiabetes.html', context)
 
+def diabetesinsideDjango(request):
+    return render(request, 'mlpart/insidedjangotest.html')
 
-# def returnImage(request):
+def DiabetesModel(request):
+    if request.method == 'POST':
+        temp3 = {}
+        temp3['Pregnancies'] = request.POST.get('Val1')
+        temp3['Glucose'] = request.POST.get('Val2')
+        temp3['BloodPressure'] = request.POST.get('Val3')
+        temp3['SkinThickness'] = request.POST.get('Val4')
+        temp3['Insulin'] = request.POST.get('Val5')
+        temp3['BMI'] = request.POST.get('Val6')
+        temp3['DiabetesPedigreeFunction'] = request.POST.get('Val7')
+        temp3['Age'] = request.POST.get('Val8')
+
+        diabetesDF = pd.read_csv(r"C:\Users\gvarv\anaconda3\envs\thesis\Diabetes\diabetes.csv")
+        dfTrain = diabetesDF[:650]
+        dfTest = diabetesDF[650:750]
+        dfCheck = diabetesDF[750:]
+        trainLabel = np.asarray(dfTrain['Outcome'])
+        trainData = np.asarray(dfTrain.drop('Outcome', 1))
+        testLabel = np.asarray(dfTest['Outcome'])
+        testData = np.asarray(dfTest.drop('Outcome', 1))
+        means = np.mean(trainData, axis=0)
+        stds = np.std(trainData, axis=0)
+        trainData = (trainData - means) / stds
+        testData = (testData - means) / stds
+        diabetesCheck = LogisticRegression()
+        diabetesCheck.fit(trainData, trainLabel)
+        joblib.dump(diabetesCheck, 'diabeteseModelInsideDjango.pkl')
+        #sampleDataFeatures = np.asarray(temp3)
+        #sampleDataFeatures =np.array(temp3.items()))
+        ##y = temp3.astype(np.float)
+
+        sampleDataFeatures = np.array([list(item.values()) for item in ({'x': temp3}).values()]) #to temp3 to kanoyme numpyarray
+        sampleDataFeatures = np.asarray(sampleDataFeatures, dtype=np.float64, order='C') # ta kanoyme float giati einai string
+        #print(sampleDataFeatures)
+        #print(means)
+        sampleDataFeatures=np.subtract(sampleDataFeatures,means)
+        sampleDataFeatures = sampleDataFeatures/ stds
+        #print(sampleDataFeatures)
+        ##diabetesLoadedModel, means, stds = joblib.load('diabeteseModel.pkl')
+        # # predict
+        diabeteseModelInsideDjango=joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\diabeteseModelInsideDjango.pkl")
+        predictionProbability = diabeteseModelInsideDjango.predict_proba(sampleDataFeatures)
+        prediction = diabeteseModelInsideDjango.predict(sampleDataFeatures)
+        print(predictionProbability)
+        print(prediction)
+    return render(request, 'mlpart/insidedjangotest.html')
+
 
