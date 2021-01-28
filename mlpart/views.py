@@ -13,7 +13,8 @@ from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+import matplotlib.pyplot as plt
+from django.conf import settings
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -230,9 +231,14 @@ def predictDiabetes(request):
         ex = shap.TreeExplainer(reloadModel1)
         shap_values = ex.shap_values(testDtaa1)
         #shap.summary_plot(shap_values, testDtaa1)
-        #shap.summary_plot(shap_values, testDtaa1, plot_type="bar")
-        shap.force_plot(ex.expected_value, shap_values, testDtaa1)
+        fig = shap.summary_plot(shap_values, testDtaa1, plot_type="bar", show=False)
+        plt.savefig('mlpart\static\mlpart\plot2.jpeg')
+
+        #shap.force_plot(ex.expected_value, shap_values, testDtaa1)
 
 
+    return render(request, 'mlpart/resultsDiabetes.html', context)
 
-    return render(request, 'mlpart/indexDiabetes.html', context)
+
+# def returnImage(request):
+

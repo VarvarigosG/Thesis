@@ -24,5 +24,6 @@ urlpatterns = [
     path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
     path('diabetes/', views.diabetes, name='diabetes'),
     path('diabetes/predictDiabetes/', views.predictDiabetes, name='predictDiabetes'),
+    #path(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/path/to/media'}),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

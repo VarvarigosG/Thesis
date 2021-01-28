@@ -1,10 +1,16 @@
+
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>The mpg score is {{scoreval1}}</h1>
+<h1>The quantitative measure of disease progression one year after baseline is: {{scoreval1}}</h1>
+<img src="{% static 'mlpart/plot2.jpeg' %}">
+
 </body>
 </html>
