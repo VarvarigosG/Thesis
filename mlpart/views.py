@@ -17,7 +17,9 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from sklearn.linear_model import LogisticRegression
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -299,23 +301,50 @@ def DiabetesModel(request):
             if item == 1:
                 print("Diabetes will occur")
                 # np.where(prediction == 1, 'Positive', prediction)
-                #return JsonResponse(("Diabetes will occur"), safe=False)
+                # return JsonResponse(("Diabetes will occur"), safe=False)
                 messages.success(request, "Diabetes will occur")
             else:
                 print("Diabetes will NOT occur")
                 # np.where(prediction == 0, 'Negative', prediction)
-                #return JsonResponse(("Diabetes will not occur"), safe=False)
+                # return JsonResponse(("Diabetes will not occur"), safe=False)
                 messages.success(request, "Diabetes will NOT occur")
-        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
-        # shap_values = ex.shap_values(sampleDataFeatures)
+
+               #Summaryplot kai dependence plot me ta test Data
+        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        shap_values = ex.shap_values(testData)
+
+        fig = shap.summary_plot(shap_values, testData, show=False)
+        shap.initjs()
+        plt.savefig("mlpart/static/mlpart/SPtestdata.svg", format='svg', dpi=150, bbox_inches='tight')
+
+        fig = shap.dependence_plot("Feature 0",shap_values, testData, show=False)
+        shap.initjs()
+        plt.savefig("mlpart/static/mlpart/DPtestdata.svg", format='svg', dpi=150, bbox_inches='tight')
+
+        # Summaryplot kai dependence plot me ta input Data tou xrhsth
+
+        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
+        shap_values = ex.shap_values(sampleDataFeatures)
+
+        fig = shap.summary_plot(shap_values, sampleDataFeatures, show=False)
+        shap.initjs()
+        plt.savefig("mlpart/static/mlpart/SPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+
+        fig = shap.dependence_plot("Feature 0", shap_values, sampleDataFeatures, show=False)
+        shap.initjs()
+        plt.savefig("mlpart/static/mlpart/DPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+
         # #print(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures))
         # #print(shap.summary_plot(shap_values, sampleDataFeatures))
         # shap.dependence_plot("Feature 6", shap_values, sampleDataFeatures)
 
-        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
-        shap_values = ex.shap_values(testData)
-        # print(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures))
+        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        # shap_values = ex.shap_values(testData)
+        #fig = shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures, matplotlib=True, show=False).savefig("gg1234.svg",  format='svg', dpi=150, bbox_inches='tight')
+
+        # shap.save_html('forceplot.pdf', fig)
+        #plt.savefig("gg1233.svg",  format='svg', dpi=150, bbox_inches='tight')
         # print(shap.summary_plot(shap_values, sampleDataFeatures))
-        #shap.dependence_plot("Feature 6", shap_values, testData)
-        print(shap.summary_plot(shap_values, testData))
+        # shap.dependence_plot("Feature 6", shap_values, testData)
+        # print(shap.summary_plot(shap_values, testData))
     return render(request, 'mlpart/resultsDiabetes.html')
