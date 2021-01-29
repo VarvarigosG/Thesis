@@ -1,6 +1,6 @@
 import json
 import pickle
-
+from IPython.display import display
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -313,7 +313,7 @@ def DiabetesModel(request):
         ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
         shap_values = ex.shap_values(testData)
 
-        fig = shap.summary_plot(shap_values, testData, show=False)
+        fig = shap.summary_plot(shap_values, testData, plot_type="bar", show=False)
         shap.initjs()
         plt.savefig("mlpart/static/mlpart/SPtestdata.svg", format='svg', dpi=150, bbox_inches='tight')
 
@@ -323,16 +323,16 @@ def DiabetesModel(request):
 
         # Summaryplot kai dependence plot me ta input Data tou xrhsth
 
-        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
-        shap_values = ex.shap_values(sampleDataFeatures)
-
-        fig = shap.summary_plot(shap_values, sampleDataFeatures, show=False)
-        shap.initjs()
-        plt.savefig("mlpart/static/mlpart/SPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
-
-        fig = shap.dependence_plot("Feature 0", shap_values, sampleDataFeatures, show=False)
-        shap.initjs()
-        plt.savefig("mlpart/static/mlpart/DPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
+        # shap_values = ex.shap_values(sampleDataFeatures)
+        #
+        # fig = shap.summary_plot(shap_values, sampleDataFeatures, plot_type="bar", show=False)
+        # shap.initjs()
+        # plt.savefig("mlpart/static/mlpart/SPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+        #
+        # fig = shap.dependence_plot("Feature 0", shap_values, sampleDataFeatures, show=False,)
+        # shap.initjs()
+        # plt.savefig("mlpart/static/mlpart/DPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
 
         # #print(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures))
         # #print(shap.summary_plot(shap_values, sampleDataFeatures))
@@ -340,7 +340,12 @@ def DiabetesModel(request):
 
         # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
         # shap_values = ex.shap_values(testData)
-        #fig = shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures, matplotlib=True, show=False).savefig("gg1234.svg",  format='svg', dpi=150, bbox_inches='tight')
+        shap.initjs()
+        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
+        shap_values = ex.shap_values(sampleDataFeatures[0,:])
+        display(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures[0,:], matplotlib=True, show=False))
+
+        plt.savefig("mlpart/static/mlpart/FPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
 
         # shap.save_html('forceplot.pdf', fig)
         #plt.savefig("gg1233.svg",  format='svg', dpi=150, bbox_inches='tight')
