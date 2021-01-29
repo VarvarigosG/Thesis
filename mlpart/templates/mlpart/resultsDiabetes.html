@@ -9,8 +9,18 @@
     <title>Title</title>
 </head>
 <body>
-<h1>The quantitative measure of disease progression one year after baseline is: {{scoreval1}}</h1>
-<img src="{% static 'mlpart/plot2.jpeg' %}">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{ message.tags }}" {% endif %}>
+        {{message}}
+    </li>
+
+    {% endfor %}
+</ul>
+{% endif %}
+<!--<h1>The quantitative measure of disease progression one year after baseline is: {{scoreval1}}</h1>-->
+#<img src="{% static 'mlpart/plot2.jpeg' %}">
 
 </body>
 </html>

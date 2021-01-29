@@ -1,65 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<h2>Check if someone will show signs of diabetes</h2>-->
-
-<!--<h3>Please enter details:</h3>-->
-<!--<br>-->
-
-<!--<form action="{% url 'predictDiabetes' %}" enctype="multipart/form-data" method="post">-->
-
-<!--    {% csrf_token %}-->
-<!--    <div class="col-md-4 col-sm-4"><label>Age:</label></div>-->
-<!--    <input name="AgeVal" type="text" value={{temp.age}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>Sex:</label></div>-->
-<!--    <input type="text" id="lname2" name="SexVal" value={{temp.sex}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>BMI:</label></div>-->
-<!--    <input type="text" id="fname3" name="BMI" value={{temp.bmi}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>Bp:</label></div>-->
-<!--    <input type="text" id="lname4" name="BPVal" value={{temp.bp}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S1:</label></div>-->
-<!--    <input type="text" id="fname" name="S1Val" value={{temp.s1}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S2:</label></div>-->
-<!--    <input type="text" id="lname5" name="S2Val" value={{temp.s2}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S3:</label></div>-->
-<!--    <input type="text" id="lname6" name="S3Val" value={{temp.s3}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S4:</label></div>-->
-<!--    <input type="text" id="lname7" name="S4Val" value={{temp.s4}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S5:</label></div>-->
-<!--    <input type="text" id="lname8" name="S5Val" value={{temp.s5}}><br><br>-->
-<!--    <div class="col-md-4 col-sm-4"><label>S6:</label></div>-->
-<!--    <input type="text" id="lname9" name="S6Val" value={{temp.s6}}><br><br>-->
-<!--    <br>-->
-<!--    <input type="submit" value="Submit"></div>-->
-
-<!--    {% if scoreval1 %}-->
-<!--    <h1>The mpg score is {{scoreval1}}</h1>-->
-<!--    <h3>If the response is good. Do you weant to save it in DB?-->
-<!--    </h3>-->
-<!--    <input type="hidden" id="lname10" name="DiabetesVal" value={{scoreval1}}>-->
-<!--    <input type="submit" value="Submit"></div>-->
-<!--    {% else%}-->
-
-<!--    {% endif %}-->
-<!--</form>-->
-<!--</form>-->
-
-<!--<div class="container">-->
-<!--    {% block content %}{% include 'mlpart/DiabetesSHAP.html' %}{% endblock %}-->
-<!--</div>-->
-<!--<br>-->
-
-
-<!--</body>-->
-<!--</html>-->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +26,7 @@
 
     <div style="padding: 20px 0px 5px!important" class="jumbotron">
         <div class="container">
-            <div  class="row justify-content-start">
+            <div class="row justify-content-start">
 
                 <div class="col ">
                     <h5 class="display-4">Check the probability of diabetes to occur</h5>
@@ -109,65 +47,62 @@
     <div class="container">
 
 
-        <form action="{% url 'predictDiabetes' %}" enctype="multipart/form-data" method="post">
+        <form action="{% url 'DiabetesModel' %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}
             <div class="container">
                 <div class="row justify-content-start">
 
-                    <div class="col-md-2 ">Age:</div>
-                    <input type="number" placeholder="38" required="required" name="AgeVal"  value={{temp.age}}><br><br>
+                    <div class="col-md-2 ">Pregnancies:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val1"
+                           value={{temp.Pregnancies}}><br><br>
 
 
-                    <div class="col-md-3">Sex:</div>
-                    <input name="SexVal"  placeholder="8" required="required" type="text" value={{temp.sex}}><br><br>
-
-                </div>
-                <br>
-
-                <div class="row justify-content-start">
-
-                    <div class="col-md-2 ">BMI (Body Mass Index):</div>
-                    <input type="number" placeholder="23" required="required" name="BMI" value={{temp.bmi}}><br><br>
-
-
-                    <div class="col-md-3 ">BP (Blood Pressure):</div>
-                    <input type="number" placeholder="130" required="required" name="BPVal" value={{temp.bp}}><br><br>
-
-                </div>
-
-                <br>
-
-                <div class="row justify-content-start">
-
-                    <div class="col-md-2 ">TC (Count of T cells):</div>
-                    <input type="number" placeholder="12" required="required" name="S1Val" value={{temp.s1}}><br><br>
-
-
-                    <div class="col-md-3 ">LDL (Low-density lipoprotein):</div>
-                    <input type="number" required="required" placeholder="1970" name="S2Val" value={{temp.s2}}><br><br>
+                    <div class="col-md-3 ">Glucose:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val2"
+                           value={{temp.Glucose}}><br><br>
 
                 </div>
                 <br>
 
                 <div class="row justify-content-start">
 
-                    <div class="col-md-2">HDL (High-density lipoprotein):</div>
-                    <input type="text" placeholder="Japan" required="required" name="S3Val" value={{temp.s3}}><br><br>
+                    <div class="col-md-2 ">BloodPressure:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val3"
+                           value={{temp.BloodPressure}}><br><br>
 
-                    <div class="col-md-3">TSH (Thyroid-stimulating hormone):</div>
-                    <input type="text" placeholder="Japan" required="required" name="S4Val" value={{temp.s4}}><br><br>
 
+                    <div class="col-md-3 ">SkinThickness:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val4"
+                           value={{temp.SkinThickness}}><br><br>
+
+                </div>
+
+                <br>
+
+                <div class="row justify-content-start">
+
+                    <div class="col-md-2 ">Insulin:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val5"
+                           value={{temp.Insulin}}><br><br>
+
+
+                    <div class="col-md-3 ">BMI:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val6"
+                           value={{temp.BMI}}><br><br>
 
                 </div>
                 <br>
 
                 <div class="row justify-content-start">
 
-                    <div class="col-md-2">LTG (Lamotrigine):</div>
-                    <input type="text" placeholder="Japan" required="required" name="S5Val" value={{temp.s5}}><br><br>
 
-                    <div class="col-md-3">GLU (Glucose):</div>
-                    <input type="text" placeholder="Japan" required="required" name="S6Val" value={{temp.s6}}><br><br>
+                    <div class="col-md-2 ">Diabetes Pedigree Function:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val7"
+                           value={{temp.DiabetesPedigreeFunction}}><br><br>
+
+                    <div class="col-md-3 ">Age:</div>
+                    <input type="number" step="0.01" placeholder="38" required="required" name="Val8"
+                           value={{temp.Age}}><br><br>
 
 
                 </div>

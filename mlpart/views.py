@@ -17,7 +17,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
+
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -233,17 +233,18 @@ def predictDiabetes(request):
         # shap.initjs()
         ex = shap.TreeExplainer(reloadModel1)
         shap_values = ex.shap_values(testDtaa1)
-        #shap.summary_plot(shap_values, testDtaa1)
+        # shap.summary_plot(shap_values, testDtaa1)
         fig = shap.summary_plot(shap_values, testDtaa1, plot_type="bar", show=False)
         plt.savefig('mlpart\static\mlpart\plot2.jpeg')
 
-        #shap.force_plot(ex.expected_value, shap_values, testDtaa1)
-
+        # shap.force_plot(ex.expected_value, shap_values, testDtaa1)
 
     return render(request, 'mlpart/resultsDiabetes.html', context)
 
+
 def diabetesinsideDjango(request):
-    return render(request, 'mlpart/insidedjangotest.html')
+    return render(request, 'mlpart/indexDiabetes.html')
+
 
 def DiabetesModel(request):
     if request.method == 'POST':
@@ -272,24 +273,49 @@ def DiabetesModel(request):
         diabetesCheck = LogisticRegression()
         diabetesCheck.fit(trainData, trainLabel)
         joblib.dump(diabetesCheck, 'diabeteseModelInsideDjango.pkl')
-        #sampleDataFeatures = np.asarray(temp3)
-        #sampleDataFeatures =np.array(temp3.items()))
+        # sampleDataFeatures = np.asarray(temp3)
+        # sampleDataFeatures =np.array(temp3.items()))
         ##y = temp3.astype(np.float)
 
-        sampleDataFeatures = np.array([list(item.values()) for item in ({'x': temp3}).values()]) #to temp3 to kanoyme numpyarray
-        sampleDataFeatures = np.asarray(sampleDataFeatures, dtype=np.float64, order='C') # ta kanoyme float giati einai string
-        #print(sampleDataFeatures)
-        #print(means)
-        sampleDataFeatures=np.subtract(sampleDataFeatures,means)
-        sampleDataFeatures = sampleDataFeatures/ stds
-        #print(sampleDataFeatures)
-        ##diabetesLoadedModel, means, stds = joblib.load('diabeteseModel.pkl')
+        sampleDataFeatures = np.array(
+            [list(item.values()) for item in ({'x': temp3}).values()])  # to temp3 to kanoyme numpyarray
+        sampleDataFeatures = np.asarray(sampleDataFeatures, dtype=np.float64,
+                                        order='C')  # ta kanoyme float giati einai string
+        # print(sampleDataFeatures)
+        # print(means)
+        sampleDataFeatures = np.subtract(sampleDataFeatures, means)
+        sampleDataFeatures = sampleDataFeatures / stds
+        # print(sampleDataFeatures)
+
         # # predict
-        diabeteseModelInsideDjango=joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\diabeteseModelInsideDjango.pkl")
+        diabeteseModelInsideDjango = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\diabeteseModelInsideDjango.pkl")
         predictionProbability = diabeteseModelInsideDjango.predict_proba(sampleDataFeatures)
         prediction = diabeteseModelInsideDjango.predict(sampleDataFeatures)
         print(predictionProbability)
         print(prediction)
-    return render(request, 'mlpart/insidedjangotest.html')
+        # prediction = pd.DataFrame(prediction, columns=['Outcome'])
+        # prediction = prediction.replace({True: 'Approved', False: 'Rejected'})
+        for item in prediction:
+            if item == 1:
+                print("Diabetes will occur")
+                # np.where(prediction == 1, 'Positive', prediction)
+                #return JsonResponse(("Diabetes will occur"), safe=False)
+                messages.success(request, "Diabetes will occur")
+            else:
+                print("Diabetes will NOT occur")
+                # np.where(prediction == 0, 'Negative', prediction)
+                #return JsonResponse(("Diabetes will not occur"), safe=False)
+                messages.success(request, "Diabetes will NOT occur")
+        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
+        # shap_values = ex.shap_values(sampleDataFeatures)
+        # #print(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures))
+        # #print(shap.summary_plot(shap_values, sampleDataFeatures))
+        # shap.dependence_plot("Feature 6", shap_values, sampleDataFeatures)
 
-
+        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        shap_values = ex.shap_values(testData)
+        # print(shap.force_plot(ex.expected_value, shap_values, sampleDataFeatures))
+        # print(shap.summary_plot(shap_values, sampleDataFeatures))
+        #shap.dependence_plot("Feature 6", shap_values, testData)
+        print(shap.summary_plot(shap_values, testData))
+    return render(request, 'mlpart/resultsDiabetes.html')
