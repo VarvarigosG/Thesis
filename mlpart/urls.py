@@ -24,6 +24,7 @@ urlpatterns = [
     path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
     path('diabetes/', views.diabetesinsideDjango, name='diabetesinsideDjango'),
     path('diabetes/predictDiabetes/', views.DiabetesModel, name='DiabetesModel'),
+    # path('diabetes/predictDiabetes/shap', views.shapPlots, name='shapPlots'),
 
     #path('diabetesDjango/', views.diabetesinsideDjango, name='diabetesinsideDjango'),
     #path('diabetesDjango/predict', views.DiabetesModel, name='DiabetesModel'),
