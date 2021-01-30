@@ -15,10 +15,12 @@
         .bs-example {
             margin: 20px;
         }
+
         .imgbox {
             display: grid;
             height: 100%;
         }
+
         .center-fit {
             max-width: 100%;
             max-height: 100vh;
@@ -33,7 +35,7 @@
 
 <main role="main">
 
-    <div style="padding: 40px 0px 5px!important" class="jumbotron">
+    <div style="padding: 50px 0px 5px!important" class="jumbotron">
         <div class="container">
             <div class="row justify-content-start">
 
@@ -41,7 +43,7 @@
                     {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
-                        <h5 class="display-4" {% if message.tags %} class="{ message.tags }}" {% endif %}>
+                        <h5 class="text-danger display-4" {% if message.tags %} class="{ message.tags }}" {% endif %}>
                             {{message}}
                         </h5>
 
@@ -50,11 +52,11 @@
                     {% endif %}
                 </div>
 
-                <div style="padding: 25px 0px 10px!important" class="d-flex justify-content-end">
+                <div style="padding: 15px 0px 10px!important" class="d-flex justify-content-end">
                     <div class="col-md">
                         <h5>Want to make another diabetes prediction?</h5>
-                        <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
-                              href="/" role="button">Go Home »</a></p>
+                        <p><a style="width: 390px !important;" class="btn btn-secondary text-info"
+                              href="/" role="button">Go Ahead »</a></p>
                     </div>
                 </div>
 
@@ -69,7 +71,7 @@
             <div class="row justify-content-start">
                 <div class="container" style="align-content: center">
                     herewvdvbadvbadvbadvbravbrabveravrsevbervbaerukvbeavaeruvbaruevuaevbeu
-                    <img src="{% static 'mlpart/DPtestdata.jpeg' %}"/>
+                    <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
                 </div>
 
                 <br>
@@ -83,18 +85,13 @@
                 <br>
                 <br>
 
-<!--                <div class="container">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:-->
-<!--                    <img  src="{% static 'mlpart/FPtestdata.svg' %}"/>-->
-<!--                </div>-->
+                <div class="container">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
+                    <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
+                </div>
 
-
-                <!--                <img src="{% static 'mlpart/SPtestdata.svg' %}"/>-->
-                <!--                <br>-->
-                <!--                <br>-->
-                <!--                <br>-->
-                <!--                </div>-->
-                <!--                <img src="{% static 'mlpart/FPtestdata.svg' %}"/>-->
-                <!--                </div>-->
+                <br>
+                <br>
+                <br>
 
 
             </div>
