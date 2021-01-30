@@ -56,7 +56,7 @@
                     <div class="col-md">
                         <h5>Want to make another diabetes prediction?</h5>
                         <p><a style="width: 390px !important;" class="btn btn-secondary text-info"
-                              href="/" role="button">Go Ahead »</a></p>
+                              href="/mlpart/diabetes/" role="button">Go Ahead »</a></p>
                     </div>
                 </div>
 
@@ -86,7 +86,19 @@
                 <br>
 
                 <div class="container">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
-                    <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                        <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    </div>
+                </div>
+
+                <div id="London" class="tabcontent">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
+                    <img src="{% static 'mlpart/DPinsulintestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Paris" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
                 </div>
 
                 <br>
@@ -110,5 +122,22 @@
     <p>© Varvarigos Georgios 2020-2021</p>
 </footer>
 
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 </body>
 </html>
