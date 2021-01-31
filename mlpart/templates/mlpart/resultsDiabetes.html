@@ -69,36 +69,60 @@
 
         <div class="container" align="center">
             <div class="row justify-content-start">
-                <div class="container" style="align-content: center">
-                    herewvdvbadvbadvbadvbravbrabveravrsevbervbaerukvbeavaeruvbaruevuaevbeu
-                    <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
-                </div>
 
-                <br>
-                <br>
-
-                <div class="container">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
-                    <img src="{% static 'mlpart/SPbartestdata.jpeg' %}"/>
-                </div>
-
-                <br>
-                <br>
-                <br>
-
-                <div class="container">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
+                <div class="container">Global Explainability:
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-                        <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                        <button class="tablinks" onclick="openCity(event, 'All Features1')" id="defaultOpen">All Features</button>
+                        <button class="tablinks" onclick="openCity(event, 'All Features2')">All Features</button>
+                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')">Pregnancies</button>
+                        <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
+                        <button class="tablinks" onclick="openCity(event, 'BloodP')">Blood Pressure</button>
+                        <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
+                        <button class="tablinks" onclick="openCity(event, 'Insulin')">Insulin</button>
+                        <button class="tablinks" onclick="openCity(event, 'BMI')">BMI</button>
+                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree Function</button>
+                        <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
                     </div>
                 </div>
 
-                <div id="London" class="tabcontent">uvrareufvreauvukervbrekvsrkivribvrsivsrivsyi:
-                    <img src="{% static 'mlpart/DPinsulintestdata.jpeg' %}"/>
+                <div id="All Features1" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/SPbartestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Paris" class="tabcontent">Koita edw
+                <div id="All Features2" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Pregnancies" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPPREGNANCIEStestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Glucose" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPGLUCOSEtestdata.jpeg' %}"/>
+                </div>
+
+                <div id="BloodP" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPbloodPressuretestdata.jpeg' %}"/>
+                </div>
+
+                <div id="SkinT" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPSkinThicknesstestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Insulin" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
+                </div>
+
+                <div id="BMI" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPBMItestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Diabetes Pedigree" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPDiabetesPedigreetestdata.jpeg' %}"/>
+                </div>
+
+                <div id="Age" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DPAgetestdata.jpeg' %}"/>
                 </div>
 
                 <br>
@@ -138,6 +162,9 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>

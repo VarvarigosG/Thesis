@@ -325,20 +325,27 @@ def DiabetesModel(request):
         #
         #
         #
-        # fig = shap.dependence_plot("Insulin", shap_values, testData, show=False, feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+        # fig = shap.dependence_plot("Age", shap_values, testData, show=False, feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
         #                                        'BMI', 'Diabetes Pedigree', 'Age'])
         #
-        # plt.savefig("mlpart/static/mlpart/DPINSULINtestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+        # plt.savefig("mlpart/static/mlpart/DPAgetestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
         #
         #
         #
-        # # #Force Plots gia thn 14 timh twn test Data
-        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
-        # shap_values = ex.shap_values(testData[14, :])
-        # shap.force_plot(ex.expected_value, shap_values, testData[14, :], matplotlib=True, show=False,
-        #                 feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-        #                                'BMI', 'Diabetes Pedigree', 'Age'])
-        # plt.savefig("mlpart/static/mlpart/FPtestdata.jpeg", format='jpeg', dpi=850, bbox_inches='tight')
+        # #Force Plots gia thn 14 timh twn test Data
+        ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        shap_values = ex.shap_values(testData[61, :])
+        shap.initjs()
+        fig=shap.force_plot(ex.expected_value, shap_values, testData[61, :], matplotlib=True, show=False,
+                        feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+                                       'BMI', 'Diabetes Pedigree', 'Age'])
+
+        fig.tight_layout()
+        # fig = plt.gcf()
+        # plt.tight_layout()
+        # plt.tight_layout(pad=1.9, w_pad=3.5, h_pad=1.5)
+        # fig.set_size_inches(5, 15)
+        plt.savefig("mlpart/static/mlpart/FPtestdata.jpeg", format='jpeg', dpi=850)
 
 
 
