@@ -23,14 +23,23 @@
 
 <main role="main">
 
-    <div class="jumbotron">
+    <div style="padding: 20px 0px 5px!important" class="jumbotron">
         <div class="container">
-            <h5 class="display-4">Welcome to the AI Explainability tool.</h5>
-            <!--            <p>This is an experimental website that offers tools for assessment for algorithmic systems.</p>-->
-            <!--            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>-->
-            <!--            &lt;!&ndash;            <div>&ndash;&gt;-->
-            <!--            &lt;!&ndash;                <h4 class="display-5">Not sure what to do first?</h4>&ndash;&gt;-->
-            <!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+            <div class="row justify-content-start">
+
+                <div class="col ">
+                    <h5 class="display-4">Welcome to the ai examples</h5>
+                </div>
+
+                <div style="padding: 25px 0px 10px!important" class="d-flex justify-content-end">
+                    <div class="col-md">
+                        <h5>Want to redirect home?</h5>
+                        <p><a style="width: 215px !important;" class="btn btn-secondary text-info"
+                              href="/" role="button">Go Home »</a></p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -67,7 +76,7 @@
 
         <div class="row">
             <div class="col-md">
-                <h5>Iris</h5>
+                <h5>Check the species of an Iris flower</h5>
                 <p><a style="width: 205px !important;" class="btn btn-secondary "
                       href="{% url 'Iris'  %}" role="button">Iris Classification »</a></p>
 
