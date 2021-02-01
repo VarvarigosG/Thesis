@@ -17,6 +17,9 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import LabelEncoder
 
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -195,55 +198,6 @@ def predictMPG(request):
     return render(request, 'mlpart/resultsMPG.html', context)
 
 
-def diabetes(request):
-    return render(request, 'mlpart/indexDiabetes.html')
-
-
-reloadModel1 = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\Diabetes\DTModelforDiabetes.pkl")
-
-
-def predictDiabetes(request):
-    # print (request)
-    if request.method == 'POST':
-        # print (request.POST.dict()) #ektypwnei cmd ta submited form
-        # print (request.POST.get('cylinderVal')) #afou einai dictionary mporw na kanw access tis times
-        temp3 = {}
-        temp3['age'] = request.POST.get('AgeVal')
-        temp3['sex'] = request.POST.get('SexVal')
-        temp3['bmi'] = request.POST.get('BMI')
-        temp3['bp'] = request.POST.get('BPVal')
-        temp3['s1'] = request.POST.get('S1Val')
-        temp3['s2'] = request.POST.get('S2Val')
-        temp3['s3'] = request.POST.get('S3Val')
-        temp3['s4'] = request.POST.get('S4Val')
-        temp3['s5'] = request.POST.get('S5Val')
-        temp3['s6'] = request.POST.get('S6Val')
-
-        # temp2 = temp.copy()
-        # temp2['model year'] = temp['model_year']
-        # print(temp.keys(), temp2.keys())
-        # del temp2['model_year']
-        # ayto giati sthn arxh me to model_year barage error afou sto dataset einai model year
-
-        # kai twra pou exw ta dedomena prepei na fortwsw to modelo
-
-        # to model perimenei DATAFRAME enw emeis exoume dictionary opote prepei na kanoume thn allagh
-        testDtaa1 = pd.DataFrame({'x': temp3}).transpose()  # kai twra poy egine h allagh prepei na kanoume to predict
-        scoreval1 = reloadModel1.predict(testDtaa1)[0]  # kai to pername mesa sto context
-        context = {'scoreval1': scoreval1}
-
-        # shap.initjs()
-        ex = shap.TreeExplainer(reloadModel1)
-        shap_values = ex.shap_values(testDtaa1)
-        # shap.summary_plot(shap_values, testDtaa1)
-        fig = shap.summary_plot(shap_values, testDtaa1, plot_type="bar", show=False)
-        plt.savefig('mlpart\static\mlpart\plot2.jpeg')
-
-        # shap.force_plot(ex.expected_value, shap_values, testDtaa1)
-
-    return render(request, 'mlpart/resultsDiabetes.html', context)
-
-
 def diabetesinsideDjango(request):
     return render(request, 'mlpart/indexDiabetes.html')
 
@@ -306,7 +260,6 @@ def DiabetesModel(request):
         print(sampleDataFeatures)
         print(trainData[0, :])
 
-
         # Summaryplot kai dependence plot me ta test Data
         # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
         # shap_values = ex.shap_values(testData)
@@ -336,9 +289,9 @@ def DiabetesModel(request):
         ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
         shap_values = ex.shap_values(testData[61, :])
         shap.initjs()
-        fig=shap.force_plot(ex.expected_value, shap_values, testData[61, :], matplotlib=True, show=False,
-                        feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-                                       'BMI', 'Diabetes Pedigree', 'Age'])
+        fig = shap.force_plot(ex.expected_value, shap_values, testData[61, :], matplotlib=True, show=False,
+                              feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+                                             'BMI', 'Diabetes Pedigree', 'Age'])
 
         fig.tight_layout()
         # fig = plt.gcf()
@@ -346,10 +299,6 @@ def DiabetesModel(request):
         # plt.tight_layout(pad=1.9, w_pad=3.5, h_pad=1.5)
         # fig.set_size_inches(5, 15)
         plt.savefig("mlpart/static/mlpart/FPtestdata.jpeg", format='jpeg', dpi=850)
-
-
-
-
 
         # # # Summaryplot kai dependence mlpart/static/mlpartplot me ta input Data tou xrhsth
         # #
@@ -368,3 +317,114 @@ def DiabetesModel(request):
 
     return render(request, 'mlpart/resultsDiabetes.html')
 
+
+def Iris(request):
+    return render(request, 'mlpart/indexIris.html')
+
+
+def IrisModel(request):
+    if request.method == 'POST':
+        temp3 = {}
+        temp3['SepalLength'] = request.POST.get('Val1')
+        temp3['SepalWidth'] = request.POST.get('Val2')
+        temp3['PetalLength'] = request.POST.get('Val3')
+        temp3['PetalWidth'] = request.POST.get('Val4')
+
+        df = pd.read_csv(r"C:\Users\gvarv\anaconda3\envs\thesis\Iris\iris.csv")
+        df = df.drop(columns=['Id'])
+        le = LabelEncoder()
+        df['Species'] = le.fit_transform(df['Species'])
+        X = df.drop(columns=['Species'])
+        Y = df['Species']
+        x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.20)
+        model = KNeighborsClassifier()
+        model.fit(x_train, y_train)
+
+        print("Accuracy", model.score(x_test, y_test) * 100)
+        joblib.dump(model, 'irismodel.pkl')
+
+        LoadedModel = joblib.load('irismodel.pkl')
+        accuracyModel = LoadedModel.score(x_test, y_test)
+        print("accuracy = ", accuracyModel * 100, "%")
+
+        sampleDataFeatures = np.array(
+            [list(item.values()) for item in ({'x': temp3}).values()])  # to temp3 to kanoyme numpyarray
+        sampleDataFeatures = np.asarray(sampleDataFeatures, dtype=np.float64,
+                                        order='C')  # ta kanoyme float giati einai string
+
+        print(sampleDataFeatures)
+
+        prediction = LoadedModel.predict(sampleDataFeatures)
+        print(prediction)
+
+        # if prediction[0] == 0:
+        #     print("Diabetes will NOT occur")
+        #     messages.success(request, "Diabetes will NOT occur")
+        # elif prediction[0] == 1:
+        #     print("Diabetes will  occur")
+        #     messages.success(request, "Diabetes will occur")
+        #
+        # print(sampleDataFeatures)
+        # print(trainData[0, :])
+        #
+        #
+        # # Summaryplot kai dependence plot me ta test Data
+        # # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        # # shap_values = ex.shap_values(testData)
+        # #
+        # # fig = shap.summary_plot(shap_values, testData, plot_type="bar",
+        # #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+        # #                                        'BMI', 'Diabetes Pedigree', 'Age'], show=False, sort=False)
+        # # plt.savefig("mlpart/static/mlpart/SPbartestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+        # #
+        # #
+        # #
+        # # fig = shap.summary_plot(shap_values, testData, show=False, plot_type='dot',
+        # #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+        # #                                        'BMI', 'Diabetes Pedigree', 'Age'])
+        # # plt.savefig("mlpart/static/mlpart/SPtestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+        # #
+        # #
+        # #
+        # # fig = shap.dependence_plot("Age", shap_values, testData, show=False, feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+        # #                                        'BMI', 'Diabetes Pedigree', 'Age'])
+        # #
+        # # plt.savefig("mlpart/static/mlpart/DPAgetestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+        # #
+        # #
+        # #
+        # # #Force Plots gia thn 14 timh twn test Data
+        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
+        # shap_values = ex.shap_values(testData[61, :])
+        # shap.initjs()
+        # fig=shap.force_plot(ex.expected_value, shap_values, testData[61, :], matplotlib=True, show=False,
+        #                 feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
+        #                                'BMI', 'Diabetes Pedigree', 'Age'])
+        #
+        # fig.tight_layout()
+        # # fig = plt.gcf()
+        # # plt.tight_layout()
+        # # plt.tight_layout(pad=1.9, w_pad=3.5, h_pad=1.5)
+        # # fig.set_size_inches(5, 15)
+        # plt.savefig("mlpart/static/mlpart/FPtestdata.jpeg", format='jpeg', dpi=850)
+        #
+        #
+        #
+        #
+        #
+        # # # # Summaryplot kai dependence mlpart/static/mlpartplot me ta input Data tou xrhsth
+        # # #
+        # # # # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
+        # # # # shap_values = ex.shap_values(sampleDataFeatures)
+        # # # #
+        # # # # fig = shap.summary_plot(shap_values, sampleDataFeatures, plot_type="bar", show=False)
+        # # # # shap.initjs()
+        # # # # plt.savefig("mlpart/static/mlpart/SPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+        # # # #
+        # # # # fig = shap.dependence_plot("Feature 0", shap_values, sampleDataFeatures, show=False,)
+        # # # # shap.initjs()
+        # # # # plt.savefig("mlpart/static/mlpart/DPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
+        # #
+        # # #Force Plots gia thn prwth timh twn test Data kai toy Input toy xrhsth
+
+    return render(request, 'mlpart/resultsIris.html')

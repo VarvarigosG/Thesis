@@ -22,9 +22,12 @@ urlpatterns = [
     path('form/', views.cxcontact, name='cxform'),
     path('mpg/', views.mpg, name='mpg'),
     path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
+
     path('diabetes/', views.diabetesinsideDjango, name='diabetesinsideDjango'),
     path('diabetes/predictDiabetes/', views.DiabetesModel, name='DiabetesModel'),
-    # path('diabetes/predictDiabetes/shap', views.shapPlots, name='shapPlots'),
+
+    path('iris/', views.Iris, name='Iris'),
+    path('iris/predictIris/', views.IrisModel, name='IrisModel'),
 
     #path('diabetesDjango/', views.diabetesinsideDjango, name='diabetesinsideDjango'),
     #path('diabetesDjango/predict', views.DiabetesModel, name='DiabetesModel'),
