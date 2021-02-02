@@ -65,14 +65,144 @@
     </div>
 
     <div class="container">
-
+        <h5>
+            But you may be wondering, how did we come to that outcome? We used a Logistic Regression model to make the
+            prediction,
+            and will use the KernelExplainer in SHAP to explain the model both globally and locally. <br><br>
+            1)Firstly we will explain the entire dataset through the visualization of the importance of the features and
+            their impact on the prediction.
+        </h5>
+        <br>
 
         <div class="container" align="center">
             <div class="row justify-content-start">
 
-                <div class="container">Global Explainability:
+                <div class="container">
+                    <h4> Explaining the entire dataset:</h4>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'All Features1')" id="defaultOpen">All Features</button>
+                        <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot ')"
+                                id="defaultOpen">Variable Importance Plot
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'Dependence Plot')">Dependence Plot</button>
+                    </div>
+                </div>
+
+                <div id="Variable Importance Plot " class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesSPbarGlobaldata.jpeg' %}"/>
+                </div>
+
+                <div id="Dependence Plot" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesSPGlobaldata.jpeg' %}"/>
+                </div>
+
+            </div>
+            <br>
+
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <div class="container">
+        <h5>
+            2)Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
+            value of the
+            feature for all instances in the dataset.
+        </h5>
+        <br>
+
+        <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4> Explaining single feature:</h4>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')" id="defaultOpen1">Pregnancies</button>
+                        <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
+                        <button class="tablinks" onclick="openCity(event, 'BloodP')">Blood Pressure</button>
+                        <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
+                        <button class="tablinks" onclick="openCity(event, 'Insulin')">Insulin</button>
+                        <button class="tablinks" onclick="openCity(event, 'BMI')">BMI</button>
+                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree
+                            Function
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
+                    </div>
+                </div>
+
+                <div id="Pregnancies" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPPregnanciesdata.jpeg' %}"/>
+                </div>
+
+                <div id="Glucose" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPGlucosedata.jpeg' %}"/>
+                </div>
+
+                <div id="BloodP" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPBloodPdata.jpeg' %}"/>
+                </div>
+
+                <div id="SkinT" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPSkinTdata.jpeg' %}"/>
+                </div>
+
+                <div id="Insulin" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPInsulindata.jpeg' %}"/>
+                </div>
+
+                <div id="BMI" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPBMIdata.jpeg' %}"/>
+                </div>
+
+                <div id="Diabetes Pedigree" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPPedigreedata.jpeg' %}"/>
+                </div>
+
+                <div id="Age" class="tabcontent">Koita edw
+                    <img src="{% static 'mlpart/DiabetesDPAgedata.jpeg' %}"/>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+
+            </div>
+            <br>
+
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+    <div class="container">
+        <h5>
+            3)Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
+            SHAP,
+            we can generate explanations for a single prediction.<br><br>
+            The SHAP plot shows features that contribute to pushing the output from the base value (average model
+            output) to the actual predicted value.<br><br>
+            Red color indicates features that are pushing the prediction higher, and blue color indicates just the
+            opposite.
+        </h5>
+        <br>
+
+        <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4> Explaining single prediction:</h4>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'All Features1')" id="defaultOpen12">All
+                            Features
+                        </button>
                         <button class="tablinks" onclick="openCity(event, 'All Features2')">All Features</button>
                         <button class="tablinks" onclick="openCity(event, 'Pregnancies')">Pregnancies</button>
                         <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
@@ -80,48 +210,50 @@
                         <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
                         <button class="tablinks" onclick="openCity(event, 'Insulin')">Insulin</button>
                         <button class="tablinks" onclick="openCity(event, 'BMI')">BMI</button>
-                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree Function</button>
+                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree
+                            Function
+                        </button>
                         <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
                     </div>
                 </div>
 
-                <div id="All Features1" class="tabcontent">Koita edw
+                <div id="All Features123" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/SPbartestdata.jpeg' %}"/>
                 </div>
 
-                <div id="All Features2" class="tabcontent">Koita edw
+                <div id="All Features223" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Pregnancies" class="tabcontent">Koita edw
+                <div id="Pregnancies23" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPPREGNANCIEStestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Glucose" class="tabcontent">Koita edw
+                <div id="Glucose3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPGLUCOSEtestdata.jpeg' %}"/>
                 </div>
 
-                <div id="BloodP" class="tabcontent">Koita edw
+                <div id="BloodP3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPbloodPressuretestdata.jpeg' %}"/>
                 </div>
 
-                <div id="SkinT" class="tabcontent">Koita edw
+                <div id="SkinT3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPSkinThicknesstestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Insulin" class="tabcontent">Koita edw
+                <div id="Insulin3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
                 </div>
 
-                <div id="BMI" class="tabcontent">Koita edw
+                <div id="BMI3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPBMItestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Diabetes Pedigree" class="tabcontent">Koita edw
+                <div id="Diabetes Pedigree3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPDiabetesPedigreetestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Age" class="tabcontent">Koita edw
+                <div id="Age3" class="tabcontent">Koita edw
                     <img src="{% static 'mlpart/DPAgetestdata.jpeg' %}"/>
                 </div>
 
@@ -140,6 +272,8 @@
 
 
     <br>
+
+
 </main>
 <hr>
 <footer style="padding: 5px 0px 5px!important" class="container">
@@ -147,24 +281,24 @@
 </footer>
 
 
-
 <script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    document.getElementById("defaultOpen1").click();
 </script>
 </body>
 </html>
