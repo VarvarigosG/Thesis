@@ -143,3 +143,7 @@ Werkzeug==1.0.1
 widgetsnbextension==3.5.1
 wincertstore==0.2
 wrapt==1.12.1
+
+joblib~=1.0.0
+pandas~=1.2.1
+shap~=0.37.0

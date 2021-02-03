@@ -65,64 +65,112 @@
     </div>
 
     <div class="container">
+        <h5>
+            But you may be wondering, how did we come to that outcome? We used a k-nearest neighbors algorithm(k-NN)
+            model to make the
+            prediction,
+            and will use the KernelExplainer in SHAP to explain the model both globally and locally.
+            This plots were made using the data(120 observations) that were used to train the model.
+            <br><br>
+            1)Firstly we will explain the entire dataset through the visualization of the importance of the features and
+            their impact on the prediction.
+        </h5>
 
 
         <div class="container" align="center">
             <div class="row justify-content-start">
 
-                <div class="container">Global Explainability:
+                <div class="container">
+                    <h4> Explaining the entire dataset:</h4>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'All Features1')" id="defaultOpen">All Features</button>
-                        <button class="tablinks" onclick="openCity(event, 'All Features2')">All Features</button>
-                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')">Pregnancies</button>
-                        <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
-                        <button class="tablinks" onclick="openCity(event, 'BloodP')">Blood Pressure</button>
-                        <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
-                        <button class="tablinks" onclick="openCity(event, 'Insulin')">Insulin</button>
-                        <button class="tablinks" onclick="openCity(event, 'BMI')">BMI</button>
-                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree Function</button>
-                        <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
+                        <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot')"
+                                id="defaultOpen">Variable Importance Plot
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'Summary Plot')">Summary Plot</button>
                     </div>
                 </div>
 
-                <div id="All Features1" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/IRISSPxtest.jpeg' %}"/>
+                <div id="Variable Importance Plot" class="tabcontent">
+                    The variable importance plot lists the most significant variables in descending order. The top
+                    variables
+                    contribute more to the model than the bottom ones and thus have high predictive power. So in this
+                    case
+                    "Petal Length" and "Petal Width" contribute more to the predicted outcome when "Sepal Length" and
+                    "Sepal Width" do not seem to affect the choice of the model in a major way.
+                    <img src="{% static 'mlpart/IrisSPbarGlobal.jpeg' %}"/>
                 </div>
 
-                <div id="All Features2" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
+                <div id="Summary Plot" class="tabcontent">
+                    Another option to explain our model globally is the "Summary Plot" and it works as follows:
+                    ->Feature importance: Variables are ranked in descending order.<br>
+                    ->Impact: The horizontal location shows whether the effect of that value is associated with a higher
+                    or lower prediction.<br>
+                    ->Original value: Color shows whether that variable is high (in red) or low (in blue) for that
+                    observation.<br>
+                    ->Correlation: A high level of the "Petal Length" content has a high and positive impact on the
+                    prediction. The “high” comes from the red color and the “positive” impact is shown on the X-axis.
+                    <img src="{% static 'mlpart/IrisSPGlobal.jpeg' %}"/>
                 </div>
 
-                <div id="Pregnancies" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPPREGNANCIEStestdata.jpeg' %}"/>
+
+            </div>
+            <br>
+
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+    <div class="container">
+        <h5>
+            2)Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
+            value of the feature for all instances in the dataset. We will do that by plotting partial dependence plots.
+            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a
+            machine learning model.The function automatically includes another variable that your chosen variable
+            interacts most with.
+        </h5>
+        <br>
+
+        <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4> Explaining single feature:</h4>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'PetalL')">Petal Length</button>
+                        <button class="tablinks" onclick="openCity(event, 'PetalW')">Petal Width</button>
+                        <button class="tablinks" onclick="openCity(event, 'SepalL')">Sepal Length</button>
+                        <button class="tablinks" onclick="openCity(event, 'SepalW')">Sepal Width</button>
+                    </div>
                 </div>
 
-                <div id="Glucose" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPGLUCOSEtestdata.jpeg' %}"/>
+                <div id="PetalL" class="tabcontent">
+                    The plot below shows there exists a linear but positive relationship between
+                    “Petal Length” and the target variable.
+                    Also the interaction between "Petal Length" and "Petal Width" appears sparse.
+                    <img src="{% static 'mlpart/IrisDPPetalLdata.jpeg' %}"/>
                 </div>
 
-                <div id="BloodP" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPbloodPressuretestdata.jpeg' %}"/>
+                <div id="PetalW" class="tabcontent">
+                    the following plot shows there is a linear and positive trend between “Petal Width” and
+                    the target variable.Also “Petal Width” does not interact with “Petal Length” frequently.
+                    <img src="{% static 'mlpart/IrisDPPetalWdata.jpeg' %}"/>
                 </div>
 
-                <div id="SkinT" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPSkinThicknesstestdata.jpeg' %}"/>
+                <div id="SepalL" class="tabcontent">
+                    The following plot shows there is a linear and neutral relationship between “Sepal Length” and
+                    the target variable.Also “Sepal Length” does not interact with “Sepal Width” frequently.
+                    <img src="{% static 'mlpart/IrisDPSepalLdata.jpeg' %}"/>
                 </div>
 
-                <div id="Insulin" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
-                </div>
+                <div id="SepalW" class="tabcontent">
+                    The following plot shows there is a linear and neutral relationship between “Sepal Width” and
+                    the target variable.
 
-                <div id="BMI" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPBMItestdata.jpeg' %}"/>
-                </div>
-
-                <div id="Diabetes Pedigree" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPDiabetesPedigreetestdata.jpeg' %}"/>
-                </div>
-
-                <div id="Age" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPAgetestdata.jpeg' %}"/>
+                    <img src="{% static 'mlpart/IrisDPSepalWdata.jpeg' %}"/>
                 </div>
 
                 <br>
@@ -140,6 +188,79 @@
 
 
     <br>
+
+
+    <div class="container">
+        <h5>
+            3)Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
+            SHAP,
+            we can generate explanations for a single prediction.<br><br>
+            The SHAP plot shows features that contribute to pushing the output from the base value (average model
+            output) to the actual predicted value.<br><br>
+            Red color indicates features that are pushing the prediction higher, and blue color indicates just the
+            opposite.
+        </h5>
+        <br>
+
+        <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4> Explaining single prediction:</h4>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, '8')">8</button>
+                        <button class="tablinks" onclick="openCity(event, '35')">35</button>
+                        <button class="tablinks" onclick="openCity(event, '75')">75</button>
+                        <button class="tablinks" onclick="openCity(event, '103')">103</button>
+                    </div>
+                </div>
+
+
+                <div id="8" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 0.0
+                    As we can see "Petal Length"[4.5 cm] was the feature that determined the outcome of the prediction model
+                    by pushing the prediction to the left.
+                    <img src="{% static 'mlpart/IrisFP8.jpg' %}"/>
+                </div>
+
+                <div id="35" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 0.0
+                    As we can see here "Petal Length"[4.5 cm],"Petal Width"[2.3cm] and "Sepal Width"[2.6cm] were the features that
+                    determined the outcome of the prediction model by pushing the prediction to the left.
+                    <img src="{% static 'mlpart/IrisFP35.jpg' %}"/>
+                </div>
+
+                <div id="75" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 1.0
+                    This observation differs from the previous ones because the small value of the feature "Petal Length"[1.3cm]
+                    is what made the prediction to move to the right.
+                    <img src="{% static 'mlpart/IrisFP75.jpg' %}"/>
+                </div>
+
+                <div id="103" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 1.0
+                    This observation is very similar to the previous one because the small value of the feature "Petal Length"[1.6cm]
+                    is what made the prediction to move to the right again.
+                    <img src="{% static 'mlpart/IrisFP103.jpg' %}"/>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+
+            </div>
+            <br>
+
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
 </main>
 <hr>
 <footer style="padding: 5px 0px 5px!important" class="container">
@@ -147,24 +268,23 @@
 </footer>
 
 
-
 <script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>
