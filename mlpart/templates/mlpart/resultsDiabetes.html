@@ -83,15 +83,33 @@
                         <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot ')"
                                 id="defaultOpen">Variable Importance Plot
                         </button>
-                        <button class="tablinks" onclick="openCity(event, 'Dependence Plot')">Dependence Plot</button>
+                        <button class="tablinks" onclick="openCity(event, 'Summary Plot')">Summary Plot</button>
                     </div>
                 </div>
 
-                <div id="Variable Importance Plot " class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DiabetesSPbarGlobaldata.jpeg' %}"/>
+                <div id="Variable Importance Plot " class="tabcontent">
+                    The variable importance plot lists the most significant variables in descending order. The top
+                    variables
+                    contribute more to the model than the bottom ones and thus have high predictive power. So in this
+                    case
+                    "Glucose" and "BMI" contribute more to the predicted outcome when "Skin Thickness" does not seem to
+                    change
+                    the choice of the model in any significant way.
+                    <img src="{% static 'mlpart/DiabetesSPbarGlobaltestdata.jpeg' %}"/>
                 </div>
 
-                <div id="Dependence Plot" class="tabcontent">Koita edw
+                <div id="Summary Plot" class="tabcontent">
+                    Another option to explain our model globally is the "Summary Plot" and it works as follows:
+                    ->Feature importance: Variables are ranked in descending order.<br>
+                    ->Impact: The horizontal location shows whether the effect of that value is associated with a higher
+                    or lower prediction.<br>
+                    ->Original value: Color shows whether that variable is high (in red) or low (in blue) for that
+                    observation.<br>
+                    ->Correlation: A high level of the “Glucose” content has a high and positive impact on the
+                    prediction. The “high” comes from the red color,
+                    and the “positive” impact is shown on the X-axis. Similarly, we will say the “Blood Pressure” is
+                    negatively
+                    correlated with the target variable.
                     <img src="{% static 'mlpart/DiabetesSPGlobaldata.jpeg' %}"/>
                 </div>
 
@@ -110,8 +128,10 @@
     <div class="container">
         <h5>
             2)Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
-            value of the
-            feature for all instances in the dataset.
+            value of the feature for all instances in the dataset. We will do that by plotting partial dependence plots.
+            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a
+            machine learning model.The function automatically includes another variable that your chosen variable
+            interacts most with.
         </h5>
         <br>
 
@@ -121,7 +141,9 @@
                 <div class="container">
                     <h4> Explaining single feature:</h4>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')" id="defaultOpen1">Pregnancies</button>
+                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')" id="defaultOpen1">
+                            Pregnancies
+                        </button>
                         <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
                         <button class="tablinks" onclick="openCity(event, 'BloodP')">Blood Pressure</button>
                         <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
@@ -134,35 +156,59 @@
                     </div>
                 </div>
 
-                <div id="Pregnancies" class="tabcontent">Koita edw
+                <div id="Pregnancies" class="tabcontent">
+                    The plot below shows there exists an approximately linear but positive relationship between
+                    “Pregnancies” and the target variable.
+                    Also the interaction between "Pregnancies" and "Glucose" appears frequent
                     <img src="{% static 'mlpart/DiabetesDPPregnanciesdata.jpeg' %}"/>
                 </div>
 
-                <div id="Glucose" class="tabcontent">Koita edw
+                <div id="Glucose" class="tabcontent">
+                    The following plot shows there is an approximately linear and positive trend between “Glucose” and
+                    the target variable,
+                    and “Glucose” interacts with “BMI” frequently.
                     <img src="{% static 'mlpart/DiabetesDPGlucosedata.jpeg' %}"/>
                 </div>
 
-                <div id="BloodP" class="tabcontent">Koita edw
+                <div id="BloodP" class="tabcontent">
+                    The following plot shows there is a complex and somewhat negative trend between “Blood Pressure” and
+                    the target variable,
+                    and “Blood Pressure” interacts with “BMI” frequently.
                     <img src="{% static 'mlpart/DiabetesDPBloodPdata.jpeg' %}"/>
                 </div>
 
-                <div id="SkinT" class="tabcontent">Koita edw
+                <div id="SkinT" class="tabcontent">
+                    The plot below shows there exists an approximately linear but neutral relationship between “Skin
+                    Thickness” and the target variable,which
+                    means that skin Thickness does not influence the prediction much.
+
                     <img src="{% static 'mlpart/DiabetesDPSkinTdata.jpeg' %}"/>
                 </div>
 
-                <div id="Insulin" class="tabcontent">Koita edw
+                <div id="Insulin" class="tabcontent">
+                    The plot below shows there exists an approximately linear but negative relationship between
+                    “Insulin” and the target variable.
                     <img src="{% static 'mlpart/DiabetesDPInsulindata.jpeg' %}"/>
                 </div>
 
-                <div id="BMI" class="tabcontent">Koita edw
+                <div id="BMI" class="tabcontent">
+                    The following plot shows there is an approximately linear and positive trend between “BMI” and the
+                    target variable,
+                    and “BMI” interacts with “Glucose” frequently.
                     <img src="{% static 'mlpart/DiabetesDPBMIdata.jpeg' %}"/>
                 </div>
 
-                <div id="Diabetes Pedigree" class="tabcontent">Koita edw
+                <div id="Diabetes Pedigree" class="tabcontent">
+                    The following plot shows there is an approximately linear and somewhat positive trend between
+                    “Diabetes Pedigree” and the target variable,
+                    but “Diabetes Pedigree” does not interacts with “Glucose” frequently.
                     <img src="{% static 'mlpart/DiabetesDPPedigreedata.jpeg' %}"/>
                 </div>
 
-                <div id="Age" class="tabcontent">Koita edw
+                <div id="Age" class="tabcontent">
+                    The following plot shows there is an approximately linear and somewhat positive trend between “Age”
+                    and the target variable,but
+                    “Age” does not interacts with “Glucose” frequently, except in some cases the person is old.
                     <img src="{% static 'mlpart/DiabetesDPAgedata.jpeg' %}"/>
                 </div>
 
@@ -200,61 +246,54 @@
                 <div class="container">
                     <h4> Explaining single prediction:</h4>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'All Features1')" id="defaultOpen12">All
-                            Features
-                        </button>
-                        <button class="tablinks" onclick="openCity(event, 'All Features2')">All Features</button>
-                        <button class="tablinks" onclick="openCity(event, 'Pregnancies')">Pregnancies</button>
-                        <button class="tablinks" onclick="openCity(event, 'Glucose')">Glucose</button>
-                        <button class="tablinks" onclick="openCity(event, 'BloodP')">Blood Pressure</button>
-                        <button class="tablinks" onclick="openCity(event, 'SkinT')">Skin Thickness</button>
-                        <button class="tablinks" onclick="openCity(event, 'Insulin')">Insulin</button>
-                        <button class="tablinks" onclick="openCity(event, 'BMI')">BMI</button>
-                        <button class="tablinks" onclick="openCity(event, 'Diabetes Pedigree')">Diabetes Pedigree
-                            Function
-                        </button>
-                        <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
+                        <button class="tablinks" onclick="openCity(event, '171')">171</button>
+                        <button class="tablinks" onclick="openCity(event, '404')">404</button>
+                        <button class="tablinks" onclick="openCity(event, '593')">593</button>
+                        <button class="tablinks" onclick="openCity(event, '32')">32</button>
                     </div>
                 </div>
 
-                <div id="All Features123" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/SPbartestdata.jpeg' %}"/>
+
+                <div id="171" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 1.0 which
+                    means that the person
+                    will have diabetes in the future. As we can see "Blood Pressure", "Diabetes Pedigree", "BMI",
+                    "Glucose" and "Pregnancies" have
+                    a positive rating on the diabetes prediction,so they push the prediction to the right.
+                    <img src="{% static 'mlpart/DiabeyesFP171.jpg' %}"/>
                 </div>
 
-                <div id="All Features223" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/SPtestdata.jpeg' %}"/>
+                <div id="404" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 1.0 which
+                    means that the person
+                    will have diabetes in the future. As we can see "Pregnancies","BMI" and "Glucose" have a positive
+                    rating on the diabetes
+                    prediction,so they push the prediction to the right, while "Diabetes Pedigree" has a negative impact
+                    on the prediction.
+                    driving the prediction to the right.
+                    <img src="{% static 'mlpart/DiabetesSP404.jpg' %}"/>
                 </div>
 
-                <div id="Pregnancies23" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPPREGNANCIEStestdata.jpeg' %}"/>
+                <div id="593" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 0.0 which
+                    means that the person
+                    will not have diabetes in the future. As we can see "Blood Pressure" and "Diabetes Pedigree" have a
+                    positive rating on the diabetes
+                    prediction,so they push the prediction to the right, while "Glucose","BMI","Pregnancies" and "Age"
+                    have a negative impact on the prediction.
+                    driving the prediction to the right.
+                    <img src="{% static 'mlpart/DiabetesFP593.jpg' %}"/>
                 </div>
 
-                <div id="Glucose3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPGLUCOSEtestdata.jpeg' %}"/>
-                </div>
-
-                <div id="BloodP3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPbloodPressuretestdata.jpeg' %}"/>
-                </div>
-
-                <div id="SkinT3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPSkinThicknesstestdata.jpeg' %}"/>
-                </div>
-
-                <div id="Insulin3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPINSULINtestdata.jpeg' %}"/>
-                </div>
-
-                <div id="BMI3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPBMItestdata.jpeg' %}"/>
-                </div>
-
-                <div id="Diabetes Pedigree3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPDiabetesPedigreetestdata.jpeg' %}"/>
-                </div>
-
-                <div id="Age3" class="tabcontent">Koita edw
-                    <img src="{% static 'mlpart/DPAgetestdata.jpeg' %}"/>
+                <div id="32" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 0.5 which
+                    means that the person
+                    might or might not have diabetes in the future. As we can see "Blood Pressure" has
+                    a positive rating on the diabetes prediction,so it pushes the prediction to the right, while
+                    "Glucose","BMI","Diabetes Pedigree",
+                    "Pregnancies" and "Age" have a negative rating on the diabetes prediction,so they push the
+                    prediction to the left.
+                    <img src="{% static 'mlpart/DiabetesFP32.jpg' %}"/>
                 </div>
 
                 <br>
@@ -297,8 +336,8 @@
     }
 
     // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-    document.getElementById("defaultOpen1").click();
+    document.getElementById("defaultOpen", "defaultOpen1").click();
+
 </script>
 </body>
 </html>

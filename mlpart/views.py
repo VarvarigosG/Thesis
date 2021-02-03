@@ -271,7 +271,7 @@ def DiabetesModel(request):
         #
         #
         #
-        # fig = shap.summary_plot(shap_values, trainData, show=False, plot_type='bar',
+        # fig = shap.summary_plot(shap_values, trainData, show=False, plot_type='bar', sort=True,
         #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
         #                                        'BMI', 'Diabetes Pedigree', 'Age'])
         # plt.savefig("mlpart/static/mlpart/DiabetesSPbarGlobaltestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
