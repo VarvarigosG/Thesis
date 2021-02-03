@@ -20,9 +20,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
-
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 from mlpart.api.serializers import approvalsSerializers
 from thesis.wsgi import registry
 from .forms import UploadForm, ApprovalForm
@@ -260,83 +259,23 @@ def DiabetesModel(request):
         print(sampleDataFeatures)
         print(trainData[0, :])
 
-        # Summaryplot kai dependence plot me ta test Data
         # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, trainData)
         # shap_values = ex.shap_values(trainData)
-        #
-        # fig = shap.summary_plot(shap_values, trainData,
-        #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-        #                                        'BMI', 'Diabetes Pedigree', 'Age'], show=False, sort=False)
+
+        # Summary Plot gia global
+        # fig = shap.summary_plot(shap_values, trainData,feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin','BMI', 'Diabetes Pedigree', 'Age'], show=False, sort=False)
         # plt.savefig("mlpart/static/mlpart/DiabetesSPGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-        #
-        #
-        #
-        # fig = shap.summary_plot(shap_values, trainData, show=False, plot_type='bar', sort=True,
-        #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-        #                                        'BMI', 'Diabetes Pedigree', 'Age'])
+
+        # Summary Plot bar gia global
+        # fig = shap.summary_plot(shap_values, trainData, show=False, plot_type='bar', sort=True, feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin','BMI', 'Diabetes Pedigree', 'Age'])
         # plt.savefig("mlpart/static/mlpart/DiabetesSPbarGlobaltestdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-        #
-        #
-        #
+
+        #Depence Plots (idio plot allazw to feature kathe fora)
         # fig = shap.dependence_plot("Age", shap_values, trainData, show=False,
         #                            feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness',
         #                                           'Insulin',
         #                                           'BMI', 'Diabetes Pedigree', 'Age'])
-        #
         # plt.savefig("mlpart/static/mlpart/DiabetesDPAgedata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-
-
-
-
-
-
-        # fig = shap.dependence_plot("Diabetes Pedigree", shap_values, trainData, show=False,
-        #                            feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness',
-        #                                           'Insulin',
-        #                                           'BMI', 'Diabetes Pedigree', 'Age'])
-        #
-        # plt.savefig("mlpart/static/mlpart/DiabetesDPPedigreedata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-        #
-        # fig = shap.dependence_plot("Age", shap_values, trainData, show=False,
-        #                            feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness',
-        #                                           'Insulin',
-        #                                           'BMI', 'Diabetes Pedigree', 'Age'])
-        #
-        # plt.savefig("mlpart/static/mlpart/DiabetesDPAgedata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-
-
-        #
-        #
-        #
-        # #Force Plots gia thn 14 timh twn test Data
-        # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, testData)
-        # shap_values = ex.shap_values(testData[61, :])
-        # shap.initjs()
-        # fig = shap.force_plot(ex.expected_value, shap_values, testData[61, :], matplotlib=True, show=False,
-        #                       feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-        #                                      'BMI', 'Diabetes Pedigree', 'Age'])
-        #
-        # fig.tight_layout()
-        # # fig = plt.gcf()
-        # # plt.tight_layout()
-        # # plt.tight_layout(pad=1.9, w_pad=3.5, h_pad=1.5)
-        # # fig.set_size_inches(5, 15)
-        # plt.savefig("mlpart/static/mlpart/FPtestdata.jpeg", format='jpeg', dpi=850)
-
-        # # # Summaryplot kai dependence mlpart/static/mlpartplot me ta input Data tou xrhsth
-        # #
-        # # # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, sampleDataFeatures)
-        # # # shap_values = ex.shap_values(sampleDataFeatures)
-        # # #
-        # # # fig = shap.summary_plot(shap_values, sampleDataFeatures, plot_type="bar", show=False)
-        # # # shap.initjs()
-        # # # plt.savefig("mlpart/static/mlpart/SPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
-        # # #
-        # # # fig = shap.dependence_plot("Feature 0", shap_values, sampleDataFeatures, show=False,)
-        # # # shap.initjs()
-        # # # plt.savefig("mlpart/static/mlpart/DPinputdata.svg", format='svg', dpi=150, bbox_inches='tight')
-        #
-        # #Force Plots gia thn prwth timh twn test Data kai toy Input toy xrhsth
 
     return render(request, 'mlpart/resultsDiabetes.html')
 
@@ -390,9 +329,19 @@ def IrisModel(request):
             print("The species is Iris Virginica ")
             messages.success(request, "The species is Iris Virginica")
 
-        ex = shap.KernelExplainer(LoadedModel.predict, x_train)
-        shap_values = ex.shap_values(x_test)
-        shap.summary_plot(shap_values, x_test, plot_type="bar", show=False)
-        plt.savefig("mlpart/static/mlpart/IRISSPxtest.jpeg", format='jpeg', dpi=150, bbox_inches='tight')
+        # ex = shap.KernelExplainer(LoadedModel.predict, x_train)
+        # shap_values = ex.shap_values(x_train)
+
+        # Summary Plot bar gia Global
+        # shap.summary_plot(shap_values, x_train, plot_type="bar", show=False, sort=True,)
+        # plt.savefig("mlpart/static/mlpart/IrisSPbarGlobal.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+        # Summary Plot gia Global
+        # shap.summary_plot(shap_values, x_train, show=False)
+        # plt.savefig("mlpart/static/mlpart/IrisSPGlobal.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+        # Dependence Plot gia Global(idio plot allazw to feature kathe fora)
+        # fig = shap.dependence_plot("PetalWidthCm", shap_values, x_train, show=False)
+        # plt.savefig("mlpart/static/mlpart/IrisDPPetalWdata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
     return render(request, 'mlpart/resultsIris.html')
