@@ -24,9 +24,9 @@ from sklearn.preprocessing import LabelEncoder
 
 matplotlib.use('Agg')
 from mlpart.api.serializers import approvalsSerializers
-from thesis.wsgi import registry
+
 from .forms import UploadForm, ApprovalForm
-from .models import MLAlgorithm, MLRequest
+
 from .models import approvals
 
 

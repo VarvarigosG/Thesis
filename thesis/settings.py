@@ -32,12 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
     'mlpart',
     'rest_framework',
     'pages',
-    'guestbook',
-    'helloworld',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
