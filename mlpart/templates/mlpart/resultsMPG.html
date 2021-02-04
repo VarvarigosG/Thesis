@@ -219,54 +219,40 @@
                 <div class="container">
                     <h4> Explaining single prediction:</h4>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, '171')">171</button>
-                        <button class="tablinks" onclick="openCity(event, '404')">404</button>
-                        <button class="tablinks" onclick="openCity(event, '593')">593</button>
-                        <button class="tablinks" onclick="openCity(event, '32')">32</button>
+                        <button class="tablinks" onclick="openCity(event, '3')">3</button>
+                        <button class="tablinks" onclick="openCity(event, '106')">106</button>
+                        <button class="tablinks" onclick="openCity(event, '286')">286</button>
+                        <button class="tablinks" onclick="openCity(event, '302')">302</button>
                     </div>
                 </div>
 
 
-                <div id="171" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0 which
-                    means that the person
-                    will have diabetes in the future. As we can see "Blood Pressure", "Diabetes Pedigree", "BMI",
-                    "Glucose" and "Pregnancies" have
-                    a positive rating on the diabetes prediction,so they push the prediction to the right.
-                    <img src="{% static 'mlpart/DiabeyesFP171.jpg' %}"/>
+                <div id="3" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 26.92 miles per gallon.
+                    As we can see "Cylinders", "Weight", "Displacement" and "Horsepower" are the features driving to a higher prediction
+                    number, whereas "Model Year" and "Acceleration" drive the outcome to the left, affecting negatively the outcome of the model
+                    <img src="{% static 'mlpart/MPG3FP.jpg' %}"/>
                 </div>
 
-                <div id="404" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0 which
-                    means that the person
-                    will have diabetes in the future. As we can see "Pregnancies","BMI" and "Glucose" have a positive
-                    rating on the diabetes
-                    prediction,so they push the prediction to the right, while "Diabetes Pedigree" has a negative impact
-                    on the prediction.
-                    driving the prediction to the right.
-                    <img src="{% static 'mlpart/DiabetesSP404.jpg' %}"/>
+                <div id="106" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 17.29 miles per gallon.
+                    That is because the majority of the features ("Displacement","Weight","Horsepower" and "Cylinders") drive the predicted
+                    value to the left(lower mpg). Only the "model year" of the car is affecting positively.
+                    <img src="{% static 'mlpart/MPG106FP.jpg' %}"/>
                 </div>
 
-                <div id="593" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.0 which
-                    means that the person
-                    will not have diabetes in the future. As we can see "Blood Pressure" and "Diabetes Pedigree" have a
-                    positive rating on the diabetes
-                    prediction,so they push the prediction to the right, while "Glucose","BMI","Pregnancies" and "Age"
-                    have a negative impact on the prediction.
-                    driving the prediction to the right.
-                    <img src="{% static 'mlpart/DiabetesFP593.jpg' %}"/>
+                <div id="286" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 33.47 miles per gallon.
+                    We got a high prediction because as we can see from the graph, 5 features are affecting positively pushing the prediction
+                    to the right, while only one feature("Horsepower) is affecting negatively.
+                    <img src="{% static 'mlpart/MPG286FP.jpg' %}"/>
                 </div>
 
-                <div id="32" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.5 which
-                    means that the person
-                    might or might not have diabetes in the future. As we can see "Blood Pressure" has
-                    a positive rating on the diabetes prediction,so it pushes the prediction to the right, while
-                    "Glucose","BMI","Diabetes Pedigree",
-                    "Pregnancies" and "Age" have a negative rating on the diabetes prediction,so they push the
-                    prediction to the left.
-                    <img src="{% static 'mlpart/DiabetesFP32.jpg' %}"/>
+                <div id="302" class="tabcontent">
+                    The output value is the prediction for that observation. In this observation the output is 14.19 miles per gallon.
+                    The predicted value is considered low because all 5 features that the model used, affected
+                    negatively, pushing the prediction to the left.
+                    <img src="{% static 'mlpart/MPG302FP.jpg' %}"/>
                 </div>
 
                 <br>
