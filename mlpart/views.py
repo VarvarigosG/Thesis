@@ -1,22 +1,19 @@
-import json
 import pickle
-
-import joblib
 import matplotlib
-import matplotlib.pyplot as plt
+import joblib
+import shap
 import numpy as np
 import pandas as pd
-import shap
+import matplotlib.pyplot as plt
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
-from numpy.random import rand
 from rest_framework import status
-from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
@@ -119,13 +116,9 @@ def mpg(request):
     return render(request, 'mlpart/indexMPG.html')
 
 
-reloadModel = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\MPG\RFModelforMPG.pkl")
-
-
 # einai h methodos poy tha mas kanei predict to apotelesma
 # epishs gia na paroyme ta submited pragmata apo xrhsth prepei na exoume dictionary
 def predictMPG(request):
-    # print (request)
     if request.method == 'POST':
         # print (request.POST.dict()) #ektypwnei cmd ta submited form
         # print (request.POST.get('cylinderVal')) #afou einai dictionary mporw na kanw access tis times
@@ -136,21 +129,55 @@ def predictMPG(request):
         temp['weight'] = request.POST.get('weightVal')
         temp['acceleration'] = request.POST.get('accVal')
         temp['model_year'] = request.POST.get('modelVal')
-        # temp['origin'] = request.POST.get('originVal')
+
 
         temp2 = temp.copy()
         temp2['model year'] = temp['model_year']
-        print(temp.keys(), temp2.keys())
         # del temp2['model_year']
         # ayto giati sthn arxh me to model_year barage error afou sto dataset einai model year
 
         # kai twra pou exw ta dedomena prepei na fortwsw to modelo
 
         # to model perimenei DATAFRAME enw emeis exoume dictionary opote prepei na kanoume thn allagh
-        testDtaa = pd.DataFrame({'x': temp2}).transpose()  # kai twra poy egine h allagh prepei na kanoume to predict
-        scoreval = reloadModel.predict(testDtaa)[0]  # kai to pername mesa sto context
-        context = {'scoreval': scoreval}
-    return render(request, 'mlpart/resultsMPG.html', context)
+        df = pd.read_csv(r"C:\Users\gvarv\anaconda3\envs\thesis\MPG\mpg_data_example.csv")
+        df['horsepower'] = df['horsepower'].fillna(df['horsepower'].mean())
+        df[['cylinders', 'weight', 'model year', 'origin']] = df[
+            ['cylinders', 'weight', 'model year', 'origin']].astype(float)
+        x = df.drop(columns=['mpg', 'car name','origin'], axis=1)
+        y = df['mpg']
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=0)
+        model = RandomForestRegressor(n_estimators=200, max_depth=None, min_samples_split=2, random_state=0)
+        model.fit(x_train, y_train)
+        joblib.dump(model, 'MPGmodel.pkl')
+        sampleDataFeatures = np.asarray(
+            [list(item.values()) for item in ({'x': temp}).values()])
+        modelReload = joblib.load('MPGmodel.pkl')
+        scoreval = modelReload.predict(sampleDataFeatures)
+        scoreval = np.around(scoreval, 2)
+        scoreval1 = scoreval[0]
+        print(scoreval1)
+        context = {'scoreval': scoreval1}
+
+        # Summary Plot bar gia global
+        # explainer = shap.TreeExplainer(modelReload)
+        # shap_values = explainer.shap_values(x_train)
+        # shap.summary_plot(shap_values, x_train)
+        # plt.savefig("mlpart/static/mlpart/MpgSPGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+        # Summary Plot gia global
+        # explainer = shap.TreeExplainer(modelReload)
+        # shap_values = explainer.shap_values(x_train)
+        # shap.summary_plot(shap_values, x_train, show=False, plot_type='bar', sort=True)
+        # plt.savefig("mlpart/static/mlpart/MpgSPbarGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+        # Dependence Plots (idio plot allazw to feature kathe fora)
+        # explainer = shap.TreeExplainer(modelReload)
+        # shap_values = explainer.shap_values(x_train)
+        # fig=shap.dependence_plot("model year", shap_values, x_train)
+        # plt.savefig("mlpart/static/mlpart/MpgDPModelyeardata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+
+    return render(request, 'mlpart/resultsMPG.html',context)
 
 
 def diabetesinsideDjango(request):
