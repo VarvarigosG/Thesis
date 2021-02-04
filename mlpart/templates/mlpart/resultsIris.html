@@ -43,8 +43,8 @@
                     {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
-                        <h5 class="text-danger display-4" {% if message.tags %} class="{ message.tags }}" {% endif %}>
-                            {{message}}
+                        <h5 class="text-success display-4" {% if message.tags %} class="{ message.tags }}" {% endif %}>
+                       <i> {{message}}</i>
                         </h5>
 
                         {% endfor %}
@@ -66,71 +66,67 @@
 
     <div class="container">
         <h5>
-            But you may be wondering, how did we come to that outcome? We used a k-nearest neighbors algorithm(k-NN)
+            <p>But you may be wondering, how did we come to that outcome? We used a k-nearest neighbors algorithm(k-NN)
             model to make the
-            prediction,
-            and will use the KernelExplainer in SHAP to explain the model both globally and locally.
-            This plots were made using the data(120 observations) that were used to train the model.
-            <br><br>
-            1)Firstly we will explain the entire dataset through the visualization of the importance of the features and
-            their impact on the prediction.
+            prediction,that was trained
+                with the following dataset : <a href="https://archive.ics.uci.edu/ml/datasets/iris">Iris Data Set</a>.
+            To explain the model both globally and locally, we will use the KernelExplainer in SHAP.
+            The plots were made using the data(120 observations) that were used to train the model.
+            </p><br><br>
+            <p>&rarr;Firstly we will explain the entire dataset through the visualization of the importance of the features and
+            their impact on the prediction.For that we will use the <i>'Variance Importance'</i> and <i>'Summary' plots</i>.</p>
         </h5>
-
+        <br>
 
         <div class="container" align="center">
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining the entire dataset:</h4>
+                    <h4>&check;Explaining the entire dataset:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot')"
                                 id="defaultOpen">Variable Importance Plot
                         </button>
                         <button class="tablinks" onclick="openCity(event, 'Summary Plot')">Summary Plot</button>
                     </div>
+                    <br>
                 </div>
 
                 <div id="Variable Importance Plot" class="tabcontent">
-                    The variable importance plot lists the most significant variables in descending order. The top
+                    <h6><p>The variable importance plot lists the most significant variables in descending order. The top
                     variables
                     contribute more to the model than the bottom ones and thus have high predictive power. So in this
                     case
                     "Petal Length" and "Petal Width" contribute more to the predicted outcome when "Sepal Length" and
-                    "Sepal Width" do not seem to affect the choice of the model in a major way.
+                    "Sepal Width" do not seem to affect the choice of the model in a major way.</p></h6>
                     <img src="{% static 'mlpart/IrisSPbarGlobal.jpeg' %}"/>
                 </div>
 
                 <div id="Summary Plot" class="tabcontent">
-                    Another option to explain our model globally is the "Summary Plot" and it works as follows:
-                    ->Feature importance: Variables are ranked in descending order.<br>
-                    ->Impact: The horizontal location shows whether the effect of that value is associated with a higher
+                    <h6><p>Another option to explain our model globally is the "Summary Plot" and it works as follows:<br>
+                    &rarr;Feature importance: Variables are ranked in descending order.<br>
+                    &rarr;Impact: The horizontal location shows whether the effect of that value is associated with a higher
                     or lower prediction.<br>
-                    ->Original value: Color shows whether that variable is high (in red) or low (in blue) for that
+                    &rarr;Original value: Color shows whether that variable is high (in red) or low (in blue) for that
                     observation.<br>
-                    ->Correlation: A high level of the "Petal Length" content has a high and positive impact on the
-                    prediction. The “high” comes from the red color and the “positive” impact is shown on the X-axis.
+                    &rarr;Correlation: A high level of the "Petal Length" content has a high and positive impact on the
+                    prediction. The “high” comes from the red color and the “positive” impact is shown on the X-axis.</p></h6>
                     <img src="{% static 'mlpart/IrisSPGlobal.jpeg' %}"/>
                 </div>
-
-
             </div>
             <br>
-
-
         </div>
-
     </div>
-
-
     <br>
 
     <div class="container">
         <h5>
-            2)Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
-            value of the feature for all instances in the dataset. We will do that by plotting partial dependence plots.
+            <p>&rarr;Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
+            value of the feature for all instances in the dataset. We will do that by plotting <i>Partial Dependence Plots</i>.
             The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a
             machine learning model.The function automatically includes another variable that your chosen variable
-            interacts most with.
+                interacts most with.</p>
         </h5>
         <br>
 
@@ -138,67 +134,57 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining single feature:</h4>
+                    <h4>&check;Explaining single feature:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'PetalL')">Petal Length</button>
                         <button class="tablinks" onclick="openCity(event, 'PetalW')">Petal Width</button>
                         <button class="tablinks" onclick="openCity(event, 'SepalL')">Sepal Length</button>
                         <button class="tablinks" onclick="openCity(event, 'SepalW')">Sepal Width</button>
                     </div>
+                    <br>
                 </div>
 
                 <div id="PetalL" class="tabcontent">
-                    The plot below shows there exists a linear but positive relationship between
+                    <h6><p>The plot below shows there exists a linear but positive relationship between
                     “Petal Length” and the target variable.
-                    Also the interaction between "Petal Length" and "Petal Width" appears sparse.
+                    Also the interaction between "Petal Length" and "Petal Width" appears sparse.</p></h6><br>
                     <img src="{% static 'mlpart/IrisDPPetalLdata.jpeg' %}"/>
                 </div>
 
                 <div id="PetalW" class="tabcontent">
-                    the following plot shows there is a linear and positive trend between “Petal Width” and
-                    the target variable.Also “Petal Width” does not interact with “Petal Length” frequently.
+                    <h6><p>The following plot shows there is a linear and positive trend between “Petal Width” and
+                    the target variable.Also “Petal Width” does not interact with “Petal Length” frequently.</p></h6><br>
                     <img src="{% static 'mlpart/IrisDPPetalWdata.jpeg' %}"/>
                 </div>
 
                 <div id="SepalL" class="tabcontent">
-                    The following plot shows there is a linear and neutral relationship between “Sepal Length” and
-                    the target variable.Also “Sepal Length” does not interact with “Sepal Width” frequently.
+                    <h6><p>The following plot shows there is a linear and neutral relationship between “Sepal Length” and
+                    the target variable.Also “Sepal Length” does not interact with “Sepal Width” frequently.</p></h6><br>
                     <img src="{% static 'mlpart/IrisDPSepalLdata.jpeg' %}"/>
                 </div>
 
                 <div id="SepalW" class="tabcontent">
-                    The following plot shows there is a linear and neutral relationship between “Sepal Width” and
-                    the target variable.
-
+                    <h6><p>The following plot shows there is a linear and neutral relationship between “Sepal Width” and
+                    the target variable.</p></h6><br>
                     <img src="{% static 'mlpart/IrisDPSepalWdata.jpeg' %}"/>
                 </div>
-
-                <br>
-                <br>
-                <br>
-
-
             </div>
             <br>
-
-
         </div>
-
     </div>
-
-
     <br>
 
 
     <div class="container">
         <h5>
-            3)Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
+            <p>&rarr;Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
             SHAP,
-            we can generate explanations for a single prediction.<br><br>
-            The SHAP plot shows features that contribute to pushing the output from the base value (average model
-            output) to the actual predicted value.<br><br>
-            Red color indicates features that are pushing the prediction higher, and blue color indicates just the
-            opposite.
+            we can generate explanations for a single prediction.
+            The <i>SHAP Force plot</i> shows features that contribute to pushing the output from the base value (average model
+            output) to the actual predicted value.
+            <span style="color:red">Red color</span> indicates features that are pushing the prediction higher,
+                and <span style="color:dodgerblue">blue color</span> indicates just the opposite.</p>
         </h5>
         <br>
 
@@ -206,61 +192,50 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining single prediction:</h4>
+                    <h4>&check;Explaining single prediction:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, '8')">8</button>
                         <button class="tablinks" onclick="openCity(event, '35')">35</button>
                         <button class="tablinks" onclick="openCity(event, '75')">75</button>
                         <button class="tablinks" onclick="openCity(event, '103')">103</button>
                     </div>
+                    <br>
                 </div>
 
 
                 <div id="8" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.0
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0
                     As we can see "Petal Length"[4.5 cm] was the feature that determined the outcome of the prediction model
-                    by pushing the prediction to the left.
+                    by pushing the prediction to the left.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP8.jpg' %}"/>
                 </div>
 
                 <div id="35" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.0
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0
                     As we can see here "Petal Length"[4.5 cm],"Petal Width"[2.3cm] and "Sepal Width"[2.6cm] were the features that
-                    determined the outcome of the prediction model by pushing the prediction to the left.
+                    determined the outcome of the prediction model by pushing the prediction to the left.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP35.jpg' %}"/>
                 </div>
 
                 <div id="75" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0
                     This observation differs from the previous ones because the small value of the feature "Petal Length"[1.3cm]
-                    is what made the prediction to move to the right.
+                    is what made the prediction to move to the right.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP75.jpg' %}"/>
                 </div>
 
                 <div id="103" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0
                     This observation is very similar to the previous one because the small value of the feature "Petal Length"[1.6cm]
-                    is what made the prediction to move to the right again.
+                    is what made the prediction to move to the right again.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP103.jpg' %}"/>
                 </div>
-
-                <br>
-                <br>
-                <br>
-
-
             </div>
             <br>
-
-
         </div>
-
     </div>
-
-
     <br>
-
-
 </main>
 <hr>
 <footer style="padding: 5px 0px 5px!important" class="container">
