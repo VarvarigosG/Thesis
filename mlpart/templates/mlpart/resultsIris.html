@@ -56,7 +56,7 @@
                     <div class="col-md">
                         <h5>Want to make another Iris species prediction?</h5>
                         <p><a style="width: 390px !important;" class="btn btn-secondary text-info"
-                              href="/mlpart/diabetes/" role="button">Go Ahead »</a></p>
+                              href="/mlpart/iris/" role="button">Go Ahead »</a></p>
                     </div>
                 </div>
 
@@ -146,29 +146,40 @@
                 </div>
 
                 <div id="PetalL" class="tabcontent">
-                    <h6><p>The plot below shows there exists a linear but positive relationship between
-                    “Petal Length” and the target variable.
-                    Also the interaction between "Petal Length" and "Petal Width" appears sparse.</p></h6><br>
+                    <h6><p>
+                        The plot below shows there exists a linear but positive relationship between
+                        “Petal Length” and the target variable. Specifically we can spot some kind of neighbourhoods,
+                        that based on the "Petal Length" input of the user, classify the iris species differently.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/IrisDPPetalLdata.jpeg' %}"/>
                 </div>
 
                 <div id="PetalW" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and positive trend between “Petal Width” and
-                    the target variable.Also “Petal Width” does not interact with “Petal Length” frequently.</p></h6><br>
+                    <h6><p>
+                        The following plot shows there is a linear and positive trend between “Petal Width” and
+                        the target variable. Specifically we can spot some kind of neighbourhoods, that based on the
+                        "Petal Width" input of the user, classify the iris species differently.</p></h6><br>
                     <img src="{% static 'mlpart/IrisDPPetalWdata.jpeg' %}"/>
                 </div>
 
                 <div id="SepalL" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and neutral relationship between “Sepal Length” and
-                    the target variable.Also “Sepal Length” does not interact with “Sepal Width” frequently.</p></h6><br>
+                    <h6><p>
+                        The following plot shows there is a linear and neutral relationship between “Sepal Length” and
+                        the target variable. That shows us that "Sepal Length" does not influence the model output, except in
+                        some specific input values(e.g 6.7 cm) when combined with a specific "Petal Width" value.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/IrisDPSepalLdata.jpeg' %}"/>
                 </div>
 
                 <div id="SepalW" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and neutral relationship between “Sepal Width” and
-                    the target variable.</p></h6><br>
+                    <h6><p>
+                        The following plot shows there is a linear and neutral relationship between “Sepal Width” and
+                        the target variable. That shows us that "Sepal Width" does not influence the model output, except in
+                        some specific input values(e.g 2.55 cm) when combined with a specific "Petal Length" value.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/IrisDPSepalWdata.jpeg' %}"/>
                 </div>
+
             </div>
             <br>
         </div>
@@ -205,29 +216,29 @@
 
 
                 <div id="8" class="tabcontent">
-                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0
-                    As we can see "Petal Length"[4.5 cm] was the feature that determined the outcome of the prediction model
-                    by pushing the prediction to the left.</p></h6><br>
+                    <h6><p>The output value is the prediction for that observation. As we can see "Petal Length"(4.5 cm)
+                        was the feature that determined the outcome of the prediction model by pushing the prediction to
+                        the left.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP8.jpg' %}"/>
                 </div>
 
                 <div id="35" class="tabcontent">
-                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0
-                    As we can see here "Petal Length"[4.5 cm],"Petal Width"[2.3cm] and "Sepal Width"[2.6cm] were the features that
+                    <h6><p>The output value is the prediction for that observation.
+                    As we can see here "Petal Length"(4.5 cm),"Petal Width"(2.3cm) and "Sepal Width"(2.6cm) were the features that
                     determined the outcome of the prediction model by pushing the prediction to the left.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP35.jpg' %}"/>
                 </div>
 
                 <div id="75" class="tabcontent">
-                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0
-                    This observation differs from the previous ones because the small value of the feature "Petal Length"[1.3cm]
+                    <h6><p>The output value is the prediction for that observation.
+                    This observation differs from the previous ones because the small value of the feature "Petal Length"(1.3cm)
                     is what made the prediction to move to the right.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP75.jpg' %}"/>
                 </div>
 
                 <div id="103" class="tabcontent">
-                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0
-                    This observation is very similar to the previous one because the small value of the feature "Petal Length"[1.6cm]
+                    <h6><p>The output value is the prediction for that observation.
+                    This observation is very similar to the previous one because the small value of the feature "Petal Length"(1.6cm)
                     is what made the prediction to move to the right again.</p></h6><br>
                     <img src="{% static 'mlpart/IrisFP103.jpg' %}"/>
                 </div>

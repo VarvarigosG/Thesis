@@ -66,13 +66,13 @@
 
     <div class="container">
         <h5>
-            But you may be wondering, how did we come to that outcome? We used a Logistic Regression model to make the
-            prediction,
-            and will use the KernelExplainer in SHAP to explain the model both globally and locally.
-            This plots were made using the data(650 observations) that were used to train the model.
-            <br><br>
-            1)Firstly we will explain the entire dataset through the visualization of the importance of the features and
-            their impact on the prediction.
+            <p>But you may be wondering, how did we come to that outcome? We used a Logistic Regression model to make the
+            prediction,that was trained with the following dataset : <a href="https://web.stanford.edu/~hastie/Papers/LARS/">Diabetes Data Set</a>.
+            To explain the model both globally and locally, we will use the KernelExplainer in SHAP.
+            The plots were made using the data(650 observations) that were used to train the model.
+            </p><br><br>
+            <p>&rarr;Firstly we will explain the entire dataset through the visualization of the importance of the features and
+            their impact on the prediction.For that we will use the <i>'Variance Importance'</i> and <i>'Summary' plots</i>.</p>
         </h5>
         <br>
 
@@ -80,28 +80,30 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining the entire dataset:</h4>
+                    <h4>&check;Explaining the entire dataset:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot ')"
                                 id="defaultOpen">Variable Importance Plot
                         </button>
                         <button class="tablinks" onclick="openCity(event, 'Summary Plot')">Summary Plot</button>
                     </div>
+                    <br>
                 </div>
 
                 <div id="Variable Importance Plot " class="tabcontent">
-                    The variable importance plot lists the most significant variables in descending order. The top
+                    <h6><p>The variable importance plot lists the most significant variables in descending order. The top
                     variables
                     contribute more to the model than the bottom ones and thus have high predictive power. So in this
                     case
                     "Glucose" and "BMI" contribute more to the predicted outcome when "Skin Thickness" does not seem to
                     change
-                    the choice of the model in any significant way.
+                    the choice of the model in any significant way.</p></h6>
                     <img src="{% static 'mlpart/DiabetesSPbarGlobaltestdata.jpeg' %}"/>
                 </div>
 
                 <div id="Summary Plot" class="tabcontent">
-                    Another option to explain our model globally is the "Summary Plot" and it works as follows:
+                    <h6><p>Another option to explain our model globally is the "Summary Plot" and it works as follows:<br>
                     ->Feature importance: Variables are ranked in descending order.<br>
                     ->Impact: The horizontal location shows whether the effect of that value is associated with a higher
                     or lower prediction.<br>
@@ -110,30 +112,22 @@
                     ->Correlation: A high level of the “Glucose” content has a high and positive impact on the
                     prediction. The “high” comes from the red color,
                     and the “positive” impact is shown on the X-axis. Similarly, we will say the “Blood Pressure” is
-                    negatively
-                    correlated with the target variable.
+                    negatively correlated with the target variable.</p></h6>
                     <img src="{% static 'mlpart/DiabetesSPGlobaldata.jpeg' %}"/>
                 </div>
 
             </div>
             <br>
-
-
         </div>
-
     </div>
-
-
     <br>
-
 
     <div class="container">
         <h5>
-            2)Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
-            value of the feature for all instances in the dataset. We will do that by plotting partial dependence plots.
-            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a
-            machine learning model.The function automatically includes another variable that your chosen variable
-            interacts most with.
+            <p>&rarr;Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
+            value of the feature for all instances in the dataset. We will do that by plotting <i>Partial Dependence Plots</i>.
+            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a machine
+                learning model.The function automatically includes another variable that your chosen variable interacts most with.</p>
         </h5>
         <br>
 
@@ -141,7 +135,8 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining single feature:</h4>
+                    <h4>&check;Explaining single feature:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'Pregnancies')" id="defaultOpen1">
                             Pregnancies
@@ -156,89 +151,94 @@
                         </button>
                         <button class="tablinks" onclick="openCity(event, 'Age')">Age</button>
                     </div>
+                    <br>
                 </div>
 
                 <div id="Pregnancies" class="tabcontent">
-                    The plot below shows there exists an approximately linear but positive relationship between
-                    “Pregnancies” and the target variable.
-                    Also the interaction between "Pregnancies" and "Glucose" appears frequent
+                    <h6><p>
+                        The following plot below shows a linear but positive relationship between
+                        “Pregnancies” and the target variable. Specifically the more the pregnancies the more likely is
+                        for diabetes to occur. Also the interaction between "Pregnancies" and "Glucose" appears frequent.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPPregnanciesdata.jpeg' %}"/>
                 </div>
 
                 <div id="Glucose" class="tabcontent">
-                    The following plot shows there is an approximately linear and positive trend between “Glucose” and
-                    the target variable,
-                    and “Glucose” interacts with “BMI” frequently.
+                    <h6><p>
+                        The following plot shows there is an approximately linear and positive trend between “Glucose” and
+                        the target variable, thus if a higher “Glucose” value is reported, the chances of diabetes are increasing.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPGlucosedata.jpeg' %}"/>
                 </div>
 
                 <div id="BloodP" class="tabcontent">
-                    The following plot shows there is a complex and somewhat negative trend between “Blood Pressure” and
-                    the target variable,
-                    and “Blood Pressure” interacts with “BMI” frequently.
+                    <h6><p>
+                        The following plot shows there is a complex and somewhat negative trend between “Blood Pressure” and
+                        the target variable. Specifically we can deduce that if the person has a higher "BMI", "Blood Pressure"
+                        influences positively the target outcome. When "BMI" is at normal levels, we see that “Blood Pressure”
+                        influences the model outcome negatively.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPBloodPdata.jpeg' %}"/>
                 </div>
 
                 <div id="SkinT" class="tabcontent">
-                    The plot below shows there exists an approximately linear but neutral relationship between “Skin
-                    Thickness” and the target variable,which
-                    means that skin Thickness does not influence the prediction much.
-
+                    <h6><p>
+                        The plot below shows there exists a neutral relationship between “Skin Thickness” and
+                        the target variable,which means that skin Thickness does not influence the prediction much.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPSkinTdata.jpeg' %}"/>
                 </div>
 
                 <div id="Insulin" class="tabcontent">
-                    The plot below shows there exists an approximately linear but negative relationship between
-                    “Insulin” and the target variable.
+                    <h6><p>
+                        The plot below shows there exists a negative relationship between “Insulin” and the target variable.
+                        When the "Insulin" value starts to increase, the prediction starts to be influenced negatively.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPInsulindata.jpeg' %}"/>
                 </div>
 
                 <div id="BMI" class="tabcontent">
-                    The following plot shows there is an approximately linear and positive trend between “BMI” and the
-                    target variable,
-                    and “BMI” interacts with “Glucose” frequently.
+                    <h6><p>
+                        The following plot shows there is an approximately linear and positive trend between “BMI” and the
+                         target variable. Also “BMI” interacts with “Glucose” frequently.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPBMIdata.jpeg' %}"/>
                 </div>
 
                 <div id="Diabetes Pedigree" class="tabcontent">
-                    The following plot shows there is an approximately linear and somewhat positive trend between
-                    “Diabetes Pedigree” and the target variable,
-                    but “Diabetes Pedigree” does not interacts with “Glucose” frequently.
+                    <h6><p>
+                        The following plot shows there is an approximately linear and somewhat positive trend between
+                        “Diabetes Pedigree” and the target variable, but “Diabetes Pedigree” does not interacts
+                        with “Glucose” frequently.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPPedigreedata.jpeg' %}"/>
                 </div>
 
                 <div id="Age" class="tabcontent">
-                    The following plot shows there is an approximately linear and somewhat positive trend between “Age”
-                    and the target variable,but
-                    “Age” does not interacts with “Glucose” frequently, except in some cases the person is old.
+                    <h6><p>
+                        The following plot shows there is an approximately linear and somewhat positive trend between “Age”
+                        and the target variable. When "Age" starts to increase, a slight positive effect to the outcome is being
+                        recorded.
+                    </p></h6><br>
                     <img src="{% static 'mlpart/DiabetesDPAgedata.jpeg' %}"/>
                 </div>
 
-                <br>
-                <br>
-                <br>
-
-
             </div>
             <br>
-
-
         </div>
-
     </div>
-
 
     <br>
 
     <div class="container">
         <h5>
-            3)Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
+            <p>&rarr;Finally, we will focus on local Interpretability by randomly choosing a few observations. With the help of
             SHAP,
-            we can generate explanations for a single prediction.<br><br>
-            The SHAP plot shows features that contribute to pushing the output from the base value (average model
-            output) to the actual predicted value.<br><br>
-            Red color indicates features that are pushing the prediction higher, and blue color indicates just the
-            opposite.
+            we can generate explanations for a single prediction.
+            The <i>SHAP Force plot</i> shows features that contribute to pushing the output from the base value (average model
+            output) to the actual predicted value.
+            <span style="color:red">Red color</span> indicates features that are pushing the prediction higher, and <span style="color:dodgerblue">blue color</span> indicates just the
+                opposite.</p>
         </h5>
         <br>
 
@@ -246,71 +246,65 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4> Explaining single prediction:</h4>
+                    <h4>&check;Explaining single prediction:</h4>
+                    <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, '171')">171</button>
                         <button class="tablinks" onclick="openCity(event, '404')">404</button>
                         <button class="tablinks" onclick="openCity(event, '593')">593</button>
                         <button class="tablinks" onclick="openCity(event, '32')">32</button>
                     </div>
+                    <br>
                 </div>
 
 
                 <div id="171" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0 which
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0 which
                     means that the person
                     will have diabetes in the future. As we can see "Blood Pressure", "Diabetes Pedigree", "BMI",
                     "Glucose" and "Pregnancies" have
-                    a positive rating on the diabetes prediction,so they push the prediction to the right.
+                    a positive rating on the diabetes prediction,so they push the prediction to the right.</p></h6><br>
                     <img src="{% static 'mlpart/DiabeyesFP171.jpg' %}"/>
                 </div>
 
                 <div id="404" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 1.0 which
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0 which
                     means that the person
                     will have diabetes in the future. As we can see "Pregnancies","BMI" and "Glucose" have a positive
                     rating on the diabetes
                     prediction,so they push the prediction to the right, while "Diabetes Pedigree" has a negative impact
                     on the prediction.
-                    driving the prediction to the right.
+                    driving the prediction to the right.</p></h6><br>
                     <img src="{% static 'mlpart/DiabetesSP404.jpg' %}"/>
                 </div>
 
                 <div id="593" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.0 which
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0 which
                     means that the person
                     will not have diabetes in the future. As we can see "Blood Pressure" and "Diabetes Pedigree" have a
                     positive rating on the diabetes
                     prediction,so they push the prediction to the right, while "Glucose","BMI","Pregnancies" and "Age"
                     have a negative impact on the prediction.
-                    driving the prediction to the right.
+                    driving the prediction to the right.</p></h6><br>
                     <img src="{% static 'mlpart/DiabetesFP593.jpg' %}"/>
                 </div>
 
                 <div id="32" class="tabcontent">
-                    The output value is the prediction for that observation. In this observation the output is 0.5 which
+                    <h6><p>The output value is the prediction for that observation. In this observation the output is 0.5 which
                     means that the person
                     might or might not have diabetes in the future. As we can see "Blood Pressure" has
                     a positive rating on the diabetes prediction,so it pushes the prediction to the right, while
                     "Glucose","BMI","Diabetes Pedigree",
                     "Pregnancies" and "Age" have a negative rating on the diabetes prediction,so they push the
-                    prediction to the left.
+                    prediction to the left.</p></h6><br>
                     <img src="{% static 'mlpart/DiabetesFP32.jpg' %}"/>
                 </div>
-
-                <br>
-                <br>
-                <br>
-
 
             </div>
             <br>
 
-
         </div>
-
     </div>
-
 
     <br>
 
