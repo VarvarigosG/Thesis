@@ -24,24 +24,13 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"></nav>
 
 <main role="main">
-
-    <div style="padding: 15px 0px 15px!important" class="jumbotron ">
-
+    <div style="padding: 15px 0px 0px!important; background-color: #ffffff;" class="jumbotron ">
         <div class="container">
             {% block content %}{% include 'polls/freetext.html' %}{% endblock %}
         </div>
-        <div class="d-flex justify-content-center">
-        <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
-                      href="{% url 'polls:index'%}" role="button">Vote Again »</a></p>
-        </div>
     </div>
-
-
 </main>
 
-<footer class="container">
-    <p>© Varvarigos Georgios 2020-2021</p>
-</footer>
 
 </body>
 </html>

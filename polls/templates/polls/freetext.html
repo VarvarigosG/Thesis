@@ -1,6 +1,19 @@
 {% block content %}
 <div id="container" style="width: 100%;">
-    <canvas id="choice-chart" data-url="{% url 'polls:get-percentage' question.id %}"></canvas>
+
+    <canvas id="choice-chart" style="width: 100% ;" data-url="{% url 'polls:get-percentage' question.id %}"></canvas>
+
+    <div class="d-flex justify-content-center">
+        <a style="width: 205px !important;  " class="btn btn-secondary text-info"
+           href="{% url 'polls:leapquestion' question.id %}" role="button">Vote Again »</a>
+    </div>
+
+    <hr>
+
+    <footer class="container" style="padding: 10px 0px 10px!important">
+        <p>© Varvarigos Georgios 2020-2021</p>
+    </footer>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -14,37 +27,41 @@
             success: function (data) {
                 var ctx = $x[0].getContext('2d');
                 var ctx = new Chart(ctx, {
+
                     type: 'horizontalBar',
                     data: {
                         labels: data.responsibilty,
                         datasets: [{
+                            label: data.responsibilty,
                             data: data.data,
-                            barThickness: 20,
-                            borderColor: 'rgba(255,192,203 ,1 )',
-                            backgroundColor: 'rgba(255,192,203 ,1 )',
-                            // barPercentage: 10,
+                            barThickness: 70,
+                            // borderColor: 'rgb(238,192,255)',
+                            backgroundColor: 'rgb(59,65,177)',
+
                         }]
                     },
                     options:
                         {
                             scales: {
                                 xAxes: [{
-                                    stacked: true,
-                                    gridLines: {
-                                        offsetGridLines: true
+                                    ticks: {
+                                        fontColor: "#000",
+                                        fontSize: 17
                                     }
                                 }],
                                 yAxes: [{
-                                    stacked: true
-                                }]
-                            }
-                        }
+                                    ticks: {
+                                        fontColor: "#000",
+                                        fontSize: 15
+                                    }
+                                }],
+                                responsive: true,
+                            },
+
+                        },
                 });
             }
         });
     });
-
-
 </script>
-
 {% endblock %}

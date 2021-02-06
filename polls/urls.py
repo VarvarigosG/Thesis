@@ -16,5 +16,7 @@ urlpatterns = [
     #has changed from <question_id> to <pk>.
     path('<int:question_id>/choice-chart/', views.choice_chart, name='choice-chart'),
     path('<int:question_id>/get-percentage/', views.get_percentage, name='get-percentage'),
-    # path('<int:question_id>/reset-database/', views.reset_database, name='reset-database'),
+    path('<int:question_id>/leap/', views.leapquestion, name='leapquestion'),
+    path('leap/totalpercentage/', views.totalpercentage, name='totalpercentage'),
+
 ]
