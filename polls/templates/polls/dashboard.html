@@ -71,19 +71,19 @@
                 var ctx = $x[0].getContext('2d');
                 var ctx = new Chart(ctx, {
 
-                    type: 'bar',
+                    type: 'pie',
                     data: {
                         labels: [data.responsibilty,data.responsibilty3],
                         datasets: [{
                             label: data.responsibilty,
-                            data: [data.data, data.data.data3],
+                            data: '1',
                             // barThickness: 70,
                             // borderColor: 'rgb(238,192,255)',
                             backgroundColor: 'rgb(59,65,177)',
 
                         },
                             {label: data.responsibilty3,
-                            data: data.data,
+                            data: '5',
                             // barThickness: 70,
                             // borderColor: 'rgb(238,192,255)',
                             backgroundColor: 'rgb(59,65,177)',
