@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.urls import reverse
@@ -151,7 +151,7 @@ def get_percentage(request, question_id):
                 x = x + 5
         y = (100 / (5 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[41, 76]).update(votes=0)
+        # Choice.objects.filter(id__range=[41, 76]).update(votes=0)
 
 
     elif question_id == 205:
@@ -176,7 +176,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (4 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[82, 103]).update(votes=0)
+        # Choice.objects.filter(id__range=[82, 103]).update(votes=0)
 
     elif question_id == 304:
         queryset1 = Choice.objects.filter(id__range=[104, 117]).exclude(id__range=[104, 105]).exclude(
@@ -201,7 +201,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (2 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[104, 117]).update(votes=0)
+        # Choice.objects.filter(id__range=[104, 117]).update(votes=0)
 
     elif question_id == 407:
         queryset1 = Choice.objects.filter(id__range=[122, 361]).exclude(id__range=[136, 356]).filter(votes=1).values()
@@ -241,7 +241,7 @@ def get_percentage(request, question_id):
                 x = x + 5
         y = (100 / (5 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[118, 361]).exclude(id__range=[142, 356]).update(votes=0)
+        # Choice.objects.filter(id__range=[118, 361]).exclude(id__range=[142, 356]).update(votes=0)
 
     elif question_id == 506:
         queryset1 = Choice.objects.filter(id__range=[144, 160]).exclude(id__range=[154, 155]).filter(votes=1).values()
@@ -265,7 +265,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (3 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[142, 162]).update(votes=0)
+        # Choice.objects.filter(id__range=[142, 162]).update(votes=0)
 
     elif question_id == 604:
         queryset1 = Choice.objects.filter(id__range=[165, 179]).filter(votes=1).values()
@@ -289,7 +289,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (3 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[162, 179]).update(votes=0)
+        # Choice.objects.filter(id__range=[162, 179]).update(votes=0)
 
     elif question_id == 704:
         queryset1 = Choice.objects.filter(id__range=[180, 199]).filter(votes=1).values()
@@ -313,7 +313,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (4 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[180, 199]).update(votes=0)
+        # Choice.objects.filter(id__range=[180, 199]).update(votes=0)
 
     elif question_id == 807:
         queryset1 = Choice.objects.filter(id__range=[200, 231]).exclude(id__range=[215, 216]).exclude(
@@ -354,7 +354,7 @@ def get_percentage(request, question_id):
                 x = x + 5
         y = (100 / (6 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[200, 231]).update(votes=0)
+        # Choice.objects.filter(id__range=[200, 231]).update(votes=0)
 
     elif question_id == 906:
         queryset1 = Choice.objects.filter(id__range=[232, 261]).exclude(id__range=[252, 256]).filter(votes=1).values()
@@ -394,7 +394,7 @@ def get_percentage(request, question_id):
                 x = x + 5
         y = (100 / (6 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[232, 261]).update(votes=0)
+        # Choice.objects.filter(id__range=[232, 261]).update(votes=0)
 
     elif question_id == 1007:
         queryset1 = Choice.objects.filter(id__range=[262, 271]).filter(votes=1).values()
@@ -434,7 +434,7 @@ def get_percentage(request, question_id):
                 x = x + 5
         y = (100 / (6 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[262, 294]).update(votes=0)
+        # Choice.objects.filter(id__range=[262, 294]).update(votes=0)
 
     elif question_id == 2004:
         queryset1 = Choice.objects.filter(id__range=[295, 311]).exclude(id__range=[300, 301]).filter(votes=1).values()
@@ -458,7 +458,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (3 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[295, 311]).update(votes=0)
+        # Choice.objects.filter(id__range=[295, 311]).update(votes=0)
 
     elif question_id == 3006:
         queryset1 = Choice.objects.filter(id__range=[312, 338]).exclude(id__range=[332, 333]).filter(votes=1).values()
@@ -482,7 +482,7 @@ def get_percentage(request, question_id):
                 x = x + 1
         y = (100 / (5 * 5)) * (x)
         data.append(y)
-        Choice.objects.filter(id__range=[312, 338]).update(votes=0)
+        # Choice.objects.filter(id__range=[312, 338]).update(votes=0)
 
     return JsonResponse(data={
         'labels': labels,
@@ -515,382 +515,351 @@ def leapquestion(request, question_id):
     elif question_id == 2004:
         return HttpResponseRedirect(reverse('polls:detail', args=(question_id + 997,)))
     elif question_id == 3006:
-        return render(request, 'polls/dashboard.html')
+
+        #Responsibility
+        queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(
+            id__range=[65, 71]).exclude(id__range=[51, 54]).filter(votes=1).values()
+        queryset2 = Choice.objects.filter(id__range=[65, 69]).filter(votes=1).values()
+        x = 0
+        y = 0
+        labels2 = []
+        labels = []
+        for entry in queryset1:
+            labels.append(entry['choice_text'])
+        for entry in labels:
+            if entry == 'Absolutely' in labels:
+                x = x + 5
+            elif entry == 'Much' in labels:
+                x = x + 4
+            elif entry == 'Moderate' in labels:
+                x = x + 3
+            elif entry == 'A little bit' in labels:
+                x = x + 2
+            elif entry == 'Not at all' in labels:
+                x = x + 1
+
+        for entry in queryset2:
+            labels2.append(entry['choice_text'])
+        for entry in labels2:
+            if entry == 'Absolutely' in labels2:
+                x = x + 1
+            elif entry == 'Much' in labels2:
+                x = x + 2
+            elif entry == 'Moderate' in labels2:
+                x = x + 3
+            elif entry == 'A little bit' in labels2:
+                x = x + 4
+            elif entry == 'Not at all' in labels2:
+                x = x + 5
+        y = (100 / (5 * 5)) * (x)
+        # Choice.objects.filter(id__range=[41, 76]).update(votes=0)
+
+        #Explainability
+
+        queryset3 = Choice.objects.filter(id__range=[82, 103]).exclude(id__range=[92, 93]).filter(votes=1).values()
+        x3 = 0
+        y3 = 0
+        labels3 = []
+
+        for entry in queryset3:
+            labels3.append(entry['choice_text'])
+        for entry in labels3:
+            if entry == 'Absolutely' in labels3:
+                x3 = x3 + 5
+            elif entry == 'Much' in labels3:
+                x3 = x3 + 4
+            elif entry == 'Moderate' in labels3:
+                x3 = x3 + 3
+            elif entry == 'A little bit' in labels3:
+                x3 = x3 + 2
+            elif entry == 'Not at all' in labels3:
+                x3 = x3 + 1
+        y3 = (100 / (4 * 5)) * (x3)
+
+        #Auditability
+
+        queryset4 = Choice.objects.filter(id__range=[104, 117]).exclude(id__range=[104, 105]).exclude(
+            id__range=[111, 112]).filter(votes=1).values()
+        x4 = 0
+        y4 = 0
+        labels4 = []
+        for entry in queryset4:
+            labels4.append(entry['choice_text'])
+        for entry in labels4:
+            if entry == 'Absolutely' in labels4:
+                x4 = x4 + 5
+            elif entry == 'Much' in labels4:
+                x4 = x4 + 4
+            elif entry == 'Moderate' in labels4:
+                x4 = x4 + 3
+            elif entry == 'A little bit' in labels4:
+                x4 = x4 + 2
+            elif entry == 'Not at all' in labels4:
+                x = x4 + 1
+        y4 = (100 / (2 * 5)) * (x4)
+
+        #Accuracy
+
+        queryset5 = Choice.objects.filter(id__range=[122, 361]).exclude(id__range=[136, 356]).filter(votes=1).values()
+        queryset6 = Choice.objects.filter(id__range=[137, 141]).filter(votes=1).values()
+        x5 = 0
+        y5 = 0
+        labels6 = []
+        labels5 = []
+
+        for entry in queryset5:
+            labels5.append(entry['choice_text'])
+        for entry in labels5:
+            if entry == 'Absolutely' in labels5:
+                x5 = x5 + 5
+            elif entry == 'Much' in labels5:
+                x5 = x5 + 4
+            elif entry == 'Moderate' in labels5:
+                x5 = x5 + 3
+            elif entry == 'A little bit' in labels5:
+                x5 = x5 + 2
+            elif entry == 'Not at all' in labels5:
+                x5= x5 + 1
+
+        for entry in queryset6:
+            labels6.append(entry['choice_text'])
+        for entry in labels6:
+            if entry == 'Absolutely' in labels6:
+                x5 = x5 + 1
+            elif entry == 'Much' in labels6:
+                x5 = x5 + 2
+            elif entry == 'Moderate' in labels6:
+                x5= x5 + 3
+            elif entry == 'A little bit' in labels6:
+                x5 = x5 + 4
+            elif entry == 'Not at all' in labels6:
+                x5 = x5 + 5
+        y5 = (100 / (5 * 5)) * (x5)
+
+        #Fairness
+
+        queryset7 = Choice.objects.filter(id__range=[144, 160]).exclude(id__range=[154, 155]).filter(votes=1).values()
+        x6 = 0
+        y6 = 0
+        labels7 = []
+
+        for entry in queryset7:
+            labels7.append(entry['choice_text'])
+        for entry in labels7:
+            if entry == 'Absolutely' in labels7:
+                x6 = x6 + 5
+            elif entry == 'Much' in labels7:
+                x6 = x6 + 4
+            elif entry == 'Moderate' in labels7:
+                x6 = x6 + 3
+            elif entry == 'A little bit' in labels7:
+                x6 = x6 + 2
+            elif entry == 'Not at all' in labels7:
+                x6 = x6 + 1
+        y6 = (100 / (3 * 5)) * (x6)
+
+        #Communication
+
+        queryset8 = Choice.objects.filter(id__range=[165, 179]).filter(votes=1).values()
+        x7 = 0
+        y7 = 0
+        labels8 = []
+        for entry in queryset8:
+            labels8.append(entry['choice_text'])
+        for entry in labels8:
+            if entry == 'Absolutely' in labels8:
+                x7 = x7 + 5
+            elif entry == 'Much' in labels8:
+                x7 = x7 + 4
+            elif entry == 'Moderate' in labels8:
+                x7 = x7 + 3
+            elif entry == 'A little bit' in labels8:
+                x7 = x7 + 2
+            elif entry == 'Not at all' in labels8:
+                x7 = x7 + 1
+        y7 = (100 / (3 * 5)) * (x7)
+
+        #Accesibility
+        queryset9 = Choice.objects.filter(id__range=[180, 199]).filter(votes=1).values()
+        x8 = 0
+        y8 = 0
+        labels9 = []
+        for entry in queryset9:
+            labels9.append(entry['choice_text'])
+        for entry in labels9:
+            if entry == 'Absolutely' in labels9:
+                x8 = x8 + 5
+            elif entry == 'Much' in labels9:
+                x8 = x8 + 4
+            elif entry == 'Moderate' in labels9:
+                x8 = x8 + 3
+            elif entry == 'A little bit' in labels9:
+                x8 = x8 + 2
+            elif entry == 'Not at all' in labels9:
+                x8 = x8 + 1
+        y8 = (100 / (4 * 5)) * (x8)
+
+        #Data
+
+        queryset10 = Choice.objects.filter(id__range=[200, 231]).exclude(id__range=[215, 216]).exclude(
+            id__range=[222, 226]).filter(votes=1).values()
+        queryset11 = Choice.objects.filter(id__range=[222, 226]).filter(votes=1).values()
+        x9 = 0
+        y9 = 0
+        labels11 = []
+        labels10 = []
+        for entry in queryset10:
+            labels10.append(entry['choice_text'])
+        for entry in labels10:
+            if entry == 'Absolutely' in labels10:
+                x9 = x9 + 5
+            elif entry == 'Much' in labels10:
+                x9 = x9 + 4
+            elif entry == 'Moderate' in labels10:
+                x9 = x9 + 3
+            elif entry == 'A little bit' in labels10:
+                x9 = x9 + 2
+            elif entry == 'Not at all' in labels10:
+                x9 = x9 + 1
+
+        for entry in queryset11:
+            labels11.append(entry['choice_text'])
+        for entry in labels11:
+            if entry == 'Absolutely' in labels11:
+                x9 = x9 + 1
+            elif entry == 'Much' in labels11:
+                x9 = x9 + 2
+            elif entry == 'Moderate' in labels11:
+                x9 = x9 + 3
+            elif entry == 'A little bit' in labels11:
+                x9 = x9 + 4
+            elif entry == 'Not at all' in labels11:
+                x9 = x9 + 5
+        y9 = (100 / (6 * 5)) * (x9)
+
+        #The Model
+
+        queryset12 = Choice.objects.filter(id__range=[232, 261]).exclude(id__range=[252, 256]).filter(votes=1).values()
+        queryset13 = Choice.objects.filter(id__range=[252, 256]).filter(votes=1).values()
+        x10 = 0
+        y10 = 0
+        labels13 = []
+        labels12 = []
+        for entry in queryset12:
+            labels12.append(entry['choice_text'])
+        for entry in labels12:
+            if entry == 'Absolutely' in labels12:
+                x10 = x10 + 5
+            elif entry == 'Much' in labels12:
+                x10 = x10 + 4
+            elif entry == 'Moderate' in labels12:
+                x10 = x10 + 3
+            elif entry == 'A little bit' in labels12:
+                x10 = x10 + 2
+            elif entry == 'Not at all' in labels12:
+                x10 = x10 + 1
+
+        for entry in queryset13:
+            labels13.append(entry['choice_text'])
+        for entry in labels13:
+            if entry == 'Absolutely' in labels13:
+                x10 = x10 + 1
+            elif entry == 'Much' in labels13:
+                x10 = x10 + 2
+            elif entry == 'Moderate' in labels13:
+                x10 = x10 + 3
+            elif entry == 'A little bit' in labels13:
+                x10 = x10 + 4
+            elif entry == 'Not at all' in labels13:
+                x10 = x10 + 5
+        y10 = (100 / (6 * 5)) * (x10)
+
+        #Inferencing
+
+        queryset14 = Choice.objects.filter(id__range=[262, 271]).filter(votes=1).values()
+        queryset15 = Choice.objects.filter(id__range=[275, 294]).filter(votes=1).values()
+        x11 = 0
+        y11 = 0
+        labels15 = []
+        labels14 = []
+
+        for entry in queryset14:
+            labels14.append(entry['choice_text'])
+        for entry in labels14:
+            if entry == 'Absolutely' in labels14:
+                x11 = x11 + 5
+            elif entry == 'Much' in labels14:
+                x11 = x11 + 4
+            elif entry == 'Moderate' in labels14:
+                x11 = x11 + 3
+            elif entry == 'A little bit' in labels14:
+                x11 = x11 + 2
+            elif entry == 'Not at all' in labels14:
+                x11 = x11 + 1
+
+        for entry in queryset15:
+            labels15.append(entry['choice_text'])
+        for entry in labels15:
+            if entry == 'Absolutely' in labels15:
+                x11 = x11 + 1
+            elif entry == 'Much' in labels15:
+                x11 = x11 + 2
+            elif entry == 'Moderate' in labels15:
+                x11 = x11 + 3
+            elif entry == 'A little bit' in labels15:
+                x11 = x11 + 4
+            elif entry == 'Not at all' in labels15:
+                x11 = x11 + 5
+        y11 = (100 / (6 * 5)) * (x11)
+
+        #Algorithmic Presence
+
+        queryset16 = Choice.objects.filter(id__range=[295, 311]).exclude(id__range=[300, 301]).filter(votes=1).values()
+        x12 = 0
+        y12 = 0
+        labels16 = []
+        for entry in queryset16:
+            labels16.append(entry['choice_text'])
+        for entry in labels16:
+            if entry == 'Absolutely' in labels16:
+                x12 = x12 + 5
+            elif entry == 'Much' in labels16:
+                x12 = x12 + 4
+            elif entry == 'Moderate' in labels16:
+                x12 = x12 + 3
+            elif entry == 'A little bit' in labels16:
+                x12 = x12 + 2
+            elif entry == 'Not at all' in labels16:
+                x12 = x12 + 1
+        y12 = (100 / (3 * 5)) * (x12)
+
+        #Performance Evaluation
+
+        queryset17 = Choice.objects.filter(id__range=[312, 338]).exclude(id__range=[332, 333]).filter(votes=1).values()
+        x13 = 0
+        y13 = 0
+        labels17 = []
+        for entry in queryset17:
+            labels17.append(entry['choice_text'])
+        for entry in labels17:
+            if entry == 'Absolutely' in labels17:
+                x13 = x13 + 5
+            elif entry == 'Much' in labels17:
+                x13 = x13 + 4
+            elif entry == 'Moderate' in labels17:
+                x13 = x13 + 3
+            elif entry == 'A little bit' in labels17:
+                x13 = x13 + 2
+            elif entry == 'Not at all' in labels17:
+                x13 = x13 + 1
+        y13 = (100 / (5 * 5)) * (x13)
 
 
-def totalpercentage(request):
-    # Responibility
-    queryset1 = Choice.objects.filter(id__range=[41, 76]).exclude(id__range=[42, 45]).exclude(
-        id__range=[65, 71]).exclude(id__range=[51, 54]).filter(votes=1).values()
-    queryset2 = Choice.objects.filter(id__range=[65, 69]).filter(votes=1).values()
-    x = 0
-    y = 0
-    labels2 = []
-    labels = []
-    data = []
-    category = ['Responsibilty']
-    for entry in queryset1:
-        labels.append(entry['choice_text'])
-    for entry in labels:
-        if entry == 'Absolutely' in labels:
-            x = x + 5
-        elif entry == 'Much' in labels:
-            x = x + 4
-        elif entry == 'Moderate' in labels:
-            x = x + 3
-        elif entry == 'A little bit' in labels:
-            x = x + 2
-        elif entry == 'Not at all' in labels:
-            x = x + 1
+        Org_Total=(y+y3+y4+y5+y6+y7+y8)/7
+        Alg_Total=(y9+y10+y11+y12+y13)/5
+        Total_Total=(Org_Total+Alg_Total)/2
+        Choice.objects.filter(id__range=[41, 361]).update(votes=0)
 
-    for entry in queryset2:
-        labels2.append(entry['choice_text'])
-    for entry in labels2:
-        if entry == 'Absolutely' in labels2:
-            x = x + 1
-        elif entry == 'Much' in labels2:
-            x = x + 2
-        elif entry == 'Moderate' in labels2:
-            x = x + 3
-        elif entry == 'A little bit' in labels2:
-            x = x + 4
-        elif entry == 'Not at all' in labels2:
-            x = x + 5
-    y = (100 / (5 * 5)) * (x)
-    data.append(y)
+        context = {'scoreval': y, 'scoreval2': y3, 'scoreval3': y4,'scoreval4': y5,'scoreval5': y6,'scoreval6': y7,'scoreval7': y8,'scoreval8': y9,'scoreval9': y10,'scoreval10': y11,'scoreval11': y12,'scoreval12': y13, 'scoreval13': Org_Total,'scoreval14': Alg_Total,'scoreval15':Total_Total}
+        return render(request, 'polls/dashboard.html', context)
 
-    # #Explainability
-    queryset3 = Choice.objects.filter(id__range=[82, 103]).exclude(id__range=[92, 93]).filter(votes=1).values()
-    x3 = 0
-    y3 = 0
-    labels3 = []
-    data3 = []
-    category3 = ['Explainability']
-    for entry in queryset3:
-        labels3.append(entry['choice_text'])
-    for entry in labels3:
-        if entry == 'Absolutely' in labels3:
-            x3 = x3 + 5
-        elif entry == 'Much' in labels3:
-            x3 = x3 + 4
-        elif entry == 'Moderate' in labels3:
-            x3 = x3 + 3
-        elif entry == 'A little bit' in labels3:
-            x3 = x3 + 2
-        elif entry == 'Not at all' in labels3:
-            x3 = x3 + 1
-    y3 = (100 / (4 * 5)) * (x3)
-    data3.append(y3)
-
-    return JsonResponse(data={
-        'responsibilty': category,
-        "data": data,
-        'responsibilty3': category3,
-        "data3": data3
-    })
-
-# elif question_id == 304:
-# queryset1 = Choice.objects.filter(id__range=[104, 117]).exclude(id__range=[104, 105]).exclude(
-#     id__range=[111, 112]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Auditability']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (2 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[104, 117]).update(votes=0)
-#
-# elif question_id == 407:
-# queryset1 = Choice.objects.filter(id__range=[122, 361]).exclude(id__range=[136, 356]).filter(votes=1).values()
-# queryset2 = Choice.objects.filter(id__range=[137, 141]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels2 = []
-# labels = []
-# data = []
-# category = ['Accuracy']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-#
-# for entry in queryset2:
-#     labels2.append(entry['choice_text'])
-# for entry in labels2:
-#     if entry == 'Absolutely' in labels2:
-#         x = x + 1
-#     elif entry == 'Much' in labels2:
-#         x = x + 2
-#     elif entry == 'Moderate' in labels2:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels2:
-#         x = x + 4
-#     elif entry == 'Not at all' in labels2:
-#         x = x + 5
-# y = (100 / (5 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[118, 361]).exclude(id__range=[142, 356]).update(votes=0)
-#
-# elif question_id == 506:
-# queryset1 = Choice.objects.filter(id__range=[144, 160]).exclude(id__range=[154, 155]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Fairness']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (3 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[142, 162]).update(votes=0)
-#
-# elif question_id == 604:
-# queryset1 = Choice.objects.filter(id__range=[165, 179]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Communication']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (3 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[162, 179]).update(votes=0)
-#
-# elif question_id == 704:
-# queryset1 = Choice.objects.filter(id__range=[180, 199]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Accesibility']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (4 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[180, 199]).update(votes=0)
-#
-# elif question_id == 807:
-# queryset1 = Choice.objects.filter(id__range=[200, 231]).exclude(id__range=[215, 216]).exclude(
-#     id__range=[222, 226]).filter(votes=1).values()
-# queryset2 = Choice.objects.filter(id__range=[222, 226]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels2 = []
-# labels = []
-# data = []
-# category = ['Data']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-#
-# for entry in queryset2:
-#     labels2.append(entry['choice_text'])
-# for entry in labels2:
-#     if entry == 'Absolutely' in labels2:
-#         x = x + 1
-#     elif entry == 'Much' in labels2:
-#         x = x + 2
-#     elif entry == 'Moderate' in labels2:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels2:
-#         x = x + 4
-#     elif entry == 'Not at all' in labels2:
-#         x = x + 5
-# y = (100 / (6 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[200, 231]).update(votes=0)
-#
-# elif question_id == 906:
-# queryset1 = Choice.objects.filter(id__range=[232, 261]).exclude(id__range=[252, 256]).filter(votes=1).values()
-# queryset2 = Choice.objects.filter(id__range=[252, 256]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels2 = []
-# labels = []
-# data = []
-# category = ['The model']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-#
-# for entry in queryset2:
-#     labels2.append(entry['choice_text'])
-# for entry in labels2:
-#     if entry == 'Absolutely' in labels2:
-#         x = x + 1
-#     elif entry == 'Much' in labels2:
-#         x = x + 2
-#     elif entry == 'Moderate' in labels2:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels2:
-#         x = x + 4
-#     elif entry == 'Not at all' in labels2:
-#         x = x + 5
-# y = (100 / (6 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[232, 261]).update(votes=0)
-#
-# elif question_id == 1007:
-# queryset1 = Choice.objects.filter(id__range=[262, 271]).filter(votes=1).values()
-# queryset2 = Choice.objects.filter(id__range=[275, 294]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels2 = []
-# labels = []
-# data = []
-# category = ['Inferencing']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-#
-# for entry in queryset2:
-#     labels2.append(entry['choice_text'])
-# for entry in labels2:
-#     if entry == 'Absolutely' in labels2:
-#         x = x + 1
-#     elif entry == 'Much' in labels2:
-#         x = x + 2
-#     elif entry == 'Moderate' in labels2:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels2:
-#         x = x + 4
-#     elif entry == 'Not at all' in labels2:
-#         x = x + 5
-# y = (100 / (6 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[262, 294]).update(votes=0)
-#
-# elif question_id == 2004:
-# queryset1 = Choice.objects.filter(id__range=[295, 311]).exclude(id__range=[300, 301]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Algorithmic Presence']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (3 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[295, 311]).update(votes=0)
-#
-# elif question_id == 3006:
-# queryset1 = Choice.objects.filter(id__range=[312, 338]).exclude(id__range=[332, 333]).filter(votes=1).values()
-# x = 0
-# y = 0
-# labels = []
-# data = []
-# category = ['Performance Evaluation']
-# for entry in queryset1:
-#     labels.append(entry['choice_text'])
-# for entry in labels:
-#     if entry == 'Absolutely' in labels:
-#         x = x + 5
-#     elif entry == 'Much' in labels:
-#         x = x + 4
-#     elif entry == 'Moderate' in labels:
-#         x = x + 3
-#     elif entry == 'A little bit' in labels:
-#         x = x + 2
-#     elif entry == 'Not at all' in labels:
-#         x = x + 1
-# y = (100 / (5 * 5)) * (x)
-# data.append(y)
-# Choice.objects.filter(id__range=[312, 338]).update(votes=0)

@@ -43,9 +43,48 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" >
 
-        <canvas id="choice-chart" style="width: 100% ;" data-url="{% url 'polls:totalpercentage' %}"></canvas>
+
+        <div class="row">
+            <div class="col-md">
+                <h4>Responsibility Percentage: {{scoreval|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval}}>
+                <h4>Explainability Percentage: {{scoreval2|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval2}}>
+                <h4>Auditability Percentage: {{scoreval3|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval3}}>
+                <h4>Accuracy Percentage:{{scoreval4|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval4}}>
+                <h4>Fairness Percentage:{{scoreval5|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval5}}>
+                <h4>Communication Percentage:{{scoreval6|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval6}}>
+                <h4>Accessibility Percentage:{{scoreval7|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval7}}>
+            </div>
+
+            <div class="col-md">
+                <h4>Data Percentage: {{scoreval8|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval8}}>
+                <h4>Model Percentage: {{scoreval9|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval9}}>
+                <h4>Inferencing Percentage: {{scoreval10|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval10}}>
+                <h4>Algorithmic Presence Percentage: {{scoreval11|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval11}}>
+                <h4>Performance Evaluation Percentage: {{scoreval12|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval12}}>
+                <h4>Org Total Percentage: {{scoreval13|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval13}}>
+                <h4>Alg Percentage: {{scoreval14|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval14}}>
+                <h4>Total Percentage: {{scoreval15|floatformat:2}}% </h4>
+                <input type="hidden"  value={{scoreval15}}>
+
+            </div>
+        </div>
+
 
         <hr>
     </div>
@@ -58,61 +97,4 @@
 </body>
 </html>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-<script>
-    $(function () {
-
-        var $x = $("#choice-chart");
-        $.ajax({
-            url: $x.data("url"),
-            success: function (data) {
-                var ctx = $x[0].getContext('2d');
-                var ctx = new Chart(ctx, {
-
-                    type: 'pie',
-                    data: {
-                        labels: [data.responsibilty,data.responsibilty3],
-                        datasets: [{
-                            label: data.responsibilty,
-                            data: '1',
-                            // barThickness: 70,
-                            // borderColor: 'rgb(238,192,255)',
-                            backgroundColor: 'rgb(59,65,177)',
-
-                        },
-                            {label: data.responsibilty3,
-                            data: '5',
-                            // barThickness: 70,
-                            // borderColor: 'rgb(238,192,255)',
-                            backgroundColor: 'rgb(59,65,177)',
-
-                        }]
-
-                    },
-
-                    options:
-                        {
-                            scales: {
-                                xAxes: [{
-                                    ticks: {
-                                        fontColor: "#000",
-                                        fontSize: 17
-                                    }
-                                }],
-                                yAxes: [{
-                                    ticks: {
-                                        fontColor: "#000",
-                                        fontSize: 15
-                                    }
-                                }],
-                                responsive: true,
-                            },
-
-                        },
-                });
-            }
-        });
-    });
-</script>

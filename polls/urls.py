@@ -17,6 +17,6 @@ urlpatterns = [
     path('<int:question_id>/choice-chart/', views.choice_chart, name='choice-chart'),
     path('<int:question_id>/get-percentage/', views.get_percentage, name='get-percentage'),
     path('<int:question_id>/leap/', views.leapquestion, name='leapquestion'),
-    path('leap/totalpercentage/', views.totalpercentage, name='totalpercentage'),
+
 
 ]
