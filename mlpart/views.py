@@ -322,14 +322,14 @@ def IrisModel(request):
         print(prediction)
 
         if prediction[0] == 0:
-            print("The species is Iris Setosa ")
-            messages.success(request, "The species is Iris Setosa ")
+            print("The species is Iris-Setosa ")
+            messages.success(request, "The species is Iris-Setosa ")
         elif prediction[0] == 1:
-            print("The species is Iris Versicolor ")
-            messages.success(request, "The species is Iris Versicolor")
+            print("The species is Iris-Versicolor ")
+            messages.success(request, "The species is Iris-Versicolor")
         elif prediction[0] == 2:
-            print("The species is Iris Virginica ")
-            messages.success(request, "The species is Iris Virginica")
+            print("The species is Iris-Virginica ")
+            messages.success(request, "The species is Iris-Virginica")
 
         # Summary Plot bar gia Global
 

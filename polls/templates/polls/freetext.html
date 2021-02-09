@@ -4,7 +4,7 @@
     <canvas id="choice-chart" style="width: 100% ;" data-url="{% url 'polls:get-percentage' question.id %}"></canvas>
 
     <div class="d-flex justify-content-center">
-        <a style="width: 280px !important;  " class="btn btn-secondary text-info"
+        <a style="width: 280px !important;  " class="btn btn-secondary"
            href="{% url 'polls:leapquestion' question.id %}" role="button">Continue »</a>
     </div>
 
@@ -52,7 +52,7 @@
                                 yAxes: [{
                                     ticks: {
                                         fontColor: "#000",
-                                        fontSize: 15
+                                        fontSize: 18
                                     }
                                 }],
                                 responsive: true,

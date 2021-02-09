@@ -23,91 +23,53 @@
 
 <main role="main">
 
-
-    <div style="padding: 25px 0px 5px!important" class="jumbotron ">
-
+    <div style="padding: 40px 0px 5px!important" class="jumbotron">
         <div class="container">
-            <h5 class="display-4">Welcome to the AI Explainability tool.</h5>
-            <p>This is an experimental website that offers tools for assessment for algorithmic systems.</p>
+            <div class="row justify-content-start">
+
+                <div class="col ">
+                    <h1 class="display-3">ML Accountability</h1>
+                </div>
+
+                <div style="padding: 25px 0px 10px!important" class="d-flex justify-content-end">
+                    <div class="col-md">
+                        <h5>Want to redirect home?</h5>
+                        <p><a style="width: 215px !important;" class="btn btn-secondary text-info"
+                              href="/" role="button">Go Home »</a></p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-
     </div>
 
-    <div style="padding:0px 0px 0px!important" class="container">
+    <div class="container">
 
         <div class="row">
             <div class="col-md">
-                <h2>About the organization</h2>
-                <p>Answer some questions in order to self-assess your algorithmic system. </p>
-                {% for question in latest_question_list %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Responsibility »</a></p>
-                {% endfor %}
+                <h5><p>&rarr;In this section, you will have to answer to a total of <u>68</u> questions in order to
+                    define the system's accountability. The questions are divided into two
+                    big categories. The first one is about evaluating from an <i>Organizational</i> perspective and the
+                    second one is about evaluating from an <i>Algorithmic</i> perspective.<br><br> In
+                    addition, the two
+                    big categories are divided into smaller ones.<br><br>&rarr;When it comes to the <i>Organization</i>,
+                    we have the following subcategories:
+                    <u>Responsibility, Explainability, Auditability, Accuracy, Fairness, Communication and
+                        Accessibility.</u><br><br>&rarr;As for the <i>Algorithm</i>,
+                    the subcategories are : <u>Data Evaluation, Model Evaluation, Inferencing, Algorithmic Presence and
+                        Performance Evaluation.</u>
+                    <br><br>When all of the answers have been answered, we will present to you the results of the
+                    questionnaire, and only then you will be
+                    able to use the experimental platform for ML Explainability.</p>
+                </h5>
+                <br>
 
-                {% for question in latest_question_list2 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Explainability »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list3 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Auditability »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list4 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Accuracy »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list5 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Fairness »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list6 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Communication »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list7 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Accessibility »</a></p>
-                {% endfor %}
-            </div>
-            <div class="col-md">
-                <h2>About the algorithm</h2>
-                <p>Step through the process of explaining models to consumers with different personas </p>
-
-                {% for question in latest_question_list8 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Data »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list9 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">The model »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list10 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Inferencing »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list11 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary"
-                      href="{% url 'polls:detail' question.id %}" role="button">Algorithmic Presence »</a></p>
-                {% endfor %}
-
-                {% for question in latest_question_list12 %}
-                <p><a style="width: 205px !important;" class="btn btn-secondary disabled"
-                      href="{% url 'polls:detail' question.id %}" role="button">Performance Evaluation »</a></p>
-                {% endfor %}
-
-                <h5>Want to redirect home?</h5>
-                <p><a style="width: 205px !important;" class="btn btn-secondary text-info"
-                      href="/" role="button">Go Home »</a></p>
-
+                <div class="d-flex justify-content-center" style="padding: 2px 0px 2px!important">
+                    {% for question in latest_question_list %}
+                    <p><a style="width: 390px !important;  " class="btn btn-secondary"
+                          href="{% url 'polls:detail' question.id %}" role="button">Begin »</a></p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <hr>

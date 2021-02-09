@@ -28,7 +28,7 @@
             <div class="row justify-content-start">
 
                 <div class="col ">
-                    <h5 class="display-4">Welcome to the ai examples</h5>
+                    <h1 class="display-3">ML Explainability</h1>
                 </div>
 
                 <div style="padding: 25px 0px 10px!important" class="d-flex justify-content-end">
@@ -46,29 +46,37 @@
     <div class="container">
 
         <div class="row">
+            <h5>&rarr;In this section, we present to you the example models. Each one of them, take the user's input and
+                makes a prediction.</h5><br><br>
+
             <div class="col-md">
-                <h5>Check instantly the mileage of your car</h5>
+                <h5>&#9830;The MPG model makes predictions about the miles per gallon consumption of the user's car. </h5>
                 <p><a style="width: 350px !important;" class="btn btn-secondary"
                       href="{% url 'mpg'  %}" role="button">MPG Prediction »</a></p>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md">
-                <h5>Check if diabetes will occur</h5>
-                <p><a style="width: 245px !important;" class="btn btn-secondary "
+                <h5>&#9830;The Diabetes model tries to predict if a woman will develop diabetes or not.</h5>
+                <p><a style="width: 350px !important;" class="btn btn-secondary"
                       href="{% url 'diabetesinsideDjango'  %}" role="button">Diabetes prediction »</a></p>
             </div>
         </div>
-
+        <br>
         <div class="row">
             <div class="col-md">
-                <h5>Check the species of an Iris flower</h5>
-                <p><a style="width: 305px !important;" class="btn btn-secondary "
+                <h5>&#9830;The Iris model tries classify an iris flower among three species (setosa, versicolor, or
+                    virginica).</h5>
+                <p><a style="width: 350px !important;" class="btn btn-secondary"
                       href="{% url 'Iris'  %}" role="button">Iris Classification »</a></p>
 
             </div>
         </div>
-
+        <p><h5>&rarr;Along with the prediction, we provide an explanation as to why the model came to the specific outcome. That is
+            achieved with the help of <i>SHAP</i>. <i>SHAP</i> (SHapley Additive exPlanations) is a game theoretic approach to explain the
+            output of any machine learning model. It connects optimal credit allocation with local explanations using the
+        classic Shapley values from game theory and their related extensions.</h5></p>
         <hr>
     </div>
 </main>

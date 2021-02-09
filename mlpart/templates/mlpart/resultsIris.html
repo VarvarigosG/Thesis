@@ -44,7 +44,7 @@
                     <ul class="messages">
                         {% for message in messages %}
                         <h5 class="text-success display-4" {% if message.tags %} class="{ message.tags }}" {% endif %}>
-                       <i> {{message}}</i>
+                        {{message}}
                         </h5>
 
                         {% endfor %}
@@ -206,10 +206,10 @@
                     <h4>&check;Explaining single prediction:</h4>
                     <br>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, '8')">8</button>
-                        <button class="tablinks" onclick="openCity(event, '35')">35</button>
-                        <button class="tablinks" onclick="openCity(event, '75')">75</button>
-                        <button class="tablinks" onclick="openCity(event, '103')">103</button>
+                        <button class="tablinks" onclick="openCity(event, '8')">Observation 8</button>
+                        <button class="tablinks" onclick="openCity(event, '35')">Observation 35</button>
+                        <button class="tablinks" onclick="openCity(event, '75')"> Observation 75</button>
+                        <button class="tablinks" onclick="openCity(event, '103')">Observation 103</button>
                     </div>
                     <br>
                 </div>
