@@ -28,7 +28,8 @@
             <div class="row justify-content-start">
 
                 <div class="col ">
-                    <h5 class="display-4">This is the dashBoard</h5>
+                    <h1 class="display-4"><i>Total Percentage of Accountability</i>: {{scoreval15|floatformat:2}}%</h1>
+                    <input type="hidden" value={{scoreval15}}>
                 </div>
 
                 <div style="padding: 25px 0px 10px!important" class="d-flex justify-content-end">
@@ -43,49 +44,82 @@
         </div>
     </div>
 
-    <div class="container" >
+    <div class="container">
 
-
+        <p><h6>&rarr;The total Percentage of Accountability is the result of the answers that were given in the
+        questionnaire.
+        Specifically, the average of <i>Organizational Total</i> and <i>Algorithmic Total</i> is our final percentage.
+        <i>Organizational Total</i>
+        and <i>Algorithmic Total</i> were calculated as the mean value of their subcategories respectively.</h6> </p>
         <div class="row">
             <div class="col-md">
-                <h4>Responsibility Percentage: {{scoreval|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval}}>
-                <h4>Explainability Percentage: {{scoreval2|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval2}}>
-                <h4>Auditability Percentage: {{scoreval3|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval3}}>
-                <h4>Accuracy Percentage:{{scoreval4|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval4}}>
-                <h4>Fairness Percentage:{{scoreval5|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval5}}>
-                <h4>Communication Percentage:{{scoreval6|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval6}}>
-                <h4>Accessibility Percentage:{{scoreval7|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval7}}>
+                <h2>&rarr;About the organization:</h2><br>
+                <h4>&#9830;Percentage of Responsibility: {{scoreval|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval}}>
+                <h4>&#9830;Percentage of Explainability: {{scoreval2|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval2}}>
+                <h4>&#9830;Percentage of Auditability: {{scoreval3|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval3}}>
+                <h4>&#9830;Percentage of Accuracy: {{scoreval4|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval4}}>
+                <h4>&#9830;Percentage of Fairness: {{scoreval5|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval5}}>
+                <h4>&#9830;Percentage of Communication: {{scoreval6|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval6}}>
+                <h4>&#9830;Percentage of Accessibility: {{scoreval7|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval7}}>
+                <br>
+                <h4>&#9830;Organizational Total: {{scoreval13|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval13}}>
             </div>
 
             <div class="col-md">
-                <h4>Data Percentage: {{scoreval8|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval8}}>
-                <h4>Model Percentage: {{scoreval9|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval9}}>
-                <h4>Inferencing Percentage: {{scoreval10|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval10}}>
-                <h4>Algorithmic Presence Percentage: {{scoreval11|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval11}}>
-                <h4>Performance Evaluation Percentage: {{scoreval12|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval12}}>
-                <h4>Org Total Percentage: {{scoreval13|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval13}}>
-                <h4>Alg Percentage: {{scoreval14|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval14}}>
-                <h4>Total Percentage: {{scoreval15|floatformat:2}}% </h4>
-                <input type="hidden"  value={{scoreval15}}>
+                <h2>&rarr;About the algorithm:</h2><br>
+                <h4>&#9830;Percentage of Data Evaluation: {{scoreval8|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval8}}>
+                <h4>&#9830;Percentage of Model Evaluation: {{scoreval9|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval9}}>
+                <h4>&#9830;Percentage of Inferencing: {{scoreval10|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval10}}>
+                <h4>&#9830;Percentage of Algorithmic Presence: {{scoreval11|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval11}}>
+                <h4>&#9830;Percentage of Performance Evaluation: {{scoreval12|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval12}}>
+                <br><br><br><br>
 
+                <h4>&#9830;Algorithm Total: {{scoreval14|floatformat:2}}% </h4>
+                <input type="hidden" value={{scoreval14}}>
             </div>
         </div>
-
-
+        <br>
+        <div class="row">
+            <div class="col-md">
+                <p>Now that the questionnaire is completed and we have a final percentage of Accountability, it is time
+                    to
+                    step into the realm of Explainability. We present to you, an experimental platform that consists of
+                    3
+                    machine learning models that take the user's input and make predictions about different
+                    things.Specifically
+                    the models are the following:<br> 1)Miles per gallon
+                    prediction by a Random Forests algorithm<br>2)Diabetes prediction by a Logistic Regression algorithm<br>
+                    3)Iris classification by a k-Nearest Neighbors algorithm(k-NN)<br>After the prediction, we will
+                    explain
+                    to the user ,why and how the prediction was the outcome of the chosen model. We will explain the
+                    predictions with
+                    the use of SHAP(SHapley Additive exPlanations), which is a game theoretic approach able to explain
+                    the output of any machine learning model.<br>
+                    The following experimental platform aims to show how an organization or institute can use artificial
+                    intelligence, while
+                    explaining thoroughly how a prediction was made to the end-users, especially now that laws like GDPR
+                    are becoming more and more
+                    prominent.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <a style="width: 280px !important;  " class="btn btn-secondary text-info"
+                       href="/mlpart/" role="button">Continue »</a>
+                </div>
+            </div>
+        </div>
         <hr>
     </div>
 </main>
