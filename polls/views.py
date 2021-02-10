@@ -324,7 +324,7 @@ def get_percentage(request, question_id):
         labels2 = []
         labels = []
         data = []
-        category = ['Data']
+        category = ['Data Evaluation']
         for entry in queryset1:
             labels.append(entry['choice_text'])
         for entry in labels:
@@ -364,7 +364,7 @@ def get_percentage(request, question_id):
         labels2 = []
         labels = []
         data = []
-        category = ['The model']
+        category = ['Model Evaluation']
         for entry in queryset1:
             labels.append(entry['choice_text'])
         for entry in labels:

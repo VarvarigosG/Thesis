@@ -67,9 +67,9 @@
     <div class="container">
         <h5>
             <p>But you may be wondering, how did we come to that outcome? We used a Logistic Regression model to make the
-            prediction,that was trained with the following dataset : <a href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Pima Indians Diabetes Data Set</a>.
+            prediction, that was trained with the following dataset: <a href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Pima Indians Diabetes Data Set</a>.
             To explain the model both globally and locally, we will use the KernelExplainer in SHAP.
-            The plots were made using the data(650 observations) that were used to train the model.
+            The plots were made using the data (650 observations) that were used to train the model.
             </p><br><br>
             <p>&rarr;Firstly we will explain the entire dataset through the visualization of the importance of the features and
             their impact on the prediction.For that we will use the <i>'Variance Importance'</i> and <i>'Summary' plots</i>.</p>
@@ -261,7 +261,7 @@
                 <div id="171" class="tabcontent">
                     <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0 which
                     means that the person
-                    will have diabetes in the future. As we can see "Blood Pressure", "Diabetes Pedigree", "BMI",
+                    will develop diabetes in the future. As we can see "Blood Pressure", "Diabetes Pedigree", "BMI",
                     "Glucose" and "Pregnancies" have
                     a positive rating on the diabetes prediction,so they push the prediction to the right.</p></h6><br>
                     <img src="{% static 'mlpart/DiabeyesFP171.jpg' %}"/>
@@ -270,7 +270,7 @@
                 <div id="404" class="tabcontent">
                     <h6><p>The output value is the prediction for that observation. In this observation the output is 1.0 which
                     means that the person
-                    will have diabetes in the future. As we can see "Pregnancies","BMI" and "Glucose" have a positive
+                    will develop diabetes in the future. As we can see "Pregnancies","BMI" and "Glucose" have a positive
                     rating on the diabetes
                     prediction,so they push the prediction to the right, while "Diabetes Pedigree" has a negative impact
                     on the prediction.
@@ -281,7 +281,7 @@
                 <div id="593" class="tabcontent">
                     <h6><p>The output value is the prediction for that observation. In this observation the output is 0.0 which
                     means that the person
-                    will not have diabetes in the future. As we can see "Blood Pressure" and "Diabetes Pedigree" have a
+                    will not develop diabetes in the future. As we can see "Blood Pressure" and "Diabetes Pedigree" have a
                     positive rating on the diabetes
                     prediction,so they push the prediction to the right, while "Glucose","BMI","Pregnancies" and "Age"
                     have a negative impact on the prediction.
@@ -292,7 +292,7 @@
                 <div id="32" class="tabcontent">
                     <h6><p>The output value is the prediction for that observation. In this observation the output is 0.5 which
                     means that the person
-                    might or might not have diabetes in the future. As we can see "Blood Pressure" has
+                    might or might not develop diabetes in the future. As we can see "Blood Pressure" has
                     a positive rating on the diabetes prediction,so it pushes the prediction to the right, while
                     "Glucose","BMI","Diabetes Pedigree",
                     "Pregnancies" and "Age" have a negative rating on the diabetes prediction,so they push the
