@@ -6,7 +6,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
+from django.shortcuts import HttpResponse
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
 from rest_framework import status
@@ -24,7 +26,7 @@ from mlpart.api.serializers import approvalsSerializers
 
 from .forms import UploadForm, ApprovalForm
 
-from .models import approvals
+from .models import approvals, MLmodel, MlmodelData
 
 
 def FileUploadView(request):
@@ -41,6 +43,25 @@ def FileUploadView(request):
             'form': form,
         }
     return render(request, 'mlpart/upload.html', context)
+
+
+
+def multipleupload(request):
+    return render(request, 'mlpart/uploadtest.html')
+
+def multipleupload_save(request):
+    mlmodel = request.FILES.get("filemodel")
+    mldata = request.FILES.get("filedata")
+    fs = FileSystemStorage(location='/media/')
+    file_path = fs.save(mlmodel.name,mlmodel)
+    model=MLmodel(id=mlmodel,mlmodel=file_path)
+    model.save()
+    # model = MLmodel(mlmodel=mlmodel)
+    # model.save()
+    # data = MlmodelData(data=mldata)
+    # data.save()
+    return HttpResponse("fILE OK ")
+
 
 
 # gia to bankLoanNN

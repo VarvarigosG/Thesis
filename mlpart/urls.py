@@ -14,6 +14,10 @@ urlpatterns = [
     path('', views.FileUploadView, name='upload'),
     path('status/', views.approvereject),
     path('form/', views.cxcontact, name='cxform'),
+
+    path('multipleupload/', views.multipleupload, name='multipleupload'),
+    path('multipleupload_save/', views.multipleupload_save, name='multipleupload_save'),
+
     path('mpg/', views.mpg, name='mpg'),
     path('mpg/predictMPG/', views.predictMPG, name='predictMPG'),
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Multiple File Upload</title>
+</head>
+<body>
+<form>
+    <h5>Upload your file here!</h5>
+                    <form method='post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="file" name="filemodel"><br><br>
+                        <input type="file" name="filedata"><br><br>
+                        <input type="submit" value="Submit">
+                    </form>
+</form>
+</body>
+</html>

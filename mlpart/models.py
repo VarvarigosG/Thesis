@@ -2,6 +2,17 @@ from django.db import models
 from django.shortcuts import render
 
 
+class MLmodel(models.Model):
+    id = models.AutoField(primary_key=True)
+    mlmodel = models.FileField()
+    name = models.CharField(max_length=225)
+
+class MlmodelData(models.Model):
+    id = models.AutoField(primary_key=True)
+    model_id = models.ForeignKey(MLmodel,on_delete=models.CASCADE)
+    data = models.FileField(max_length=225)
+
+
 class FileOK(models.Model):
     # einai gia to file upload
     file = models.FileField()
