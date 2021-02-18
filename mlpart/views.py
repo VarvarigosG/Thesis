@@ -39,7 +39,7 @@ def FileUploadView(request):
             model_form.save()
             data_form.save()
             # messages.success(request, 'Your file had been uploaded successfully.')
-            return HttpResponseRedirect(reverse('FileUploadView'))
+            return HttpResponseRedirect(reverse('agnosticExplanation'))
     else:
         form = UploadForm()
     context = {
@@ -49,18 +49,22 @@ def FileUploadView(request):
     return render(request, 'mlpart/upload.html', context)
 
 def agnosticExplanation(request):
-    #kane recover tis teleytaies egrafes
-    model = FileOK.objects.latest('created')
-    data = MLmodeldata.objects.latest('created')
-    #fortwse tis
-    modelReloaded = joblib.load(model)
-    df = pd.read_csv(data)
-    #shap gia to modelo toy xrhsth
-    ex = shap.KernelExplainer(modelReloaded.predict, df)
-    shap_values = ex.shap_values(df)
-    fig = shap.summary_plot(shap_values, df, show=False, sort=False)
-    plt.savefig("mlpart/static/mlpart/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
-    return None
+#kane recover tis teleytaies egrafes
+    # model = FileOK.objects.latest('created')
+    # data = MLmodeldata.objects.latest('created')
+#fortwse tis
+    # modelReloaded = joblib.load(model)
+    # df = pd.read_csv(data)
+#shap gia to modelo toy xrhsth
+    # ex = shap.KernelExplainer(modelReloaded.predict, df)
+    # shap_values = ex.shap_values(df)
+    # fig = shap.summary_plot(shap_values, df, show=False, sort=False)
+    # plt.savefig("mlpart/static/mlpart/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+
+    # shap.summary_plot(shap_values, df, show=False, plot_type='bar', sort=True)
+    # plt.savefig("mlpart/static/mlpart/RandombarGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+    return render(request, 'mlpart/randomExplanation.html')
 
 
 

@@ -12,6 +12,8 @@ from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
     path('', views.FileUploadView, name='FileUploadView'),
+    path('explanation/', views.agnosticExplanation, name='agnosticExplanation'),
+
     path('status/', views.approvereject),
     path('form/', views.cxcontact, name='cxform'),
 
