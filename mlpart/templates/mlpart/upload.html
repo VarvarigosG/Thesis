@@ -46,11 +46,14 @@
     <div class="container">
 
         <div class="row">
-            <h5>&rarr;In this section, we present to you the example models. Each one of them, take the user's input and
-                makes a prediction.</h5><br><br>
+            <h5>&rarr;In this section, we present to you the example models. Each one of them, takes the user's input and
+                makes a prediction. We propose experimenting with the example models first and then using the upload platform in order
+                to explain your own machine learning model. That way, the explanations given will be much more intuitive.
+            </h5><br><br><br>
 
             <div class="col-md">
-                <h5>&#9830;The MPG model makes predictions about the miles per gallon consumption of the user's car. </h5>
+                <h5>&#9830;The MPG model makes predictions about the miles per gallon consumption of the user's
+                    car. </h5>
                 <p><a style="width: 350px !important;" class="btn btn-secondary"
                       href="{% url 'mpg'  %}" role="button">MPG Prediction »</a></p>
             </div>
@@ -73,9 +76,30 @@
 
             </div>
         </div>
-        <p><h5>&rarr;Along with the prediction, we provide an explanation as to why the model came to the specific outcome. That is
-            achieved with the help of <i>SHAP</i>. <i>SHAP</i> (SHapley Additive exPlanations) is a game theoretic approach to explain the
-            output of any machine learning model. It connects optimal credit allocation with local explanations using the
+        <br>
+        <div class="row">
+            <div class="col-md">
+                <h5>&#9830;Or you can upload your own model for explanations.</h5>
+                <form  method='post' enctype="multipart/form-data">
+                    <br>
+                    <h5>&rarr;Upload the model in .pkl format here.</h5>
+                    {% csrf_token %}
+                    {{ model_form.as_p }}
+                    <br>
+                    <h5>&rarr;Upload the data in .csv format here.</h5>
+                    {{ data_form.as_p }}
+
+                       <input style="width: 350px !important;" class="btn btn-secondary"  input type="submit" value="Upload »">
+
+                </form>
+
+            </div>
+        </div>
+        <p><h5>&rarr;Along with the prediction, we provide an explanation as to why the model came to the specific
+        outcome. That is
+        achieved with the help of <i>SHAP</i>. <i>SHAP</i> (SHapley Additive exPlanations) is a game theoretic approach
+        to explain the
+        output of any machine learning model. It connects optimal credit allocation with local explanations using the
         classic Shapley values from game theory and their related extensions.</h5></p>
         <hr>
     </div>

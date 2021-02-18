@@ -1,14 +1,11 @@
 import pickle
-import matplotlib
-import joblib
 import shap
+import joblib
+import matplotlib
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from django.contrib import messages
-from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
 from rest_framework import status
@@ -20,49 +17,68 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
-
+import matplotlib.pyplot as plt
 matplotlib.use('Agg')
 from mlpart.api.serializers import approvalsSerializers
 
-from .forms import UploadForm, ApprovalForm
+from .forms import UploadForm, ApprovalForm, UploadDataForm
 
-from .models import approvals, MLmodel, MlmodelData
+from .models import approvals, FileOK, MLmodeldata
+
+
+# def loadmlpart(request):
+#     return render(request, 'mlpart/upload.html')
 
 
 def FileUploadView(request):
     # gia to upload
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        model_form = UploadForm(request.POST, request.FILES)
+        data_form = UploadDataForm(request.POST, request.FILES)
+        if model_form.is_valid() and data_form.is_valid():
+            model_form.save()
+            data_form.save()
             # messages.success(request, 'Your file had been uploaded successfully.')
-            return HttpResponseRedirect(reverse('upload'))
+            return HttpResponseRedirect(reverse('FileUploadView'))
     else:
         form = UploadForm()
-        context = {
-            'form': form,
-        }
+    context = {
+        'model_form': UploadForm,
+        'data_form': UploadDataForm,
+    }
     return render(request, 'mlpart/upload.html', context)
 
+def agnosticExplanation(request):
+    #kane recover tis teleytaies egrafes
+    model = FileOK.objects.latest('created')
+    data = MLmodeldata.objects.latest('created')
+    #fortwse tis
+    modelReloaded = joblib.load(model)
+    df = pd.read_csv(data)
+    #shap gia to modelo toy xrhsth
+    ex = shap.KernelExplainer(modelReloaded.predict, df)
+    shap_values = ex.shap_values(df)
+    fig = shap.summary_plot(shap_values, df, show=False, sort=False)
+    plt.savefig("mlpart/static/mlpart/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+    return None
 
 
-def multipleupload(request):
-    return render(request, 'mlpart/uploadtest.html')
-
-def multipleupload_save(request):
-    mlmodel = request.FILES.get("filemodel")
-    mldata = request.FILES.get("filedata")
-    fs = FileSystemStorage(location='/media/')
-    file_path = fs.save(mlmodel.name,mlmodel)
-    model=MLmodel(id=mlmodel,mlmodel=file_path)
-    model.save()
-    # model = MLmodel(mlmodel=mlmodel)
-    # model.save()
-    # data = MlmodelData(data=mldata)
-    # data.save()
-    return HttpResponse("fILE OK ")
 
 
+# def FileUploadView(request):
+#     # gia to upload
+#     if request.method == 'POST':
+#         form = UploadForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             # messages.success(request, 'Your file had been uploaded successfully.')
+#             return HttpResponseRedirect(reverse('FileUploadView'))
+#     else:
+#         form = UploadForm()
+#     context = {
+#             'form': form,
+#         }
+#     return render(request, 'mlpart/uploadtest.html', context)
 
 # gia to bankLoanNN
 class ApprovalsView(viewsets.ModelViewSet):
@@ -151,7 +167,6 @@ def predictMPG(request):
         temp['acceleration'] = request.POST.get('accVal')
         temp['model_year'] = request.POST.get('modelVal')
 
-
         temp2 = temp.copy()
         temp2['model year'] = temp['model_year']
         # del temp2['model_year']
@@ -164,7 +179,7 @@ def predictMPG(request):
         df['horsepower'] = df['horsepower'].fillna(df['horsepower'].mean())
         df[['cylinders', 'weight', 'model year', 'origin']] = df[
             ['cylinders', 'weight', 'model year', 'origin']].astype(float)
-        x = df.drop(columns=['mpg', 'car name','origin'], axis=1)
+        x = df.drop(columns=['mpg', 'car name', 'origin'], axis=1)
         y = df['mpg']
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=0)
         model = RandomForestRegressor(n_estimators=200, max_depth=None, min_samples_split=2, random_state=0)
@@ -197,8 +212,7 @@ def predictMPG(request):
         # fig=shap.dependence_plot("model year", shap_values, x_train)
         # plt.savefig("mlpart/static/mlpart/MpgDPModelyeardata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
-
-    return render(request, 'mlpart/resultsMPG.html',context)
+    return render(request, 'mlpart/resultsMPG.html', context)
 
 
 def diabetesinsideDjango(request):

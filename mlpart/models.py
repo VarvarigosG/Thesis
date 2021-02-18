@@ -1,16 +1,16 @@
 from django.db import models
-from django.shortcuts import render
 
 
-class MLmodel(models.Model):
-    id = models.AutoField(primary_key=True)
-    mlmodel = models.FileField()
-    name = models.CharField(max_length=225)
+class MLmodeldata(models.Model):
+    data = models.FileField()
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
-class MlmodelData(models.Model):
-    id = models.AutoField(primary_key=True)
-    model_id = models.ForeignKey(MLmodel,on_delete=models.CASCADE)
-    data = models.FileField(max_length=225)
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        return str(self.id)
 
 
 class FileOK(models.Model):
@@ -20,10 +20,8 @@ class FileOK(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-
     class Meta:
         ordering = ['id']
-
 
     def __str__(self):
         return str(self.id)
@@ -41,6 +39,7 @@ class Endpoint(models.Model):
     name = models.CharField(max_length=128)
     owner = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
+
 
 class MLAlgorithm(models.Model):
     '''
@@ -63,6 +62,7 @@ class MLAlgorithm(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     parent_endpoint = models.ForeignKey(Endpoint, on_delete=models.CASCADE)
 
+
 class MLAlgorithmStatus(models.Model):
     '''
     The MLAlgorithmStatus represent status of the MLAlgorithm which can change during the time.
@@ -79,7 +79,8 @@ class MLAlgorithmStatus(models.Model):
     active = models.BooleanField()
     created_by = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
-    parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE, related_name = "status")
+    parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE, related_name="status")
+
 
 class MLRequest(models.Model):
     '''
@@ -100,43 +101,44 @@ class MLRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE)
 
-
     # einai gia to BankLoanNN
-class approvals(models.Model):
-        GENDER_CHOICES = (
-            ('Male', 'Male'),
-            ('Female', 'Female')
-        )
-        MARRIED_CHOICES = (
-            ('Yes', 'Yes'),
-            ('No', 'No')
-        )
-        GRADUATED_CHOICES = (
-            ('Graduate', 'Graduated'),
-            ('Not_Graduate', 'Not_Graduate')
-        )
-        SELFEMPLOYED_CHOICES = (
-            ('Yes', 'Yes'),
-            ('No', 'No')
-        )
-        PROPERTY_CHOICES = (
-            ('Rural', 'Rural'),
-            ('Semiurban', 'Semiurban'),
-            ('Urban', 'Urban')
-        )
-        Firstname = models.CharField(max_length=15, default='John')
-        Lastname = models.CharField(max_length=15, default='Doe')
-        Dependants = models.IntegerField(default=0)
-        Applicantincome = models.IntegerField(default=0)
-        Coapplicatincome = models.IntegerField(default=0)
-        Loanamt = models.IntegerField(default=0)
-        Loanterm = models.IntegerField(default=0)
-        Credithistory = models.IntegerField(default=0)
-        Gender = models.CharField(max_length=15, choices=GENDER_CHOICES, default='Male')
-        Married = models.CharField(max_length=15, choices=MARRIED_CHOICES, default='No')
-        Graduatededucation = models.CharField(max_length=15, choices=GRADUATED_CHOICES, default='Graduated')
-        Selfemployed = models.CharField(max_length=15, choices=SELFEMPLOYED_CHOICES, default='No')
-        Area = models.CharField(max_length=15, choices=PROPERTY_CHOICES, default='Rural')
 
-        def __str__(self):
-            return '{}, {}'.format(self.lastname, self.firstname)
+
+class approvals(models.Model):
+    GENDER_CHOICES = (
+        ('Male', 'Male'),
+        ('Female', 'Female')
+    )
+    MARRIED_CHOICES = (
+        ('Yes', 'Yes'),
+        ('No', 'No')
+    )
+    GRADUATED_CHOICES = (
+        ('Graduate', 'Graduated'),
+        ('Not_Graduate', 'Not_Graduate')
+    )
+    SELFEMPLOYED_CHOICES = (
+        ('Yes', 'Yes'),
+        ('No', 'No')
+    )
+    PROPERTY_CHOICES = (
+        ('Rural', 'Rural'),
+        ('Semiurban', 'Semiurban'),
+        ('Urban', 'Urban')
+    )
+    Firstname = models.CharField(max_length=15, default='John')
+    Lastname = models.CharField(max_length=15, default='Doe')
+    Dependants = models.IntegerField(default=0)
+    Applicantincome = models.IntegerField(default=0)
+    Coapplicatincome = models.IntegerField(default=0)
+    Loanamt = models.IntegerField(default=0)
+    Loanterm = models.IntegerField(default=0)
+    Credithistory = models.IntegerField(default=0)
+    Gender = models.CharField(max_length=15, choices=GENDER_CHOICES, default='Male')
+    Married = models.CharField(max_length=15, choices=MARRIED_CHOICES, default='No')
+    Graduatededucation = models.CharField(max_length=15, choices=GRADUATED_CHOICES, default='Graduated')
+    Selfemployed = models.CharField(max_length=15, choices=SELFEMPLOYED_CHOICES, default='No')
+    Area = models.CharField(max_length=15, choices=PROPERTY_CHOICES, default='Rural')
+
+    def __str__(self):
+        return '{}, {}'.format(self.lastname, self.firstname)

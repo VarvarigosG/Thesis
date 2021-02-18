@@ -1,7 +1,8 @@
 from django import forms
+from django.forms import ClearableFileInput
 from django.utils.translation import ugettext_lazy as _
 
-from .models import FileOK, approvals
+from .models import FileOK, MLmodeldata
 
 
 class UploadForm(forms.ModelForm):
@@ -13,13 +14,24 @@ class UploadForm(forms.ModelForm):
             'file': _(''),
         }
 
-        # widgets = {
-        #     'file': TextInput(attrs={
-        #
-        #         'class': 'form-control',
-        #         'data-validation': 'custom',
-        #
-        #     }),}
+        widgets = {
+            'file': ClearableFileInput(attrs={'multiple': True}),
+
+        }
+
+
+class UploadDataForm(forms.ModelForm):
+    class Meta:
+        model = MLmodeldata
+        fields = ('data',)
+
+        labels = {
+            'data': _(''),
+        }
+
+        widgets = {
+            'data': ClearableFileInput(attrs={'multiple': True}),
+        }
 
 
 from django import forms

@@ -5,15 +5,15 @@
     <title>Django Multiple File Upload</title>
 </head>
 <body>
-<form>
     <h5>Upload your file here!</h5>
                     <form method='post' enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{form}}
-                        <input type="file" name="filemodel"><br><br>
-                        <input type="file" name="filedata"><br><br>
-                        <input type="submit" value="Submit">
+                     {{ model_form.as_p }} <h5>yo</h5>
+						{{ data_form.as_p }}
+					<p>
+						<input type="submit" value="Upload">
+					</p>
                     </form>
-</form>
+
 </body>
 </html>
