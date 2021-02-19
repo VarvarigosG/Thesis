@@ -1,8 +1,8 @@
 from django.db import models
-
+from .validators import validate_file_extension, validate_file_extension1
 
 class MLmodeldata(models.Model):
-    data = models.FileField()
+    data = models.FileField(validators=[validate_file_extension1])
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -15,7 +15,7 @@ class MLmodeldata(models.Model):
 
 class FileOK(models.Model):
     # einai gia to file upload
-    file = models.FileField()
+    file = models.FileField(validators=[validate_file_extension])
     result = models.CharField(max_length=2, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)

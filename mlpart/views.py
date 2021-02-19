@@ -40,8 +40,10 @@ def FileUploadView(request):
         if model_form.is_valid() and data_form.is_valid():
             model_form.save()
             data_form.save()
-            # messages.success(request, 'Your file had been uploaded successfully.')
+
             return HttpResponseRedirect(reverse('agnosticExplanation'))
+        else:
+            messages.warning(request, 'Unsupported file type!')
     else:
         form = UploadForm()
     context = {

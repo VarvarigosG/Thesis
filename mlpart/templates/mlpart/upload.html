@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     {% load static %}
     <meta charset="utf-8">
@@ -46,11 +46,13 @@
     <div class="container">
 
         <div class="row">
-            <h5>&rarr;In this section, we present to you the example models. Each one of them, takes the user's input and
-                makes a prediction. We propose experimenting with the example models first and then using the upload platform in order
-                to explain your own machine learning model. That way, the explanations given will be much more intuitive.
-            </h5><br><br><br>
-
+            <h5>&rarr;In this section, we present to you the example models. Each one of them, takes the user's input
+                and
+                makes a prediction. We propose experimenting with the example models first and then using the upload
+                platform in order
+                to explain your own machine learning model. That way, the explanations given will be much more
+                intuitive.
+            </h5><br>
             <div class="col-md">
                 <h5>&#9830;The MPG model makes predictions about the miles per gallon consumption of the user's
                     car. </h5>
@@ -76,27 +78,40 @@
 
             </div>
         </div>
+        <p><h5>&rarr;Along with the prediction, we provide an explanation as to why the model came to the specific
+        outcome for all of the above examples.</h5></p>
         <br>
         <div class="row">
             <div class="col-md">
                 <h5>&#9830;Or you can upload your own model for explanations.</h5>
-                <form  method='post' enctype="multipart/form-data">
+                <br>
+                <h5><span style="color:#e36b05">&excl; Expect some delay as we make the predictions for your model.</span></h5>
+                <form method='post' enctype="multipart/form-data">
                     <br>
-                    <h5>&rarr;Upload your trained model in <span style="color:#ff0000">.pkl</span> format.</h5>
+                    <h5>&#8627;Upload your trained model in <span style="color:#ff0000">.pkl</span> format.</h5>
                     {% csrf_token %}
                     {{ model_form.as_p }}
+
                     <br>
-                    <h5>&rarr;Upload the data which were used to train the model in <span style="color:#ff0000">.csv</span> format.</h5>
+                    <h5>&#8627;Upload the data which were used to train the model in <span
+                            style="color:#ff0000">.csv</span> format.</h5>
                     {{ data_form.as_p }}
 
-                       <input style="width: 350px !important;" class="btn btn-secondary"  input type="submit" value="Upload & Explain »">
+                    <input style="width: 350px !important;" class="btn btn-secondary " input type="submit"
+                           value="Upload & Explain »">
+                    {% for message in messages %}
+                    <div style="width: 350px !important;" class="alert alert-danger text-center {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                        {{ message|safe }}
+                    </div>
+                    {% endfor %}
+
+                    <br>
 
                 </form>
 
             </div>
         </div>
-        <p><h5>&rarr;Along with the prediction, we provide an explanation as to why the model came to the specific
-        outcome. That is
+        <p><h5>&rarr;All the explanations in this chapter are
         achieved with the help of <i>SHAP</i>. <i>SHAP</i> (SHapley Additive exPlanations) is a game theoretic approach
         to explain the
         output of any machine learning model. It connects optimal credit allocation with local explanations using the
