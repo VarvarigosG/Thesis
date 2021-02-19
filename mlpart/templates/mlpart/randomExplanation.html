@@ -40,16 +40,14 @@
             <div class="row justify-content-start">
 
                 <div class="col">
-<!--                    <h5 class="text-success display-4">The MPG score is {{scoreval}}-->
-<!--                        <input type="hidden" name="mpgVal" value={{scoreval}}>-->
-<!--                    </h5>-->
+                    <h1 class="display-4">Agnostic Explainability</h1>
                 </div>
 
                 <div style="padding: 15px 0px 10px!important" class="d-flex justify-content-end">
                     <div class="col-md">
-                        <h5>Want to make another prediction?</h5>
-                        <p><a style="width: 360px !important;" class="btn btn-secondary text-info"
-                              href="/mlpart/mpg/" role="button">Go Ahead »</a></p>
+                        <h5>Want to make explain another model?</h5>
+                        <p><a style="width: 345px !important;" class="btn btn-secondary text-info"
+                              href="/mlpart/" role="button">Go Ahead »</a></p>
                     </div>
                 </div>
 
@@ -59,15 +57,12 @@
 
     <div class="container">
         <h5>
-            <p>But you may be wondering, how did we come to that outcome? We used a Random Forest Regression model to
-                make the prediction, that was trained
-                with the following dataset: <a href="https://archive.ics.uci.edu/ml/datasets/auto+mpg">Auto MPG Data
-                    Set</a>.
-                To explain the model both globally and locally, we will use the fast TreeExplainer in SHAP.
-                The plots you are about to see, were made using the random data (320 observations) that were used to
-                train the model.</p>
+            <p>
+                &rarr;To explain the model both globally and locally, we use the  Kernel-Explainer in SHAP, which works for
+                every machine learning model. The plots you are about to see, were made using the data you provided and
+                were used to train the model.</p>
             <br><br>
-            <p>&rarr;Firstly we will explain the entire dataset through the visualization of the importance of the
+            <p>&rarr;Firstly we will make global explanations through the visualization of the importance of the
                 features and
                 their impact on the prediction. For that we will use the <i>'Variance Importance'</i> and <i>'Summary'
                     plots</i>.</p>
@@ -78,7 +73,7 @@
             <div class="row justify-content-start">
 
                 <div class="container">
-                    <h4>&check;Explaining the entire dataset:</h4>
+                    <h4>&check;Global Explanations:</h4>
                     <br>
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot ')"
@@ -92,10 +87,8 @@
 
                 <div id="Variable Importance Plot " class="tabcontent">
                     <h6><p> The variable importance plot lists the most significant variables in descending order. The top
-                    variables contribute more to the model than the bottom ones and thus have high predictive power. So in this case
-                    "Displacement" and "Model Year" contribute more to the predicted outcome, when "Acceleration" does
-                    not seem to change the choice of the model in any significant way.</p></h6>
-                    <img src="{% static 'mlpart/MpgSPbarGlobaldata.jpeg' %}"/>
+                    variables contribute more to the model than the bottom ones and thus have high predictive power.</p></h6>
+                    <img src="{% static 'mlpart/agnostic/RandombarGlobaldata.jpeg' %}"/>
                 </div>
 
                 <div id="Summary Plot" class="tabcontent">
@@ -105,11 +98,10 @@
                     or lower prediction.<br>
                     &rarr;Original value: Color shows whether that variable is high (in red) or low (in blue) for that
                     observation.<br>
-                    &rarr;Correlation: A high level of the “Model Year” content has a high and positive impact on the
+                    &rarr;Correlation: A high level of the some feature content has a high and positive impact on the
                     prediction. The “high” comes from the red color,
-                    and the “positive” impact is shown on the X-axis. Similarly, we will say the “Displacement” is
-                    negatively correlated with the target variable. </p></h6>
-                    <img src="{% static 'mlpart/MpgSPGlobaldata.jpeg' %}"/>
+                    and the “positive” impact is shown on the X-axis.</p></h6>
+                    <img src="{% static 'mlpart/agnostic/RandomGlobaldata.jpeg' %}"/>
                 </div>
 
             </div>
@@ -124,83 +116,66 @@
     <br>
 
 
-<!--    <div class="container">-->
-<!--        <h5>-->
-<!--            <p>&rarr;Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the-->
-<!--            value of the feature for all instances in the dataset. We will do that by plotting <i>Partial Dependence Plots</i>.-->
-<!--            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a-->
-<!--            machine learning model.The function automatically includes another variable that your chosen variable-->
-<!--                interacts most with.</p>-->
-<!--        </h5>-->
-<!--        <br>-->
+    <div class="container">
+        <h5>
+            <p>&rarr;Secondly, we will focus on explaining single features by plotting the SHAP value of that feature vs. the
+            value of the feature for all instances in the dataset. We will do that by plotting <i>Partial Dependence Plots</i>.
+            The partial dependence plot shows the marginal effect one or two features have on the predicted outcome of a
+            machine learning model.The function automatically includes another variable that your chosen variable
+                interacts most with.</p>
+        </h5>
+        <br>
 
-<!--        <div class="container" align="center">-->
-<!--            <div class="row justify-content-start">-->
+        <div class="container" align="center">
+            <div class="row justify-content-start">
 
-<!--                <div class="container">-->
-<!--                    <h4>&check;Explaining single feature:</h4>-->
-<!--                    <br>-->
-<!--                    <div class="tab">-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'Cylinders')" id="defaultOpen1">-->
-<!--                            Cylinders-->
-<!--                        </button>-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'Displacement')">Displacement</button>-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'Horsepower')">Horsepower</button>-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'Weight')">Weight</button>-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'Acceleration')">Acceleration</button>-->
-<!--                        <button class="tablinks" onclick="openCity(event, 'ModelY')">Model Year</button>-->
-<!--                    </div>-->
-<!--                    <br>-->
-<!--                </div>-->
+                <div class="container">
+                    <h4>&check;Explaining single feature:</h4>
+                    <br>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Feature1')" id="defaultOpen1">
+                            Feature 1
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature2')">Feature 2</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature3')">Feature 3</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature4')">Feature 4</button>
 
-<!--                <div id="Cylinders" class="tabcontent">-->
-<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
-<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
-<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPCylindersdata.jpeg' %}"/>-->
-<!--                </div>-->
+                    </div>
+                    <br>
+                </div>
 
-<!--                <div id="Displacement" class="tabcontent">-->
-<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
-<!--                    and-->
-<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
-<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPDisplacementdata.jpeg' %}"/>-->
-<!--                </div>-->
+                <div id="Feature1" class="tabcontent">
+                    <h6><p>The plot below shows there exists a negative relationship between
+                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
+                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
+                </div>
 
-<!--                <div id="Horsepower" class="tabcontent">-->
-<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
-<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
-<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPHorsepowerdata.jpeg' %}"/>-->
-<!--                </div>-->
+                <div id="Feature2" class="tabcontent">
+                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
+                    and
+                    the target variable. The higher the displacement the lower the predicted value will be. Also
+                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
+                </div>
 
-<!--                <div id="Weight" class="tabcontent">-->
-<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
-<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPWeightdata.jpeg' %}"/>-->
-<!--                </div>-->
+                <div id="Feature3" class="tabcontent">
+                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
+                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
+                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
+                </div>
 
-<!--                <div id="Acceleration" class="tabcontent">-->
-<!--                    <h6><p>When it comes to "Acceleration", we can see from the graph that there is a complex but neutral-->
-<!--                    relationship-->
-<!--                    between the feature and the target variable. That means that acceleration doesnt effect the outcome-->
-<!--                    of the model-->
-<!--                    in a significant way.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPAccelerationdata.jpeg' %}"/>-->
-<!--                </div>-->
-
-<!--                <div id="ModelY" class="tabcontent">-->
-<!--                    <h6><p>The following plot shows there is an approximately linear and positive trend between “Model Year”-->
-<!--                    and the-->
-<!--                    target variable, which means that a newer car will have lower fuel consumption than an old one.</p></h6><br>-->
-<!--                    <img src="{% static 'mlpart/MpgDPModelyeardata.jpeg' %}"/>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <br>-->
+                <div id="Feature4" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br>
 
 <!--    <div class="container">-->
 <!--        <h5>-->

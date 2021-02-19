@@ -1,9 +1,11 @@
 import pickle
-import shap
+
 import joblib
 import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import shap
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import HttpResponseRedirect, reverse
@@ -17,7 +19,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
+
 matplotlib.use('Agg')
 from mlpart.api.serializers import approvalsSerializers
 
@@ -48,25 +50,48 @@ def FileUploadView(request):
     }
     return render(request, 'mlpart/upload.html', context)
 
+
 def agnosticExplanation(request):
-#kane recover tis teleytaies egrafes
-    # model = FileOK.objects.latest('created')
-    # data = MLmodeldata.objects.latest('created')
-#fortwse tis
-    # modelReloaded = joblib.load(model)
-    # df = pd.read_csv(data)
-#shap gia to modelo toy xrhsth
+    # kane recover tis teleytaies egrafes
+    model = FileOK.objects.latest('created').file.path
+    data = MLmodeldata.objects.latest('created').data.path
+
+    print(model)
+    print(data)
+    # fortwse tis
+    modelReloaded = joblib.load(model)
+    df = pd.read_csv(data)
+
+    column_name_list = df.columns.tolist()
+    print(column_name_list)
+    print(column_name_list[0])
+    # shap gia to modelo toy xrhsth
+    ex = shap.KernelExplainer(modelReloaded.predict, df)
+    shap_values = ex.shap_values(df)
+
+    shap.summary_plot(shap_values, df, show=False, plot_type='bar', sort=True)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandombarGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+
+
     # ex = shap.KernelExplainer(modelReloaded.predict, df)
     # shap_values = ex.shap_values(df)
-    # fig = shap.summary_plot(shap_values, df, show=False, sort=False)
-    # plt.savefig("mlpart/static/mlpart/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+    shap.summary_plot(shap_values, df, show=False, sort=False)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
+    shap.dependence_plot(column_name_list[0], shap_values, df, show=False)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData1.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
-    # shap.summary_plot(shap_values, df, show=False, plot_type='bar', sort=True)
-    # plt.savefig("mlpart/static/mlpart/RandombarGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+    shap.dependence_plot(column_name_list[1], shap_values, df, show=False)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData2.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+    shap.dependence_plot(column_name_list[2], shap_values, df, show=False)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData3.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
+    shap.dependence_plot(column_name_list[3], shap_values, df, show=False)
+    plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData4.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
     return render(request, 'mlpart/randomExplanation.html')
-
-
 
 
 # def FileUploadView(request):
