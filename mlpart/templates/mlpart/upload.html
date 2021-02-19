@@ -82,14 +82,14 @@
                 <h5>&#9830;Or you can upload your own model for explanations.</h5>
                 <form  method='post' enctype="multipart/form-data">
                     <br>
-                    <h5>&rarr;Upload the model in .pkl format here.</h5>
+                    <h5>&rarr;Upload your trained model in <span style="color:#ff0000">.pkl</span> format.</h5>
                     {% csrf_token %}
                     {{ model_form.as_p }}
                     <br>
-                    <h5>&rarr;Upload the data in .csv format here.</h5>
+                    <h5>&rarr;Upload the data which were used to train the model in <span style="color:#ff0000">.csv</span> format.</h5>
                     {{ data_form.as_p }}
 
-                       <input style="width: 350px !important;" class="btn btn-secondary"  input type="submit" value="Upload »">
+                       <input style="width: 350px !important;" class="btn btn-secondary"  input type="submit" value="Upload & Explain »">
 
                 </form>
 

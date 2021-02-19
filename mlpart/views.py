@@ -64,7 +64,11 @@ def agnosticExplanation(request):
 
     column_name_list = df.columns.tolist()
     print(column_name_list)
+    print(len(column_name_list))
     print(column_name_list[0])
+    list_length = len(column_name_list)
+    print (list_length)
+    context = {'length': list_length}
     # shap gia to modelo toy xrhsth
     ex = shap.KernelExplainer(modelReloaded.predict, df)
     shap_values = ex.shap_values(df)
@@ -76,8 +80,9 @@ def agnosticExplanation(request):
 
     # ex = shap.KernelExplainer(modelReloaded.predict, df)
     # shap_values = ex.shap_values(df)
-    shap.summary_plot(shap_values, df, show=False, sort=False)
-    plt.savefig("mlpart/static/mlpart/agnostic/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+    # shap.summary_plot(shap_values, df, show=False, sort=False)
+    # plt.savefig("mlpart/static/mlpart/agnostic/RandomGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+
 
     shap.dependence_plot(column_name_list[0], shap_values, df, show=False)
     plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData1.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
@@ -91,7 +96,43 @@ def agnosticExplanation(request):
     shap.dependence_plot(column_name_list[3], shap_values, df, show=False)
     plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData4.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
-    return render(request, 'mlpart/randomExplanation.html')
+    if list_length == 5:
+            shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+    elif list_length == 6:
+            shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[5], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData6.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+    elif list_length == 7:
+            shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[5], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData6.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[6], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData7.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+    elif list_length == 8:
+            shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[5], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData6.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[6], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData7.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+            shap.dependence_plot(column_name_list[7], shap_values, df, show=False)
+            plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData8.jpeg", format='jpeg', dpi=130,
+                        bbox_inches='tight')
+
+
+    return render(request, 'mlpart/randomExplanation.html', context)
 
 
 # def FileUploadView(request):
