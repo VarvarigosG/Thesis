@@ -259,10 +259,12 @@ def predictMPG(request):
         joblib.dump(model, 'MPGmodel.pkl')
         sampleDataFeatures = np.asarray(
             [list(item.values()) for item in ({'x': temp}).values()])
+        print(sampleDataFeatures)
         modelReload = joblib.load('MPGmodel.pkl')
         scoreval = modelReload.predict(sampleDataFeatures)
         scoreval = np.around(scoreval, 2)
         scoreval1 = scoreval[0]
+
         print(scoreval1)
         context = {'scoreval': scoreval1}
 
@@ -326,7 +328,7 @@ def DiabetesModel(request):
             [list(item.values()) for item in ({'x': temp3}).values()])  # to temp3 to kanoyme numpyarray
         sampleDataFeatures = np.asarray(sampleDataFeatures, dtype=np.float64,
                                         order='C')  # ta kanoyme float giati einai string
-        # print(sampleDataFeatures)
+        print(sampleDataFeatures)
         # print(means)
         sampleDataFeatures = np.subtract(sampleDataFeatures, means)
         sampleDataFeatures = sampleDataFeatures / stds
@@ -336,8 +338,10 @@ def DiabetesModel(request):
         diabeteseModelInsideDjango = joblib.load(r"C:\Users\gvarv\anaconda3\envs\thesis\diabeteseModelInsideDjango.pkl")
         predictionProbability = diabeteseModelInsideDjango.predict_proba(sampleDataFeatures)
         prediction = diabeteseModelInsideDjango.predict(sampleDataFeatures)
+        print(sampleDataFeatures)
         print(predictionProbability)
         print(prediction)
+
 
         if prediction[0] == 0:
             print("Diabetes will NOT occur")
@@ -346,8 +350,8 @@ def DiabetesModel(request):
             print("Diabetes will  occur")
             messages.success(request, "Diabetes will occur")
 
-        print(sampleDataFeatures)
-        print(trainData[0, :])
+
+        # print(trainData[0, :])
 
         # Summary Plot gia global
 

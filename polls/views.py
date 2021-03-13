@@ -397,8 +397,8 @@ def get_percentage(request, question_id):
         # Choice.objects.filter(id__range=[232, 261]).update(votes=0)
 
     elif question_id == 1007:
-        queryset1 = Choice.objects.filter(id__range=[262, 271]).filter(votes=1).values()
-        queryset2 = Choice.objects.filter(id__range=[275, 294]).filter(votes=1).values()
+        queryset1 = Choice.objects.filter(id__range=[262, 294]).exclude(id__range=[272, 289]).filter(votes=1).values()
+        queryset2 = Choice.objects.filter(id__range=[275, 289]).filter(votes=1).values()
         x = 0
         y = 0
         labels2 = []
