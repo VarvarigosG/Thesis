@@ -204,7 +204,7 @@ def get_percentage(request, question_id):
         # Choice.objects.filter(id__range=[104, 117]).update(votes=0)
 
     elif question_id == 407:
-        queryset1 = Choice.objects.filter(id__range=[122, 361]).exclude(id__range=[136, 356]).filter(votes=1).values()
+        queryset1 = Choice.objects.filter(id__range=[122, 361]).exclude(id__range=[137, 356]).filter(votes=1).values()
         queryset2 = Choice.objects.filter(id__range=[137, 141]).filter(votes=1).values()
         x = 0
         y = 0
@@ -775,9 +775,8 @@ def leapquestion(request, question_id):
         y10 = (100 / (6 * 5)) * (x10)
 
         #Inferencing
-
-        queryset14 = Choice.objects.filter(id__range=[262, 271]).filter(votes=1).values()
-        queryset15 = Choice.objects.filter(id__range=[275, 294]).filter(votes=1).values()
+        queryset14 = Choice.objects.filter(id__range=[262, 294]).exclude(id__range=[272, 289]).filter(votes=1).values()
+        queryset15 = Choice.objects.filter(id__range=[275, 289]).filter(votes=1).values()
         x11 = 0
         y11 = 0
         labels15 = []
@@ -858,7 +857,7 @@ def leapquestion(request, question_id):
         Org_Total=(y+y3+y4+y5+y6+y7+y8)/7
         Alg_Total=(y9+y10+y11+y12+y13)/5
         Total_Total=(Org_Total+Alg_Total)/2
-        Choice.objects.filter(id__range=[41, 361]).update(votes=0)
+        # Choice.objects.filter(id__range=[41, 361]).update(votes=0)
 
         context = {'scoreval': y, 'scoreval2': y3, 'scoreval3': y4,'scoreval4': y5,'scoreval5': y6,'scoreval6': y7,'scoreval7': y8,'scoreval8': y9,'scoreval9': y10,'scoreval10': y11,'scoreval11': y12,'scoreval12': y13, 'scoreval13': Org_Total,'scoreval14': Alg_Total,'scoreval15':Total_Total}
         return render(request, 'polls/dashboard.html', context)
