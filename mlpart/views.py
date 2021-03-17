@@ -353,14 +353,14 @@ def DiabetesModel(request):
 
         # print(trainData[0, :])
 
-        # Summary Plot gia global
+        #Summary Plot gia global
 
         # ex = shap.KernelExplainer(diabeteseModelInsideDjango.predict, trainData)
         # shap_values = ex.shap_values(trainData)
         # fig = shap.summary_plot(shap_values, trainData,
         #                         feature_names=['Pregnancies', 'Glucose', 'Blood Pressure', 'Skin Thickness', 'Insulin',
-        #                                        'BMI', 'Diabetes Pedigree', 'Age'], show=False, sort=False)
-        # plt.savefig("mlpart/static/mlpart/DiabetesSPGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
+        #                                        'BMI', 'Diabetes Pedigree', 'Age'], show=False, sort=True)
+        # plt.savefig("mlpart/static/mlpart/DiabetesSPGlobaldataNEW.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
         # Summary Plot bar gia global
 
