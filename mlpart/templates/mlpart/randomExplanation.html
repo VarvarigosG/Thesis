@@ -77,7 +77,7 @@
                         <button class="tablinks" onclick="openCity(event, 'Variable Importance Plot ')"
                                 id="defaultOpen">Variable Importance Plot
                         </button>
-<!--                        <button class="tablinks" onclick="openCity(event, 'Summary Plot')">Summary Plot</button>-->
+<!--                        <button class="tablinks" onclick="openCity(event, 'Summary Plot')"id="defaultOpen">Summary Plot</button>-->
                     </div>
 
                     <br>
@@ -99,7 +99,7 @@
 <!--                    &rarr;Correlation: A high level of the some feature content has a high and positive impact on the-->
 <!--                    prediction. The “high” comes from the red color,-->
 <!--                    and the “positive” impact is shown on the X-axis.</p></h6>-->
-<!--                    <img src="{% static 'mlpart/agnostic/RandomGlobaldata.jpeg' %}"/>-->
+<!--                    <img src="{% static 'mlpart/agnostic/RandombarGlobaldata.jpeg' %}"/>-->
 <!--                </div>-->
 
             </div>
@@ -131,9 +131,7 @@
                     <h4>&check;Explaining single feature:</h4>
                     <br>
                     <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'Feature1')" id="defaultOpen1">
-                            Feature 1
-                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature1')" >Feature 1</button>
                         <button class="tablinks" onclick="openCity(event, 'Feature2')">Feature 2</button>
                         <button class="tablinks" onclick="openCity(event, 'Feature3')">Feature 3</button>
                         <button class="tablinks" onclick="openCity(event, 'Feature4')">Feature 4</button>
@@ -185,7 +183,7 @@
                         <button class="tablinks" onclick="openCity(event, 'Feature6')">Feature 2</button>
                         <button class="tablinks" onclick="openCity(event, 'Feature7')">Feature 3</button>
                         <button class="tablinks" onclick="openCity(event, 'Feature8')">Feature 4</button>
-                        <button class="tablinks" onclick="openCity(event, 'Feature9')" >Feature 1</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature9')" >Feature 5</button>
                     </div>
                     <br>
                 </div>
@@ -597,6 +595,198 @@
                     <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
                     of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    {% elif length == 11 %}
+    <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4>&check;Explaining single feature:</h4>
+                    <br>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Feature50')" >Feature 1</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature51')">Feature 2</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature52')">Feature 3</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature53')">Feature 4</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature54')" >Feature 5</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature55')" >Feature 6</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature56')" >Feature 7</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature57')" >Feature 8</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature58')" >Feature 9</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature59')" >Feature 10</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature60')" >Feature 11</button>
+                    </div>
+                    <br>
+                </div>
+
+                <div id="Feature50" class="tabcontent">
+                    <h6><p>The plot below shows there exists a negative relationship between
+                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
+                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
+                </div>
+
+                <div id="Feature51" class="tabcontent">
+                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
+                    and
+                    the target variable. The higher the displacement the lower the predicted value will be. Also
+                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
+                </div>
+
+                <div id="Feature52" class="tabcontent">
+                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
+                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
+                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
+                </div>
+
+                <div id="Feature53" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
+                </div>
+
+                <div id="Feature54" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
+                </div>
+
+                <div id="Feature55" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
+                </div>
+
+                <div id="Feature56" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
+                </div>
+                <div id="Feature57" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
+                </div>
+                <div id="Feature58" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
+                </div>
+                <div id="Feature59" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
+                </div>
+                <div id="Feature60" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData11.jpeg' %}"/>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    {% elif length == 12 %}
+    <div class="container" align="center">
+            <div class="row justify-content-start">
+
+                <div class="container">
+                    <h4>&check;Explaining single feature:</h4>
+                    <br>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'Feature61')" >Feature 1</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature62')">Feature 2</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature63')">Feature 3</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature64')">Feature 4</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature65')" >Feature 5</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature66')" >Feature 6</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature67')" >Feature 7</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature68')" >Feature 8</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature69')" >Feature 9</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature70')" >Feature 10</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature71')" >Feature 11</button>
+                        <button class="tablinks" onclick="openCity(event, 'Feature72')" >Feature 12</button>
+                    </div>
+                    <br>
+                </div>
+
+                <div id="Feature61" class="tabcontent">
+                    <h6><p>The plot below shows there exists a negative relationship between
+                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
+                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
+                </div>
+
+                <div id="Feature62" class="tabcontent">
+                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
+                    and
+                    the target variable. The higher the displacement the lower the predicted value will be. Also
+                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
+                </div>
+
+                <div id="Feature63" class="tabcontent">
+                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
+                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
+                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
+                </div>
+
+                <div id="Feature64" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
+                </div>
+
+                <div id="Feature65" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
+                </div>
+
+                <div id="Feature66" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
+                </div>
+
+                <div id="Feature67" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
+                </div>
+                <div id="Feature68" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
+                </div>
+                <div id="Feature69" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
+                </div>
+                <div id="Feature70" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
+                </div>
+                <div id="Feature71" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData11.jpeg' %}"/>
+                </div>
+                <div id="Feature72" class="tabcontent">
+                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
+                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+                    <img src="{% static 'mlpart/agnostic/RandomSpecificData12.jpeg' %}"/>
                 </div>
             </div>
             <br>

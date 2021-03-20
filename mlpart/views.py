@@ -74,7 +74,7 @@ def agnosticExplanation(request):
     # shap gia to modelo toy xrhsth
     ex = shap.KernelExplainer(modelReloaded.predict, df)
     shap_values = ex.shap_values(df)
-
+    # shap.summary_plot(shap_values, df, show=False, sort=True)
     shap.summary_plot(shap_values, df, show=False, plot_type='bar', sort=True)
     plt.savefig("mlpart/static/mlpart/agnostic/RandombarGlobaldata.jpeg", format='jpeg', dpi=130, bbox_inches='tight')
 
@@ -166,6 +166,53 @@ def agnosticExplanation(request):
                     bbox_inches='tight')
         shap.dependence_plot(column_name_list[9], shap_values, df, show=False)
         plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData10.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+    elif list_length == 11:
+        shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[5], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData6.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[6], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData7.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[7], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData8.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[8], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData9.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[9], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData10.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[10], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData11.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+    elif list_length == 12:
+        shap.dependence_plot(column_name_list[4], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData5.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[5], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData6.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[6], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData7.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[7], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData8.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[8], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData9.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[9], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData10.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[10], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData11.jpeg", format='jpeg', dpi=130,
+                    bbox_inches='tight')
+        shap.dependence_plot(column_name_list[11], shap_values, df, show=False)
+        plt.savefig("mlpart/static/mlpart/agnostic/RandomSpecificData12.jpeg", format='jpeg', dpi=130,
                     bbox_inches='tight')
     return render(request, 'mlpart/randomExplanation.html', context)
 
