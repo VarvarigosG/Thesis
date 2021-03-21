@@ -59,8 +59,7 @@
         <h5>
             <p>
                 &rarr;To explain the model both globally and locally, we use the  Kernel-Explainer in SHAP, which works for
-                every machine learning model. The plots you are about to see, were made using the data you provided and
-                were used to train the model.</p>
+                every machine learning model. The plots you are about to see, were made using the data you provided.</p>
             <br><br>
             <p>&rarr;Firstly we will make global explanations through the visualization of the importance of the
                 features. For that we will use the <i>'Variance Importance'</i>plot</i>.</p>
@@ -125,7 +124,7 @@
         <br>
         {% if length == 4 %}
         <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -141,30 +140,27 @@
                 </div>
 
                 <div id="Feature1" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature2" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature3" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature4" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
             </div>
@@ -173,7 +169,7 @@
     </div>
     {% elif length == 5 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -189,36 +185,36 @@
                 </div>
 
                 <div id="Feature5" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature6" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature7" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature8" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature9" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
             </div>
@@ -228,7 +224,7 @@
 
     {% elif length == 6 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -245,42 +241,42 @@
                 </div>
 
                 <div id="Feature10" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature11" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature12" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature13" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature14" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature15" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
             </div>
@@ -290,7 +286,7 @@
 
     {% elif length == 7 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -308,48 +304,48 @@
                 </div>
 
                 <div id="Feature16" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature17" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature18" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature19" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature20" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature21" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature22" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
             </div>
@@ -359,7 +355,7 @@
 
     {% elif length == 8 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -378,54 +374,54 @@
                 </div>
 
                 <div id="Feature23" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature24" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature25" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature26" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature27" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature28" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature29" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
 
                 <div id="Feature30" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
                 </div>
             </div>
@@ -435,7 +431,7 @@
 
     {% elif length == 9 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -455,58 +451,58 @@
                 </div>
 
                 <div id="Feature31" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature32" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature33" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature34" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature35" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature36" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature37" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
                 <div id="Feature38" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
                 </div>
                 <div id="Feature39" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
                 </div>
             </div>
@@ -516,7 +512,7 @@
 
     {% elif length == 10 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -537,63 +533,63 @@
                 </div>
 
                 <div id="Feature40" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature41" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature42" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature43" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature44" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature45" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature46" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
                 <div id="Feature47" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
                 </div>
                 <div id="Feature48" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
                 </div>
                 <div id="Feature49" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
                 </div>
             </div>
@@ -603,7 +599,7 @@
 
     {% elif length == 11 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -625,68 +621,68 @@
                 </div>
 
                 <div id="Feature50" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature51" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature52" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature53" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature54" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature55" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature56" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
                 <div id="Feature57" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
                 </div>
                 <div id="Feature58" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
                 </div>
                 <div id="Feature59" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
                 </div>
                 <div id="Feature60" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData11.jpeg' %}"/>
                 </div>
             </div>
@@ -696,7 +692,7 @@
 
     {% elif length == 12 %}
     <div class="container" align="center">
-            <div class="row justify-content-start">
+            <div class="row justify-content-center">
 
                 <div class="container">
                     <h4>&check;Explaining single feature:</h4>
@@ -719,73 +715,73 @@
                 </div>
 
                 <div id="Feature61" class="tabcontent">
-                    <h6><p>The plot below shows there exists a negative relationship between
-                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will
-                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists a negative relationship between-->
+<!--                    “Cylinders” and the target variable. The more the cylinders the lower the mpg of the vehicle will-->
+<!--                    be. Also the interaction between "Cylinders" and "Weight" appears sparse.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData1.jpeg' %}"/>
                 </div>
 
                 <div id="Feature62" class="tabcontent">
-                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”
-                    and
-                    the target variable. The higher the displacement the lower the predicted value will be. Also
-                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is an approximately linear and negative trend between “Displacement”-->
+<!--                    and-->
+<!--                    the target variable. The higher the displacement the lower the predicted value will be. Also-->
+<!--                    “Displacement” interacts with “Model Year” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData2.jpeg' %}"/>
                 </div>
 
                 <div id="Feature63" class="tabcontent">
-                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and
-                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.
-                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>
+<!--                    <h6><p>The following plot shows there is a linear and negative trend between “Horsepower” and-->
+<!--                    the target variable. When a vehicle possess a lot of horsepower, the mpg will be lower.-->
+<!--                    According to the graph "Horsepower" interacts with “Displacement” frequently.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData3.jpeg' %}"/>
                 </div>
 
                 <div id="Feature64" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData4.jpeg' %}"/>
                 </div>
 
                 <div id="Feature65" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData5.jpeg' %}"/>
                 </div>
 
                 <div id="Feature66" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData6.jpeg' %}"/>
                 </div>
 
                 <div id="Feature67" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData7.jpeg' %}"/>
                 </div>
                 <div id="Feature68" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData8.jpeg' %}"/>
                 </div>
                 <div id="Feature69" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData9.jpeg' %}"/>
                 </div>
                 <div id="Feature70" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData10.jpeg' %}"/>
                 </div>
                 <div id="Feature71" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData11.jpeg' %}"/>
                 </div>
                 <div id="Feature72" class="tabcontent">
-                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"
-                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>
+<!--                    <h6><p>The plot below shows there exists an approximately linear and negative relationship between “Weight"-->
+<!--                    of the vehicle and the target variable,which means that a heavier car will do less miles per gallon.</p></h6><br>-->
                     <img src="{% static 'mlpart/agnostic/RandomSpecificData12.jpeg' %}"/>
                 </div>
             </div>
